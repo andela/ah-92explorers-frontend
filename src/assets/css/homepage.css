@@ -1,0 +1,968 @@
+body
+{
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    background: #eeeeee;
+}
+
+.feedNavbar
+{
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 500;
+}
+
+.feedHome
+{
+    margin-top: 10%;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.dropdown-links {
+    margin-left: 0px;
+    display: none;
+    padding-left: 20px;
+    background: #fff;
+    box-shadow: -1px 3px 8px 0px #00000038;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 4px;
+    margin-right: 0px;
+    position: absolute;
+    top: 40px;
+
+}
+.notification-card {
+    width: 400px;
+    height: 69px;
+    right: 0px;
+    bottom: 0px;
+    background: #fff;
+    box-shadow: -1px -1px 11px 2px #0000001f;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    padding-top: 5px;
+    padding-left: 5px;    
+    position: fixed;
+    z-index: 100;
+}
+
+.notification-card img {
+    width: 66px;
+    height: 63px;
+    border-radius: 4px;
+}
+.notifications-drop {
+    position: absolute;
+    width: 380px;
+    padding-left: 15px;
+    right: 129px;
+    top: 40px;
+    display: none;
+    position: absolute;
+    width: 275px;
+    padding-left: 15px;
+    background: #fff;
+    box-shadow: 2px 0px 4px 3px #0000000f;
+    border-radius: 4px;    color: #0000005e;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.read_status {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.notifications-drop > ul > li{
+    margin-right: 0px;
+    margin-bottom: 20px;
+}
+
+.notifications-drop > ul{
+    margin-left: 0px;
+    padding-left: 10px;
+}
+.notif-count {
+    z-index: 9999;
+    position: relative;
+    bottom: 10px;
+    background: red;
+    padding-left: 6px;
+    padding-right: 6px;
+    border-radius: 50%;
+    color: #fff;
+    border: 1px solid #fff;
+    left: auto;
+    right: 35px;
+    cursor: pointer;
+    font-size: 12px;
+}
+.title {
+    font-weight: bolder;
+    font-size: 18px;
+}
+.body {
+    font-size: 12px;
+    color: #8e8686;
+}
+.article-title {
+    font-weight: bolder;
+    font-size: 14px;
+}
+.notification-card ul {
+    margin-left: 40px;
+    display: inline-grid;
+    position: relative;
+    bottom: 80px;
+}
+.search-bar {
+    position: relative;
+    height: 30px;
+    border-radius: 4px;
+    border: 1px solid #0000005e;
+    top: 30px;
+    padding-left: 5px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    width: 250px;
+    margin-right: 70px;
+}
+
+.dropdown-links > li:nth-of-type(0) {
+    margin-bottom: 10px;
+}
+
+.dropdown-links > li {
+    cursor: pointer;
+}
+
+.spBtn
+{
+    margin-top: 20px;
+    -webkit-border-radius: 36px;
+    border-radius: 36px;
+    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,.04);
+    box-shadow: 0 1px 4px rgba(0,0,0,.04);
+    background: none;
+    padding: 10px 28px;
+    height: 40px;
+    outline: none;
+    border: 1px solid rgba(0,0,0,.04);
+    cursor: pointer;
+    margin-right: 10px;
+    background: #eeeeee;
+}
+
+.lgBtn
+{
+    margin-top: 20px;
+    -webkit-border-radius: 36px;
+    border-radius: 36px;
+    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,.04);
+    box-shadow: 0 1px 4px rgba(0,0,0,.04);
+    background: none;
+    padding: 10px 28px;
+    height: 40px;
+    outline: none;
+    border: 1px solid rgba(0,0,0,.04);
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.avatarFeed
+{
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+}
+
+.firstNavbar 
+{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    background: #ffffff;
+}
+
+.userStatus
+{
+    display: grid;
+    grid-template-columns: 22% 35% 35%;
+    margin-left: 32%;
+    margin-top: 1.9%;
+}
+
+#userStatusName
+{
+    margin-top: 1px;
+}
+
+.articleBtn
+{
+    height: 18px;
+    width: 18px;
+}
+
+.logoNavbar
+{
+    margin-left: 1%;
+    margin-right: 15%;
+}
+
+.navbarBtn
+{
+    margin-top: 2%;
+    background: none;
+    margin-left: 2%;
+    height: 40px;
+    padding: 5px 38px;
+    border: 1px solid #367fa9;
+    outline: #367fa9;
+    cursor: pointer;
+    -webkit-border-radius: 36px;
+    border-radius: 36px;
+}
+
+.navIcons
+{
+    height: 20px;
+    width: 20px;
+    margin-right: 20px;
+}
+
+.notifications
+{
+    margin-top: 35px;
+}
+
+.manIcon
+{
+    height: 35px;
+    width: 35px;
+    margin-left: 20px;
+    margin-right: 10px;
+    margin-top: 25px;
+}
+
+.navName
+{
+    margin-left: 10px;
+    margin-top: 30px;
+}
+
+.nameAndIcon
+{
+    display: flex;
+    flex-direction: row;
+}
+
+.dropdown
+{
+    margin-top: 35px;
+    height: 15px;
+    width: 15px;
+    margin-left: 10px;
+}
+
+.secondNavbar
+{
+    background: #ffffff;
+    padding-top: 15px;
+    padding-bottom: 5px;
+    border-top: 1px solid #eeeeee;
+}
+
+ .secondNavbarList .secondNavbarItems
+{
+    display: inline;
+}
+
+.secondNavbarList
+{
+    margin-left: 15%;
+}
+
+.secondNavbarItems
+{
+    margin-right: 35px;
+}
+
+.headline
+{
+    display: flex;
+    flex-direction: row;
+    margin-left: 10%;
+    margin-top: 35px;
+}
+
+.star
+{
+    height: 20px;
+    width: 20px;
+    margin-right: 10px;
+}
+
+.ftBtnsFeed
+{
+    margin-left: 25%;
+    -webkit-border-radius: 36px;
+    border-radius: 36px;
+    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,.04);
+    box-shadow: 0 1px 4px rgba(0,0,0,.04);
+    border: 1px solid rgba(0,0,0,.09);
+    text-align: center;
+    height: 35px;
+    padding: 5px;
+    margin-right: 20%;
+}
+
+.btnLikeNav
+{
+    border-right: 1px solid rgba(0,0,0,.09);
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.btnLike2Nav
+{
+    padding-right: 10px;
+}
+
+.sortBtn
+{
+    -webkit-border-radius: 36px;
+    border-radius: 36px;
+    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,.04);
+    box-shadow: 0 1px 4px rgba(0,0,0,.04);
+    background: none;
+    padding: 5px 28px;
+    margin-left: 15px;
+    border: 1px solid rgba(0,0,0,.04);
+    cursor: pointer;
+    outline: none;
+
+}
+
+.sortIcon
+{
+    height: 10px;
+    width: 10px;
+    margin-top: 2px;
+}
+
+.profImg
+{
+    height: 20px;
+    width: 20px;
+    border-radius: 30px;
+    margin-left: 10px;
+}
+
+.sbPI
+{
+    height: 20px;
+    width: 20px;
+    border-radius: 30px;
+}
+
+.profBookmark
+{
+    height: 15px;
+    width: 15px;
+    cursor: pointer;
+}
+
+.firstRow
+{
+    display: flex;
+    flex-direction: row;
+    margin-left: 10%;
+    margin-top: 2%;
+}
+
+.firstRowFirst
+{
+    background-image: url('../icons/bird.jpeg');
+    background-position: 100%;
+    background-size: cover!important;
+    background-repeat: no-repeat;
+    width: 450px;
+}
+
+.secondRowFirst
+{
+    margin-left: 2%;
+}
+
+.subColumn
+{
+    background: #ffffff;
+    width: 290px !important;
+    height: 120px;
+    padding: 10px;   
+}
+
+.h4Wrap
+{
+    word-break: break-all;
+}
+
+.sb1
+{
+    margin-right: 50px;
+}
+
+.sb2
+{
+    margin-bottom: 20px;
+}
+
+.secondRow
+{
+    display: flex;
+    flex-direction: row;
+    margin-left: 10%;
+    margin-top: 1%;
+}
+
+.secRowImg
+{
+    width: 170px;
+    height: 140px;
+}
+
+.cardProfile
+{
+    margin-top: 50px;
+    margin-left: 0;
+}
+
+.secRowDiv
+{
+    display: flex;
+    flex-direction: row;
+    width: 450px;
+    background: #ffffff;
+    height: 140px;
+}
+
+.secRowDivSpace
+{
+    margin-top: 20px;
+}
+
+.secRowDisplay2
+{
+    margin-left: 2%;
+    margin-top: 15px;
+}
+
+.secRowDivLong1
+{
+    background-image: url('../icons/bird.jpeg');
+    background-position: 100%;
+    background-size: cover !important;
+    background-repeat: no-repeat;
+    width: 630px;
+    height: 140px;
+}
+
+.displayDown
+{
+    margin-top: 25px;
+}
+
+.long
+{
+    width: 630px;
+}
+
+.thirdRow
+{
+    display: flex;
+    flex-direction: row;
+    margin-left: 10%;
+    margin-top: 25px;
+    margin-bottom: 50px;
+}
+
+.lastCards
+{
+    width: 250px;
+    max-width: 250px;
+    text-overflow: ellipsis;
+    background: #ffffff;
+    padding-bottom: 15px;
+}
+
+.lastCards .cardHeader
+{
+    width: 100%;
+    font-size: 15px;
+
+}
+
+
+.lastCardImage
+{
+    width: 250px;
+    height: 170px;
+}
+
+.spaceRight
+{
+    margin-right: 35px;
+}
+
+.showMore
+{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: 45%;
+    -webkit-border-radius: 36px;
+    border-radius: 36px;
+    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,.04);
+    box-shadow: 0 1px 4px rgba(0,0,0,.04);
+    background: #DC143C;
+    padding: 10px 28px;
+    outline: none;
+    border: 1px solid rgba(0,0,0,.04);
+    cursor: pointer;
+    color: #ffffff;
+}
+
+.signinBtnNav
+{
+    margin-top: 25px;
+    margin-bottom: 20px;
+    margin-left: 1%;
+    -webkit-border-radius: 36px;
+    border-radius: 36px;
+    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,.04);
+    box-shadow: 0 1px 4px rgba(0,0,0,.04);
+    background: #eeeeee;
+    padding: 5px 28px;
+    outline: none;
+    border: 1px solid rgba(0,0,0,.04);
+    cursor: pointer;
+}
+.signupBtnNav
+{
+    margin-top: 25px;
+    margin-bottom: 20px;
+    margin-left: 1%;
+    -webkit-border-radius: 36px;
+    border-radius: 36px;
+    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,.04);
+    box-shadow: 0 1px 4px rgba(0,0,0,.04);
+    background: #eeeeee;
+    padding: 5px 28px;
+    outline: none;
+    border: 1px solid rgba(0,0,0,.04);
+    cursor: pointer;
+}
+.createArt{
+    margin-top: 20px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    margin-right: -10%;
+    -webkit-border-radius: 36px;
+    border-radius: 36px;
+    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,.04);
+    box-shadow: 0 1px 4px rgba(0,0,0,.04);
+    background: #eeeeee;
+    padding: 5px 28px;
+    outline: none;
+    border: 1px solid rgba(0,0,0,.04);
+    cursor: pointer;
+
+}
+
+.profNameFeed
+{
+    font-size: 12px;
+}
+
+
+.fRT
+{
+    margin-top: 25%;
+    padding-left: 25px;
+}
+
+.fRST
+{
+    padding-left: 25px;
+}
+
+.pDFRF
+{
+    margin-left: 25px;
+    color: #ffffff;
+}
+
+.pBM
+{
+    margin-left: 60%;
+    margin-top: 0;
+    filter: invert(100%) sepia(0%) saturate(4141%) hue-rotate(292deg) brightness(117%) contrast(100%);
+}
+
+.pIFRF
+{
+    margin-top: 10px;
+}
+
+.pNFRF
+{
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.sbCN
+{
+    margin-top: 5px;
+    position: absolute;
+    margin-left: 10px;
+}
+
+.sbCBM
+{
+    margin-left: 70%;
+}
+
+.bmCD
+{
+    position: relative;
+    margin-left: 200px;
+}
+
+.sRCT
+{
+    margin-left: 25px;
+}
+
+.sRCT
+{
+    padding-top: 10px;
+}
+
+.sb224
+{
+    margin-top: 20px;
+}
+
+.sRCP
+{
+    margin-left: 10px;
+}
+
+.sbCMLong
+{
+    filter: invert(100%) sepia(0%) saturate(4141%) hue-rotate(292deg) brightness(117%) contrast(100%);
+}
+
+.sRCT1
+{
+    margin-top: 10px;
+}
+
+.cardSpan
+{
+    font-size: 10px;
+    margin-left: 10px;
+}
+
+.profileDisplay
+{
+    margin-top: 10px;
+}
+
+.cardHeader
+{
+    margin-left: 10px;
+    font-size: 17px;
+    margin-top: 10px;
+    font-weight: 600 !important;
+}
+
+.cardProfile
+{
+    margin-left: 10px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.disappearBtn
+{
+    display: none;
+}
+
+.dBtnOne
+{
+    margin-left: 26%;
+}
+
+
+@media only screen and (min-width : 1824px)
+{
+    .theBody
+    {
+        margin-left: 10%;
+    }
+
+    .logoNavbar
+    {
+        margin-left: 11%;
+    }
+
+    .ftBtnsFeed
+    {
+        margin-left: 20%;
+    }
+
+    .secondNavbarList
+    {
+        margin-left: 22%;
+    }
+
+    .feedHome
+    {
+        margin-top: 10%;
+    }
+
+    .userStatus
+    {
+        display: grid;
+        grid-template-columns: 20% 40% 30%;
+        margin-left: 23%;
+        margin-top: 1.5%;
+    }
+
+    .dBtnOne
+    {
+        margin-left: 18%;
+    }
+}
+
+
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px)
+{
+    .secondNavbarList .secondNavbarItems
+    {
+        display: none;
+    }
+
+    .firstNavbar
+    {
+        width: 100%;
+    }
+
+    .fRT
+    {
+        margin-top: 10%;
+    }
+
+    .pDFRF
+    {
+        padding-bottom: 30px;
+    }
+
+    .logoNavbar
+    {
+        width: 100px;
+        margin-left: 0%;
+        margin-right: 0%;  
+        height: 30px;  
+        margin-bottom: 15px;
+    }
+
+    .listBtns
+    {
+        margin-left: 15%;
+        margin-top: -10%;
+    }
+
+    .sbNavbar
+    {
+        margin-bottom: 50px !important;
+    }
+
+    .disappearBtn
+    {
+        display: block;
+        margin-top: 1px;
+    }
+
+    .disappear
+    {
+        display: none;
+    }
+
+    .firstRow
+    {
+        flex-direction: column;
+        width: 100%;
+        margin-left: 8%;
+    }
+
+    .userStatus
+    {
+        margin-left: 5%;
+        margin-top: 1.5%;
+    }
+
+    .secondRow
+    {
+        flex-direction: column;
+    }
+
+    .thirdRow
+    {
+        flex-direction: column;
+    }
+
+    .firstRowFirst
+    {
+        width: 80%;
+        margin-bottom: 25px;
+    }
+
+    .subColumn
+    {
+        width: 80%;
+        margin-left: 0%;
+    }
+
+    .secondRowFirst
+    {
+        margin-left: 0;
+    }
+
+    .sb22
+    {
+        margin-top: 20px;
+    }
+
+    .secRowImg
+    {
+        width: 100px;
+    }
+
+    .secRowDiv
+    {
+        width: 88.5%;
+    }
+
+    .secondRow
+    {
+        margin-left: 8%;
+    }
+    .sRCT223
+    {
+        padding: 0;
+        font-size: 15px;
+    }
+
+    .secRowDisplay2
+    {
+        margin-left: 0;
+    }
+
+    .secRowDivLong1
+    {
+        width: 87%;
+        height: 200px;
+    }
+
+    .long
+    {
+        width: 90%;
+    }
+
+    .thirdRow
+    {
+        width: 100%
+    }
+
+    .lastCards
+    {
+        width: 80%;
+        max-width: 80%;
+        margin-bottom: 25px;
+    }
+
+    .spaceRight
+    {
+        margin-right: 0px;
+    }
+
+    .lastCardImage
+    {
+        width: 100%;
+    }
+
+    .showMore
+    {
+        margin-top: 0;
+        margin-left: 30%
+    }
+
+    .feedHome
+    {
+        margin-top: 30%;
+    }
+
+    .secRowDivSpace
+    {
+        width: 87%;
+    }
+
+    .bmCD
+    {
+        margin-left: 50px;
+    }
+
+    .theBody
+    {
+        margin-top: 160px
+    }
+}
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px)
+{
+    .feedHome
+    {
+        margin-top: 10%;
+    }
+
+    .firstRow
+    {
+        width: 100%;
+    }
+
+    .firstRowFirst
+    {
+        width: 600px;
+    }
+}
+
+@media only screen and (min-device-width : 768px)
+{
+    .firstRow
+    {
+        width: 100% !important;
+    }
+}
+
+

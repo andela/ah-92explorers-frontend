@@ -1,0 +1,174 @@
+@import "./variables";
+@import "./ratings.scss";
+
+.form-wrap,
+.img-wrap {
+  height: 100vh;
+  min-height: 900px;
+}
+
+.logo {
+  margin-bottom: 30px;
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+  position: relative;
+}
+
+.logo img {
+  position: absolute;
+  top: 50%;
+  left: 120%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.form-wrap {
+  width: 500px;
+  background: $formwrapbackground;
+  padding: 40px;
+  -webkit-box-shadow: 10px 0 40px -5px $formwrapboxshadow;
+  box-shadow: 10px 0 40px -5px $formwrapboxshadow;
+  z-index: 2;
+  position: relative;
+}
+
+@media screen and (max-width: 576px) {
+  .form-wrap {
+    width: 100%;
+  }
+}
+
+.img-wrap {
+  z-index: 1;
+  position: relative;
+  width: calc(100% - 500px);
+  background-size: cover;
+  background-position: 80%;
+  background-repeat: no-repeat;
+}
+
+@media screen and (max-width: 576px) {
+  .img-wrap {
+    display: none;
+  }
+}
+
+.form a {
+  color: $forma;
+}
+
+.form a:hover {
+  color: $formahover;
+  text-decoration: underline;
+}
+
+.form .form-control {
+  border: 1px solid $formwrapbackground;
+}
+
+.form .form-control:hover,
+.form .form-control:active,
+.form .form-control:focus {
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  outline: none;
+}
+
+.form .form-control:active,
+.form .form-control:focus {
+  border: 1px solid $formborderactive;
+}
+
+.form .btn,
+.form .form-control {
+  height: 55px;
+}
+
+.form .btn:hover,
+.form .btn:active,
+.form .btn:focus,
+.form .form-control:hover,
+.form .form-control:active,
+.form .form-control:focus {
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  outline: none;
+}
+
+.form .btn {
+  font-weight: bold;
+}
+
+.form .btn.btn-icon {
+  position: relative;
+}
+
+.form .btn.btn-icon>span {
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  left: 2px;
+  width: 55px;
+  border-radius: 4px;
+  background: $general;
+}
+
+.form .btn.btn-icon>span>span {
+  font-size: 2rem;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  position: absolute;
+}
+
+.form .btn.btn-primary {
+  background: $formbtn;
+  border-color: $formbtn;
+}
+
+.form .btn.btn-primary:hover,
+.form .btn.btn-primary:active,
+.form .btn.btn-primary:focus {
+  background: $formbtnhover !important;
+  border-color: $formbtnhover !important;
+}
+
+.form .btn.btn-facebook {
+  background: $facebookbtn !important;
+  border-color: $facebookbtn !important;
+}
+
+.form .btn.btn-facebook>span>span {
+  color: $facebookbtn !important;
+}
+
+.form .btn.btn-facebook:hover,
+.form .btn.btn-facebook:active,
+.form .btn.btn-facebook:focus {
+  background: $facebookbtnhover !important;
+  border-color: $facebookbtnhover !important;
+}
+
+.form .btn.btn-google {
+  background: $googlebutton !important;
+  border-color: $googlebutton !important;
+}
+
+.form .btn.btn-twitter>span>span {
+  color: $twitterbtn !important;
+}
+
+.form .btn.btn-google>span>span {
+  color: $googlebutton !important;
+}
+
+.form .btn.btn-google:hover,
+.form .btn.btn-google:active,
+.form .btn.btn-google:focus {
+  background: $googlebutton !important;
+  border-color: $googlebutton !important;
+}

@@ -1,0 +1,4 @@
+build/* 
+webpack*.*
+src/__tests__/*
+src/__mocks__/*

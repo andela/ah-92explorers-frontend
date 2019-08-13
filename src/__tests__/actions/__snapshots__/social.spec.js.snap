@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`action creators creates LOGIN_FAILURE action 1`] = `
+Array [
+  Object {
+    "error": "something went wrong",
+    "type": "LOGIN_FAILURE",
+  },
+]
+`;
+
+exports[`action creators creates LOGIN_SUCCESS action 1`] = `
+Array [
+  Object {
+    "type": "LOGIN_SUCCESS",
+    "user": Object {
+      "email": "elemanhillary@gmail.com",
+      "firstName": "Eleman",
+      "lastName": "Hillary Barnabas",
+    },
+  },
+]
+`;

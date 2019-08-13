@@ -1,0 +1,3 @@
+export const RESET_SUCCESS = 'RESET_SUCCESS';
+export const RESET_FAILURE = 'RESET_FAILURE';
+export const PASSWORD_RESET = 'PASSWORD_RESET';
