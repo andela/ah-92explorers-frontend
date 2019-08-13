@@ -1,0 +1,51 @@
+{
+  "name": "ah-92explorers-frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --open --mode development",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode production",
+    "lint": "./node_modules/.bin/eslint src",
+    "lint-fixup": "./node_modules/.bin/eslint src --ext .js,.jsx --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andela/ah-92explorers-frontend.git"
+  },
+  "author": "92explorers",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andela/ah-92explorers-frontend/issues"
+  },
+  "homepage": "https://github.com/andela/ah-92explorers-frontend#readme",
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "babel-eslint": "^10.0.2",
+    "babel-loader": "^8.0.6",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^3.2.0",
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.14.3",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "node-sass": "^4.12.0",
+    "prop-types": "^15.7.2",
+    "sass-loader": "^7.2.0",
+    "style-loader": "^1.0.0",
+    "webpack": "^4.39.1",
+    "webpack-cli": "^3.3.6",
+    "webpack-dev-server": "^3.8.0"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0"
+  }
+}
