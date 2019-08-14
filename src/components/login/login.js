@@ -44,4 +44,4 @@ class Login extends Component {
   }
 }
 
-export { Login as login };
+export default Login;
