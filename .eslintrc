@@ -6,17 +6,18 @@
         "node": true,
         "cypress/globals": true
     },
+    "parser": "babel-eslint",
     "extends": "airbnb",
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
     },
     "parserOptions": {
+        "sourceType": "module",
         "ecmaFeatures": {
             "jsx": true
         },
-        "ecmaVersion": 2018,
-        "sourceType": "module"
+        "ecmaVersion": 2018
     },
     "plugins": [
         "react",
@@ -24,9 +25,14 @@
     ],
     "rules": {
         "react/prefer-stateless-function": 0,
-        "react/jsx-filename-extension": [1, {
-            "extensions": [".js", ".jsx"]
-        }],
-        "import/extensions": 0
+        "import/prefer-default-export": 0,
+        "react/jsx-fragments": 0,
+        "no-return-assign": 0,
+        "react/jsx-filename-extension": [1, {"extensions": [".js", ".jsx"]}],
+        "import/extensions": 0,
+        "react/jsx-props-no-spreading": 0,
+        "react/prop-types": 0,
+        "react/state-in-constructor": 0,
+        "arrow-parens": 0
     }
 }

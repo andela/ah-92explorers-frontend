@@ -50,4 +50,9 @@ cypress/integration
 
 #computer files
 .vscode/
+/cypress/fixtures
+/cypress/plugins
+/cypress/support
+/cypress/videos
+#.DS_Store
 .DS_Store

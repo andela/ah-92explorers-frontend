@@ -1,13 +1,7 @@
+import '@babel/polyfill';
 import React from 'react';
-import { render } from 'react-dom';
-import App from './App.jsx';
-import './assets/sass/index.scss';
-import './assets/css/style.css';
+import ReactDom from 'react-dom';
+import './assets/scss/App.scss';
+import App from './components/App.js';
 
-render(
-  <div>
-    <App />
-  </div>,
-
-  document.getElementById('root'),
-);
+ReactDom.render(<App />, document.getElementById('root'));
