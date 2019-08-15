@@ -1,7 +1,10 @@
 {
     "env": {
         "browser": true,
-        "es6": true
+        "es6": true,
+        "jest": true,
+        "node": true,
+        "cypress/globals": true
     },
     "extends": "airbnb",
     "globals": {
@@ -16,11 +19,14 @@
         "sourceType": "module"
     },
     "plugins": [
-        "react"
+        "react",
+        "cypress"
     ],
     "rules": {
         "react/prefer-stateless-function": 0,
-        "react/jsx-filename-extension": [1, {"extensions": [".js", ".jsx"]}],
+        "react/jsx-filename-extension": [1, {
+            "extensions": [".js", ".jsx"]
+        }],
         "import/extensions": 0
     }
 }
