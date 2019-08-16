@@ -43,3 +43,9 @@ node_modules/
 
 # production
 /build
+
+#cypress default folders
+/cypress/fixtures
+/cypress/plugins
+/cypress/support
+/cypress/videos
