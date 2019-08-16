@@ -47,3 +47,7 @@ node_modules/
 #cypress default folders
 cypress/*
 cypress/integration
+
+#computer files
+.vscode/
+.DS_Store
