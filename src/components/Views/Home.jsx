@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getHome } from '../redux/actions/actionCreators';
+import { getHome } from '../../redux/actions/actionCreators';
 
 class Home extends Component {
   componentDidMount() {

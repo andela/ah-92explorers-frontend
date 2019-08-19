@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Home from './Home';
-import Login from './login/login';
-import Private from './private/private';
+import Home from './Views/Home.jsx';
+import Login from './Views/Login.jsx';
+import Private from './Private/Private';
 
 class Routes extends Component {
   render() {
