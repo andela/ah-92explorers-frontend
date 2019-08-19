@@ -1,4 +1,4 @@
 build/* 
 webpack*.*
 src/__test__/*
-src/assets/scss/*
+src/assets/scss/*.scss
