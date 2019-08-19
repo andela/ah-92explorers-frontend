@@ -20,7 +20,17 @@ module.exports = {
     rules: [{
       test: /(\.js|\.jsx)$/,
       exclude: /node_modules/,
-      use: ['babel-loader'],
+      use: {
+        loader: 'babel-loader',
+      },
+    },
+    {
+      test: /\.html$/,
+      use: [
+        {
+          loader: 'html-loader',
+        },
+      ],
     },
     {
       test: /(\.css|\.scss|\.sass)$/,
@@ -31,6 +41,17 @@ module.exports = {
       }, {
         loader: 'sass-loader', 
       }],
+    },
+    {
+      test: /.(jpg|jpeg|png|gif|svg)$/,
+      use: [
+        {
+          loader: 'file-loader',
+          options: {
+            name: '[path][name]-[hash:8].[ext]',
+          },
+        },
+      ],
     }],
   },
   plugins: [ 

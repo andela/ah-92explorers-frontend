@@ -51,3 +51,4 @@ cypress/integration
 #computer files
 .vscode/
 .DS_Store
+

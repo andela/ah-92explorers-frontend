@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --open --mode development",
+    "start:dev": "webpack-dev-server --open --mode development",
+    "start": "serve -s build",
     "test": "jest",
     "test:cov": "jest \"-- --coverage\"",
     "test:watch": "jest --watchAll",
@@ -57,9 +58,13 @@
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.5.5",
     "babel-polyfill": "^6.26.0",
+    "express": "^4.17.1",
+    "file-loader": "^4.2.0",
     "nyc": "^14.1.1",
+    "path": "^0.12.7",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
-    "react-router-dom": "^5.0.1"
+    "react-router-dom": "^5.0.1",
+    "serve": "^11.1.0"
   }
 }
