@@ -1,7 +1,7 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 
-export const Private = ({ component: Component, ...rest }) => (
+const Private = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
     render={props => (localStorage.getItem('user')
@@ -16,3 +16,5 @@ export const Private = ({ component: Component, ...rest }) => (
       ))}
   />
 );
+
+export default Private;
