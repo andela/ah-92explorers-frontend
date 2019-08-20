@@ -25,4 +25,5 @@ module.exports = {
     '!<rootDir>/build/**/*.*',
     '!<rootDir>/dist/**/*.*',
   ],
+  setupFiles: ['<rootDir>/node_modules/regenerator-runtime/runtime'],
 };

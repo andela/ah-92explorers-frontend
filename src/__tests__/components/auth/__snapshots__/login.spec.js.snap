@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Login /> should render Login component 1`] = `
+<div>
+  <form
+    className="form mb-5"
+    id="loginForm"
+  >
+    <Input
+      label="Email"
+      name="email"
+      placeholder="Email"
+      type="text"
+      value=""
+    />
+    <Input
+      label="Password"
+      name="password"
+      placeholder="Password"
+      type="password"
+      value=""
+    />
+    <div
+      className="form-group mb-4"
+    >
+      <span
+        className="small"
+      >
+        Don’t have an account?
+         
+        <Link
+          to="/signup"
+        >
+          Join
+        </Link>
+      </span>
+    </div>
+    <div
+      className="form-group"
+    >
+      <input
+        className="btn btn-primary btn-block"
+        type="submit"
+        value="Log in with Email"
+      />
+    </div>
+  </form>
+</div>
+`;

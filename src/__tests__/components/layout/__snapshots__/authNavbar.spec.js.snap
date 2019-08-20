@@ -1,0 +1,100 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AuthNavbar /> should render AuthNavbar component 1`] = `
+<nav>
+  <div
+    className="firstNavbar"
+  >
+    <button
+      className="createArt"
+      type="button"
+    >
+      <Link
+        to="./createArticle.html"
+      >
+        <img
+          alt=""
+          className="articleBtn"
+          src="test-file-sdub"
+        />
+        Write Article
+      </Link>
+    </button>
+    <img
+      alt=""
+      className="logo"
+      src="test-file-sdub"
+    />
+    <input
+      className="search-bar"
+      name="search"
+      placeholder="Title, author, tag, keyword ..."
+      type="text"
+    />
+    <div>
+      <img
+        alt=""
+        className="navIcons notifications disappear"
+        src="test-file-sdub"
+      />
+      <span
+        className="notif-count"
+      >
+        6
+      </span>
+    </div>
+    <div
+      className="notifications-drop"
+    >
+      <ul>
+        <li
+          className="title"
+        >
+          hillary liked your article
+          <span>
+            unread
+          </span>
+        </li>
+        <li
+          className="title"
+        >
+          hillary liked your article
+          <span>
+            unread
+          </span>
+        </li>
+        <li
+          className="title"
+        >
+          hillary liked your article
+          <span>
+            unread
+          </span>
+        </li>
+        <li
+          className="title"
+        >
+          hillary liked your article
+          <span>
+            unread
+          </span>
+        </li>
+        <li
+          className="title"
+        >
+          hillary liked your article
+          <span>
+            unread
+          </span>
+        </li>
+      </ul>
+    </div>
+    <img
+      alt=""
+      className="manIcon"
+      src="test-file-sdub"
+    />
+    <Connect(Dropdown) />
+  </div>
+</nav>
+`;

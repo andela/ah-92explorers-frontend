@@ -1,9 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Signup from './Views/Signup.jsx';
-import Login from './Views/Login.jsx';
 import { Continuee } from './continue/continue';
-
+import Home from './Home.jsx';
+import Login from './Containers/Login.jsx';
 
 class Routes extends Component {
   render() {
@@ -11,9 +11,10 @@ class Routes extends Component {
       <Router>
         <Switch>
           <Fragment>
-            <Route path="/login" component={Login} />
+            <Route exact path="/" component={Home} />
             <Route path="/signup" component={Signup} />
             <Route path="/continue" component={Continuee} />
+            <Route exact path="/login" component={Login} />
           </Fragment>
         </Switch>
       </Router>
