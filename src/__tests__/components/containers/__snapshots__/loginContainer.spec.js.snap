@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LoginContainer /> should render Login container 1`] = `
+<div
+  className="d-flex"
+>
+  <div
+    className="form-wrap d-flex"
+  >
+    <div
+      className="align-self-center"
+    >
+      <div
+        className="form-wrap-inner align-self-center h-100"
+      >
+        <a
+          className="logo"
+          href="/"
+        >
+          <img
+            alt=""
+            src="test-file-sdub"
+          />
+        </a>
+        <h3
+          className="mb-4"
+        >
+          Log in With Credentials
+        </h3>
+        <p
+          className="mb-5"
+        >
+          Foster inspiration and innovation by leveraging the modern web.
+        </p>
+        <LoginComponent
+          email=""
+          errors={Object {}}
+          loginError={Object {}}
+          onChange={[Function]}
+          onSubmit={[Function]}
+          password=""
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    className="img-wrap"
+    style={
+      Object {
+        "backgroundImage": "url(https://cdn.dribbble.com/users/992274/screenshots/6206904/office_kit8-net.png)",
+      }
+    }
+  />
+</div>
+`;

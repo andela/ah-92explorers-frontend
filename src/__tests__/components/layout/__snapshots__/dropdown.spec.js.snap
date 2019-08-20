@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Dropdown /> should render dropdown component 1`] = `
+<div
+  className="menu-dropdown"
+  style={
+    Object {
+      "width": "100px",
+    }
+  }
+>
+  <div
+    className="user-caret"
+    onClick={[Function]}
+  >
+    efefdf
+     
+    <span
+      className="fa fa-caret-down"
+    />
+  </div>
+</div>
+`;

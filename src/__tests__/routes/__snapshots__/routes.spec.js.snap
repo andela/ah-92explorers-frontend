@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Router /> should render routes 1`] = `
+<BrowserRouter>
+  <Switch>
+    <Route
+      component={
+        Object {
+          "$$typeof": Symbol(react.memo),
+          "WrappedComponent": [Function],
+          "compare": null,
+          "displayName": "Connect(Home)",
+          "type": [Function],
+        }
+      }
+      exact={true}
+      path="/"
+    />
+    <Route
+      component={
+        Object {
+          "$$typeof": Symbol(react.memo),
+          "WrappedComponent": [Function],
+          "compare": null,
+          "displayName": "Connect(Signup)",
+          "type": [Function],
+        }
+      }
+      path="/signup"
+    />
+    <Route
+      component={
+        Object {
+          "$$typeof": Symbol(react.memo),
+          "WrappedComponent": [Function],
+          "compare": null,
+          "displayName": "Connect(LoginContainer)",
+          "type": [Function],
+        }
+      }
+      exact={true}
+      path="/login"
+    />
+  </Switch>
+</BrowserRouter>
+`;

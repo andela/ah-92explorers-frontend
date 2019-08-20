@@ -1,0 +1,49 @@
+  .user-caret {
+    margin-top: 30px;
+    cursor: pointer; 
+  }
+  
+  .menu-dropdown {
+    position: relative; 
+  }
+  
+  .menu-dropdown ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    top: 70px;
+    right: 0px;
+    width: 120px;
+    background-color: white;
+    font-weight: bold;
+    position: absolute;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1; 
+    width: 150px;
+  }
+  
+  .menu-dropdown ul li {
+    display: block; 
+    padding: 5px 20px;
+    margin: 0px;
+  }
+  
+  .menu-dropdown ul li:hover {
+       background-color: #90dfaa;
+       color: white;
+  }
+
+  hr {
+    padding: 0px;
+    margin: 0px;
+    color: #e6e9ee;
+  }
+
+  .signout{
+      border: none;
+      background: transparent;
+      font-size: 16px;
+      font-weight: 500;
+      padding: 0px;
+      cursor: pointer;
+  }

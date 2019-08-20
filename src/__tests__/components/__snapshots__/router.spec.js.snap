@@ -4,8 +4,17 @@ exports[`Route Component should render Routes component 1`] = `
 <BrowserRouter>
   <Switch>
     <Route
-      component={[Function]}
-      path="/login"
+      component={
+        Object {
+          "$$typeof": Symbol(react.memo),
+          "WrappedComponent": [Function],
+          "compare": null,
+          "displayName": "Connect(Home)",
+          "type": [Function],
+        }
+      }
+      exact={true}
+      path="/"
     />
     <Route
       component={
@@ -18,6 +27,19 @@ exports[`Route Component should render Routes component 1`] = `
         }
       }
       path="/signup"
+    />
+    <Route
+      component={
+        Object {
+          "$$typeof": Symbol(react.memo),
+          "WrappedComponent": [Function],
+          "compare": null,
+          "displayName": "Connect(LoginContainer)",
+          "type": [Function],
+        }
+      }
+      exact={true}
+      path="/login"
     />
   </Switch>
 </BrowserRouter>
