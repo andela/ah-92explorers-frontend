@@ -1,15 +1,10 @@
 import React from 'react';
-import { mount } from 'enzyme';
-import { act } from 'react-dom/test-utils';
+import { shallow } from 'enzyme';
 import App from '../../components/App';
-
 
 describe('App Component', () => {
   it('should render App component', () => {
-    let component;
-    act(() => {
-      component = mount(<App />);
-    });
+    const component = shallow(<App />);
     expect(component).toMatchSnapshot();
   });
 });
