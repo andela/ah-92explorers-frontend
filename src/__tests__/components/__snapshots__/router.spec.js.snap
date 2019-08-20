@@ -41,6 +41,19 @@ exports[`Route Component should render Routes component 1`] = `
       exact={true}
       path="/login"
     />
+    <Route
+      component={
+        Object {
+          "$$typeof": Symbol(react.memo),
+          "WrappedComponent": [Function],
+          "compare": null,
+          "displayName": "Connect(LoginContainer)",
+          "type": [Function],
+        }
+      }
+      exact={true}
+      path="/login"
+    />
   </Switch>
 </BrowserRouter>
 `;
