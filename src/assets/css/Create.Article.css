@@ -27,11 +27,11 @@ p
 }
 
 button a{
-    color: inherit;
-    text-decoration-line: none;
+    color: inherit !important;
+    text-decoration-line: none !important;
 }
 
-.logo
+.logoArticle
 {
     width: 200px;
     margin-top: 20px;
@@ -45,7 +45,7 @@ button a{
     margin-left: 20px;
 }
 
-.navbar
+.navbarArticle
 {
     display: flex;
     flex-direction: row;
@@ -68,20 +68,21 @@ button a{
     margin-top: 50px;
 }
 
-.publishBtn
+.publishBtnArticle
 {
     margin-top: 20px;
     height: 40px;
     padding: 5px 38px;
     color: #26D07C;
     border: 1px solid #26D07C;
-    outline: #26D07C;
+    outline: none !important;
     cursor: pointer;
     background: none;
     margin-left: 40%;
 }
 
-.signout {
+.signoutBtn
+{
     margin-top: 20px;
     height: 40px;
     padding: 5px 38px;
@@ -135,18 +136,18 @@ button a{
 
 @media(max-width: 900px)
 {
-    .navbar
+    .navbarArticle
     {
         margin-left: 0%;
     }
 
-    .publishBtn
+    .publishBtnArticle
     {
         margin-left: 0%;
         padding: 5px 18px;
     }
 
-    .logo
+    .logoArticle
     {
         width: 50px;
     }
@@ -168,7 +169,7 @@ button a{
         padding-left: 35px !important;
     }
 
-    .signout
+    .signoutBtn
     {
         padding: 5px 18px;
     }

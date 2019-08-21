@@ -19,6 +19,11 @@ export class UpdateArticle extends Component {
   }
 
   componentDidMount() {
+    const token = localStorage.getItem('jwtToken');
+    console.log(token);
+    if (!token) {
+      window.location = '/login';
+    }
     const slug = this.props.match.params.articleSlug;
     this.props.getArticle(slug);
   }
@@ -32,18 +37,19 @@ export class UpdateArticle extends Component {
   }
 
   onClickPublish = () => {
-    this.props.updateArticle(this.state);
+    const slug = this.props.match.params.articleSlug;
+    this.props.updateArticle(this.state, slug);
   }
 
   render() {
     return (
     <div className="mainDiv">
         <Messages success={this.props.article.message} error={this.props.error} />
-        <div className="navbar">
-            <img src={logo} className="logo" />
-            <button className="publishBtn" onClick={this.onClickPublish}>Update!</button>
-            <img src={avatar} className="man" />
-            <button className="signout">Signout</button>
+        <div className="navbarArticle">
+          <img src={logo} className="logoArticle" />
+          <button className="publishBtnArticle" onClick={this.onClickPublish}>Publish now!</button>
+          <img src={avatar} className="man" />
+          <button className="signoutBtn">Signout</button>
         </div>
         <div className="titleContent">
           <ContentEditable 

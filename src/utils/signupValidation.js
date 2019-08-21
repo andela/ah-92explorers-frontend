@@ -1,5 +1,9 @@
-import React from 'react';
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable no-return-assign */
 /* eslint-disable no-restricted-syntax */
+
+import React from 'react';
+
 export default class Validator {
   static validateUsername(info) {
     const fields = Object.keys(info);

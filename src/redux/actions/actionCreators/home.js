@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 import { GET_HOME } from '../actionTypes';
 
 export function getHome() {

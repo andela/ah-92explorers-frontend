@@ -18,6 +18,14 @@ export class CreateArticle extends Component {
     body: '<p>Where have you been</p>',
   }
 
+  componentDidMount(){
+    const token = localStorage.getItem('jwtToken');
+    console.log(token);
+    if (!token) {
+      window.location = '/login';
+    }
+  }
+
   onClickPublish = () => {
     this.props.publishArticle(this.state)
   }
@@ -26,11 +34,11 @@ export class CreateArticle extends Component {
     return (
     <div className="mainDiv">
         <Messages success={this.props.article.message} error={this.props.error} />
-        <div className="navbar">
-            <img src={logo} className="logo" />
-            <button className="publishBtn" onClick={this.onClickPublish}>Publish now!</button>
+        <div className="navbarArticle">
+            <img src={logo} className="logoArticle" />
+            <button className="publishBtnArticle" onClick={this.onClickPublish}>Publish now!</button>
             <img src={avatar} className="man" />
-            <button className="signout">Signout</button>
+            <button className="signoutBtn">Signout</button>
         </div>
         <div className="titleContent">
             <ContentEditable 

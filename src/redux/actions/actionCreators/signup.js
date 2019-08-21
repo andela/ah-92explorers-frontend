@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 import '@babel/polyfill';
 import axios from 'axios';
 import dotenv from 'dotenv';
@@ -8,7 +9,7 @@ dotenv.config();
 
 const baseURL = process.env.APP_URL_BACKEND;
 
-export const signUp = signupData => async (dispatch) => {
+export const signUp = (signupData) => async (dispatch) => {
   try {
     dispatch({ type: SUBMITTING_CREDENTIALS, payload: signupData });
     const { data } = await axios.post(`${baseURL}/api/users`, {

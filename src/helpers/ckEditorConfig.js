@@ -1,5 +1,10 @@
+/* eslint-disable no-param-reassign */
+
 import '@babel/polyfill';
 import axios from 'axios';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 // Function That will return a promise object when resolved
 export const getImageUrl = async (file) => {
@@ -7,7 +12,7 @@ export const getImageUrl = async (file) => {
     const formData = new FormData();
     formData.append('upload_preset', 'pnfsck6h');
     formData.append('file', file);
-    const result = await axios.post('https://api.cloudinary.com/v1_1/kodek-sleuth/upload', formData, {
+    const result = await axios.post(process.env.CLOUDINARY_URL, formData, {
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       onUploadProgress: (progressEvent) => {
         Math.round((progressEvent.loaded * 100) / progressEvent.total);
@@ -32,7 +37,7 @@ class MyUploadAdapter {
   upload() {
     // Return a promise with the image object
     return this.loader.file
-      .then(file => getImageUrl(file));
+      .then((file) => getImageUrl(file));
   }
 }
 

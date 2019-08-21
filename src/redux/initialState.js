@@ -1,10 +1,10 @@
 const initialState = {
+  article: {},
   userSignup: {
     signUpSubmitting: '',
     signUpSuccess: '',
     signUpfailure: '',
   },
-  article: {},
 };
 
 export default initialState;

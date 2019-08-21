@@ -36,13 +36,13 @@ describe('Renders CreateArticleComponent', () => {
     expect(wrapper.find('.mainDiv').length).toBe(1);
   });
   it('should render a publishBtn class', () => {
-    expect(wrapper.find('.publishBtn').length).toBe(1);
+    expect(wrapper.find('.publishBtnArticle').length).toBe(1);
   });
   it('should render a titleContent class', () => {
     expect(wrapper.find('.titleContent').length).toBe(1);
   });
   it('should publish article on click', () => {
-    const btn = wrapper.find('.publishBtn');
+    const btn = wrapper.find('.publishBtnArticle');
     const component = wrapper.instance();
     btn.simulate('click')
     component.onClickPublish();
