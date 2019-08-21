@@ -4,6 +4,8 @@ import Signup from './Views/Signup.jsx';
 import { Continuee } from './continue/continue';
 import Home from './Home.jsx';
 import Login from './Containers/Login.jsx';
+import CreateArticle from './Articles/CreateArticle.jsx';
+import UpdateArticle from './Articles/UpdateArticle.jsx';
 
 class Routes extends Component {
   render() {
@@ -15,6 +17,8 @@ class Routes extends Component {
             <Route path="/signup" component={Signup} />
             <Route path="/continue" component={Continuee} />
             <Route exact path="/login" component={Login} />
+            <Route exact path="/article" component={CreateArticle} />
+            <Route path="/article/:articleSlug/update" component={UpdateArticle} />
           </Fragment>
         </Switch>
       </Router>

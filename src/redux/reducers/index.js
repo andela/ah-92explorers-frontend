@@ -7,3 +7,6 @@ import login from './login';
 export default combineReducers({
   home, signup, login, social,
 });
+import articles from './articles';
+
+export default combineReducers({ articles });

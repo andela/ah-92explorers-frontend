@@ -4,6 +4,7 @@ const initialState = {
     signUpSuccess: '',
     signUpfailure: '',
   },
+  article: {},
 };
 
 export default initialState;
