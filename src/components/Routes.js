@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Home from './Views/Home.jsx';
+import Signup from './Views/Signup.jsx';
 import Login from './Views/Login.jsx';
-import Private from './Private/Private';
+
 
 class Routes extends Component {
   render() {
@@ -11,7 +11,7 @@ class Routes extends Component {
         <Switch>
           <Fragment>
             <Route path="/login" component={Login} />
-            <Private exact path="/" component={Home} />
+            <Route path="/signup" component={Signup} />
           </Fragment>
         </Switch>
       </Router>
