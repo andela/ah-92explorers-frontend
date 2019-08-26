@@ -1,5 +1,9 @@
 const initialState = {
-  home: '',
+  userSignup: {
+    signUpSubmitting: '',
+    signUpSuccess: '',
+    signUpfailure: '',
+  },
 };
 
 export default initialState;

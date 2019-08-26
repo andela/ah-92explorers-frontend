@@ -1,4 +1,8 @@
 import { combineReducers } from 'redux';
-import home from './home';
+import signup from './signup';
+import { social } from './social.reducer';
 
-export default combineReducers({ home });
+export default combineReducers({
+  signup,
+  social,
+});

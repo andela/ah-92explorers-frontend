@@ -1,1 +1,2 @@
-export * from './home';
+export * from './signup';
+export * from './social.type';

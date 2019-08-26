@@ -1,3 +1,4 @@
+const Dotenv = require('dotenv-webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
@@ -54,7 +55,14 @@ module.exports = {
       ],
     }],
   },
+  node: {
+    dns: 'mock',
+    fs: 'empty',
+    path: true,
+    url: false
+  },
   plugins: [ 
+    new Dotenv(),
     new CleanWebpackPlugin(), 
     new HtmlWebpackPlugin({ 
         template: './public/index.html',
