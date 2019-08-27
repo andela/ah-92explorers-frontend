@@ -103,43 +103,43 @@ Please check your email to verify your account
                     ) : false}
                   </div>
                   <br />
-                  <div>
-                    {' '}
-                    {emailError || usernameError || passwordError || failedMsg ? <div className="error">{emailError || usernameError || passwordError || failedMsg}</div> : false}
-                  </div>
                   <div className="form-group">
                     <input
-                      type="email"
-                      className="form-control"
+                      type="text"
+                      className={`form-control ${emailError ? 'input-error' : ''}`}
                       placeholder="Email"
                       name="email"
                       value={email}
                       onChange={this.handleOnChange}
                     />
                   </div>
+                  {emailError && <div className="error">{emailError}</div>}
                   <div className="form-group">
                     <input
                       type="text"
-                      className="form-control"
+                      className={`form-control ${usernameError ? 'input-error' : ''}`}
                       placeholder="Username"
                       name="username"
                       value={username}
                       onChange={this.handleOnChange}
                     />
                   </div>
+                  {usernameError && <div className="error">{ usernameError }</div>}
                   <div className="form-group">
                     <input
                       type="password"
-                      className="form-control"
+                      className={`form-control ${passwordError ? 'input-error' : ''}`}
                       placeholder="Password"
                       name="password"
                       value={password}
                       onChange={this.handleOnChange}
                     />
                   </div>
+                  { passwordError && <div className="error">{passwordError}</div>}
                   <div className="form-group">
                     <button type="submit" className="btn btn-primary btn-block">Sign Up</button>
                   </div>
+                  {failedMsg && <div className="error">{failedMsg}</div>}
                 </form>
               </div>
             </div>

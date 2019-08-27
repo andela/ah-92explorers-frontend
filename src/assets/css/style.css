@@ -135,13 +135,10 @@ body {
 }
 
     .error {
-       background: #bd3226;
        width: auto;
        position: relative;
        border-radius: 5px;
-       color: #fff;
-       padding: 3px 3px;
-       margin-bottom: 15px;
+       color: #bd3226;
   }
   .error ul{
     padding: 3px 19px;
@@ -166,4 +163,8 @@ body {
   height: 60px;
   position: relative; 
   border-radius: 5px; 
+}
+
+.form .input-error {
+  border: 1px solid #dc3545;
 }
