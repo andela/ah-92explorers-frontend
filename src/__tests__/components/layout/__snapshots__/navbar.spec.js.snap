@@ -1,0 +1,123 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Navbar /> should render Navbar component 1`] = `
+<nav>
+  <div
+    className="firstNavbar"
+  >
+    <img
+      alt=""
+      className="logo"
+      src="test-file-sdub"
+    />
+    <input
+      className="search-bar"
+      name="search"
+      placeholder="Title, author, tag, keyword ..."
+      type="text"
+    />
+    <div
+      className="notifications-drop"
+    >
+      <ul>
+        <li
+          className="title"
+        >
+          hillary liked your article
+          <span>
+            unread
+          </span>
+        </li>
+        <li
+          className="title"
+        >
+          hillary liked your article
+          <span>
+            unread
+          </span>
+        </li>
+        <li
+          className="title"
+        >
+          hillary liked your article
+          <span>
+            unread
+          </span>
+        </li>
+        <li
+          className="title"
+        >
+          hillary liked your article
+          <span>
+            unread
+          </span>
+        </li>
+        <li
+          className="title"
+        >
+          hillary liked your article
+          <span>
+            unread
+          </span>
+        </li>
+      </ul>
+    </div>
+    <button
+      className="signup"
+      type="button"
+    >
+      <Link
+        to="/"
+      >
+        Sign Up
+      </Link>
+    </button>
+    <button
+      className="signin"
+      type="button"
+    >
+      <Link
+        to="/login"
+      >
+        Sign In
+      </Link>
+    </button>
+  </div>
+  <div
+    className="secondNavbar"
+  >
+    <ul>
+      <li>
+        Popular
+      </li>
+      <li>
+        Popular
+      </li>
+      <li>
+        Popular
+      </li>
+      <li>
+        Popular
+      </li>
+      <li>
+        Popular
+      </li>
+      <li>
+        Popular
+      </li>
+      <li>
+        Popular
+      </li>
+      <li>
+        Popular
+      </li>
+      <li>
+        Popular
+      </li>
+      <li>
+        Popular
+      </li>
+    </ul>
+  </div>
+</nav>
+`;

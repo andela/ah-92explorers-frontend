@@ -100,6 +100,40 @@ body {
     background: #3a4769;
     border-color: #3a4769; }
 
+.form .btn.btn-facebook {
+  background: #3b5998;
+  border-color: #3b5998; }
+  .form .btn.btn-facebook > span > span {
+    color: #3b5998; }
+  .form .btn.btn-facebook:hover, .form .btn.btn-facebook:active, .form .btn.btn-facebook:focus {
+    background: #4c70ba;
+    border-color: #4c70ba; }
+
+.form .btn.btn-google {
+  background: #db3236;
+  border-color: #db3236; }
+  .form .btn.btn-google > span > span {
+    color: #db3236; }
+  .form .btn.btn-google:hover, .form .btn.btn-google:active, .form .btn.btn-google:focus {
+    background: #db3236;
+    border-color: #db3236; }
+
+    .form .btn.btn-twitter {
+      background: #0b99cd;
+      border-color: #0b99cd; }
+
+  .fa-facebook {
+      color: #3C599F;
+  }
+  
+  .fa-twitter {
+      color: #0b99cd;
+  }
+
+  .fa-google {
+    color: #db3236;
+}
+
     .error {
        background: #bd3226;
        width: auto;
