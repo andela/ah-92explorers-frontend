@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders CreateArticleComponent should render create component 1`] = `ReactWrapper {}`;
+
+exports[`Renders CreateArticleComponent should render create component 2`] = `ReactWrapper {}`;

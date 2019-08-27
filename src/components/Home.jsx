@@ -1,12 +1,11 @@
+/* eslint-disable global-require */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getHome } from '../redux/actions/actionCreators';
+import { getHome } from '../redux/actions/actionCreators/home';
 import Navbar from './Layout/Navbar.jsx';
 import AuthNavbar from './Layout/AuthNavbar.jsx';
-import '../assets/css/homepage.css';
-import '../assets/css/pagination.css';
 
-class Home extends Component {
+export class Home extends Component {
   render() {
     return (
       <div data-test="homePage">
@@ -197,7 +196,7 @@ class Home extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   login: state.login,
 });
 
