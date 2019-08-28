@@ -3,4 +3,9 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%)
-  } 
+}
+  
+.btn__continue {
+    background: #E71D36;
+    border-color: #E71D36;
+} 

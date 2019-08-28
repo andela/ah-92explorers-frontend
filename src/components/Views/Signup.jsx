@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import Validator from '../../utils/signupValidation';
 import { signUp } from '../../redux/actions/actionCreators/signup';
+import { Social } from '../social/social';
 
 
 export class Signup extends Component {

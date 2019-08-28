@@ -34,8 +34,6 @@ exports[`<Router /> should render routes 1`] = `
           "$$typeof": Symbol(react.memo),
           "WrappedComponent": [Function],
           "compare": null,
-<<<<<<< HEAD
-=======
           "displayName": "Connect(Continue)",
           "type": [Function],
         }
@@ -48,7 +46,6 @@ exports[`<Router /> should render routes 1`] = `
           "$$typeof": Symbol(react.memo),
           "WrappedComponent": [Function],
           "compare": null,
->>>>>>> feat(user-login): users should be able to Login
           "displayName": "Connect(LoginContainer)",
           "type": [Function],
         }

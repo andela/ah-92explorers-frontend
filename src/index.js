@@ -7,5 +7,6 @@ import './assets/css/App.css';
 import './assets/css/style.css';
 import './assets/css/bootstrap.min.css';
 import './assets/css/animate.css';
+import './assets/css/continue.css';
 
 render(<App />, document.getElementById('root'));
