@@ -1,5 +1,5 @@
 import React from 'react';
-/* eslint-disable no-restricted-syntax */
+
 export default class Validator {
   static validateUsername(info) {
     const fields = Object.keys(info);

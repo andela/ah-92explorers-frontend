@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// import '../../assets/scss/login.scss';
 import '../../assets/auth/css/style.css';
 import '../../assets/auth/css/bootstrap.min.css';
 import '../../assets/auth/css/animate.css';

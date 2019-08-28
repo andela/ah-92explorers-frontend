@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
 import promiseMiddleware from 'redux-promise-middleware';
 import thunk from 'redux-thunk';
-import { Continue } from '../../components/continue/continue';
+import { Continue } from '../../components/Continue/Continue.jsx';
 
 const middlewares = [thunk, promiseMiddleware];
 const mockStore = configureMockStore(middlewares);

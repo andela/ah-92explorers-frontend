@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import promiseMiddleware from 'redux-promise-middleware';
 import thunk from 'redux-thunk';
 import configureMockStore from 'redux-mock-store';
-import { Social } from '../../components/social/social';
+import { Social } from '../../components/Auth/Social';
 
 const middlewares = [thunk, promiseMiddleware];
 const mockStore = configureMockStore(middlewares);
