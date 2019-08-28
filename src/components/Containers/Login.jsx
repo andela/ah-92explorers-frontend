@@ -15,6 +15,12 @@ export class LoginContainer extends React.Component {
     };
   }
 
+  componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      window.location.href = '/';
+    }
+  }
+
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -76,6 +82,7 @@ export class LoginContainer extends React.Component {
 const mapStateToProps = (state) => ({
   isLoginSuccess: state.login.isLoginSuccess,
   loginError: state.login.loginError,
+  auth: state.login,
 });
 
 const mapDispatchToProps = (dispatch) => ({

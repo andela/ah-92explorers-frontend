@@ -41,7 +41,7 @@ export function setLoginError(loginError) {
 
 export function logout() {
   return (dispatch) => {
-    localStorage.removeItem('jwtToken');
+    localStorage.clear();
     setAuthorizationToken(false);
     dispatch(setCurrentUser({}));
     window.history.pushState({ title: 'Authors Haven' }, 'Authors Haven', '/');
@@ -49,35 +49,27 @@ export function logout() {
   };
 }
 
-export function login(email, password) {
-  const data = {
-    email,
-    password,
-  };
-  return (dispatch) => {
+export const login = (email, password) => async (dispatch) => {
+  try {
+    const data = { email, password };
     dispatch(setLoginPending(true));
-    dispatch(setLoginSuccess(false));
-    dispatch(setLoginError(null));
-    axios.post(`${baseURL}/api/users/login`, data)
-      .then((res) => {
-        const { token, username, image } = res.data.user;
-        localStorage.setItem('jwtToken', token);
-        localStorage.setItem('username', username);
-        localStorage.setItem('image', image === undefined || image === null ? process.env.DEFAULT_IMAGE : image);
-        setAuthorizationToken(token);
-        dispatch(setCurrentUser(jwtDecode(token)));
-        dispatch(setLoginSuccess(true));
-        dispatch(setLoginPending(false));
-      })
-      .catch((error) => {
-        let errorMessage = null;
-        if (error.response) {
-          errorMessage = error.response.data.error;
-        } else {
-          errorMessage = 'Something went wrong. Check your internet connection.';
-        }
-        dispatch(setLoginError(errorMessage));
-        dispatch(setLoginPending(false));
-      });
-  };
-}
+    const res = await axios.post(`${baseURL}/api/users/login`, data);
+    const { token, username, image } = res.data.user;
+    localStorage.setItem('jwtToken', token);
+    localStorage.setItem('username', username);
+    localStorage.setItem('image', image === undefined || image === null ? process.env.DEFAULT_IMAGE : image);
+    setAuthorizationToken(token);
+    dispatch(setCurrentUser(jwtDecode(token)));
+    dispatch(setLoginSuccess(true));
+    dispatch(setLoginPending(false));
+  } catch (error) {
+    let errorMessage = null;
+    if (error.response) {
+      errorMessage = error.response.data.error;
+    } else {
+      errorMessage = 'Something went wrong. Check your internet connection.';
+    }
+    dispatch(setLoginError(errorMessage));
+    dispatch(setLoginPending(false));
+  }
+};

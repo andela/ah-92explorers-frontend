@@ -2,9 +2,9 @@ import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { shallow, mount } from 'enzyme';
-import ViewProfile, { ViewProfile as ViewProfileComponent } from '../../components/Profile/ViewProfile';
-import { mockStore } from '../../__mocks__/store';
-import initialState from '../../redux/initialState';
+import ViewProfile, { ViewProfile as ViewProfileComponent } from '../../../components/Profile/ViewProfile';
+import { mockStore } from '../../../__mocks__/store';
+import initialState from '../../../redux/initialState';
 
 const props = {
   loading: false,

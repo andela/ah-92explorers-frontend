@@ -22,7 +22,7 @@ const success = (article, owner, authenticated) => ({
   payload: { article, owner, authenticated },
 });
 
-const setLoading = (data) => (dispatch) => {
+export const setLoading = (data) => (dispatch) => {
   dispatch({
     type: SET_LOADING,
     payload: data,

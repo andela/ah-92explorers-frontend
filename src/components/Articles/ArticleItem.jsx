@@ -4,11 +4,13 @@ import {
   Button, Modal, ModalHeader, ModalBody, ModalFooter,
 } from 'reactstrap';
 import ReactHtmlParser from 'react-html-parser';
-import Spinner from '../Spinner/Spinner';
 import NavBar from '../Layout/navBar';
 import Navbar from '../Layout/Navbar.jsx';
 import { getArticle, deleteArticle } from '../../redux/actions/actionCreators';
 import '../../assets/css/articleread.css';
+import manIcon from '../../assets/images/man.jpg';
+import Comments from '../Comments/Comments.jsx';
+import Messages from '../Messages/Messages.jsx';
 
 export class ArticleReadDelete extends Component {
   state = {
@@ -22,7 +24,6 @@ export class ArticleReadDelete extends Component {
     this.props.getArticle(params.articleSlug);
   }
 
-
   handleOnDelete = () => {
     const { match: { params } } = this.props;
     this.props.deleteArticle(params.articleSlug);
@@ -35,11 +36,16 @@ export class ArticleReadDelete extends Component {
   }
 
   render() {
+    const { match: { params } } = this.props;
+    const { isAuthenticated } = this.props;
     const { fetched, owner, authenticated } = this.props.article;
     const loader = Object.keys(this.props.article.article).length === 0;
+    const userName = localStorage.getItem('username') ? localStorage.getItem('username') : '';
+    const profileImg = localStorage.getItem('image') ? localStorage.getItem('image') : manIcon;
+    const { commentError } = this.props;
     return (
       <Fragment>
-        { authenticated ? <NavBar /> : <Navbar /> }
+        { isAuthenticated ? <NavBar /> : <Navbar /> }
         <div className="theBodyArticle">
           <div className="colOne">
             { owner && (
@@ -55,15 +61,29 @@ export class ArticleReadDelete extends Component {
             )}
           </div>
           <div className="colTwo">
-            <h1 className="title">
-              {fetched && this.props.article.article.title}
-            </h1>
-            <span className="time">
-              {fetched && this.props.article.article.time.readTime}
-              {' '}
-              read
-            </span>
-            { ReactHtmlParser(fetched && this.props.article.article.body) }
+            <div>
+              <h1 className="title">
+                {fetched && this.props.article.article.title}
+              </h1>
+              <span className="time">
+                {fetched && this.props.article.article.time.readTime}
+                {' '}
+                read
+              </span>
+              { ReactHtmlParser(fetched && this.props.article.article.body) }
+            </div>
+            <div className="commentsZone">
+              { commentError === 'unauthorised to use this resource, please signup/login'
+               && (<Messages danger={commentError} error={commentError} />) }
+              <div className="commentSection">
+                <h4>Comments </h4>
+                <Comments
+                  username={userName}
+                  userImage={profileImg}
+                  slug={params.articleSlug}
+                />
+              </div>
+            </div>
           </div>
         </div>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
@@ -88,6 +108,8 @@ export class ArticleReadDelete extends Component {
 
 const mapStateToProps = (state) => ({
   article: state.articles,
+  isAuthenticated: state.login.isAuthenticated,
+  commentError: state.comments.commentError,
 });
 
 export const connectReadDelete = connect(mapStateToProps,

@@ -1,4 +1,5 @@
 import initialState from '../initialState';
+
 import {
   CREATE_ARTICLE, GET_ARTICLE, FAILED_ARTICLE_CREATION, UPDATE_ARTICLE, FAILED_ARTICLE_UPDATE,
   GET_FEED, SET_LOADING, ARTICLE_GET_FAIL,
@@ -55,7 +56,7 @@ const articles = (state = initialState, action) => {
         article: action.payload,
       };
     default:
-      return initialState;
+      return state;
   }
 };
 

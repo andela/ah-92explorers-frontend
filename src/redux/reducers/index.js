@@ -7,6 +7,7 @@ import profile from './profile';
 import alert from './alert';
 import resetPassword from './resetPassword';
 import resettingPassword from './resettingPassword';
+import comments from './comments';
 
 export default combineReducers({
   articles,
@@ -17,4 +18,5 @@ export default combineReducers({
   alert,
   resetPassword,
   resettingPassword,
+  comments,
 });
