@@ -845,6 +845,18 @@ exports[`App Component should render App component 1`] = `
                   "$$typeof": Symbol(react.memo),
                   "WrappedComponent": [Function],
                   "compare": null,
+                  "displayName": "Connect(Continue)",
+                  "type": [Function],
+                }
+              }
+              path="/continue"
+            />
+            <Route
+              component={
+                Object {
+                  "$$typeof": Symbol(react.memo),
+                  "WrappedComponent": [Function],
+                  "compare": null,
                   "displayName": "Connect(LoginContainer)",
                   "type": [Function],
                 }
