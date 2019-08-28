@@ -1,9 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import Validator from '../../utils/signupValidation';
 import { signUp } from '../../redux/actions/actionCreators/signup';
-import { Social } from '../Auth/Social';
 
 
 export class Signup extends Component {
@@ -138,9 +137,16 @@ Please check your email to verify your account
                   </div>
                   { passwordError && <div className="error">{passwordError}</div>}
                   <div className="form-group">
-                    <button type="submit" className="btn btn-primary btn-block">Sign Up</button>
+                    <button type="submit" className="btn btn-primary btn-block button-submit">Sign Up</button>
                   </div>
                   {failedMsg && <div className="error">{failedMsg}</div>}
+                  <div className="form-group mb-4">
+                    <span className="small">
+               Have an account?
+                      {' '}
+                      <Link to="/login">Login </Link>
+                    </span>
+                  </div>
                 </form>
               </div>
             </div>

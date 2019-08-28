@@ -1,10 +1,11 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import { Provider } from 'react-redux';
+import { MemoryRouter } from 'react-router-dom';
 import promiseMiddleware from 'redux-promise-middleware';
 import thunk from 'redux-thunk';
 import configureMockStore from 'redux-mock-store';
-import { Signup } from '../../components/Auth/Signup.jsx';
+import { Signup } from '../../../components/Auth/Signup.jsx';
 
 const middlewares = [thunk, promiseMiddleware];
 const mockStore = configureMockStore(middlewares);
@@ -26,7 +27,11 @@ describe('testing Signup component', () => {
 
 describe('Render class', () => {
   it('to have wrapper submit button', async () => {
-    const wrapper = mount(<Provider store={store}><Signup /></Provider>);
+    const wrapper = mount(
+    <MemoryRouter>
+       <Provider store={store}><Signup /></Provider>
+    </MemoryRouter>,
+    );
     const form = wrapper.find('.signup-form');
     const inputs = wrapper.find('.signup-form input');
 

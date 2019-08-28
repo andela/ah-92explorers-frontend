@@ -6,11 +6,11 @@ import { social } from '../../redux/actions/actionCreators';
 
 dotenv.config();
 
-const { BASE_URL } = process.env;
+const { APP_URL_BACKEND } = process.env;
 class Social extends Component {
   handleOnClick = (e) => {
     const { social: redirectURL } = this.props;
-    redirectURL(`${BASE_URL}/api/auth/${e.target.id}/`);
+    redirectURL(`${APP_URL_BACKEND}/api/auth/${e.target.id}/`);
   };
 
   render() {

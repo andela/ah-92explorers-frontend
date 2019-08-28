@@ -9,6 +9,8 @@ import Home from './Home.jsx';
 import Login from './Containers/Login.jsx';
 import viewProfile from './Views/viewProfile';
 import editProfile from './Views/editProfile';
+import ResetPassword from './Auth/ResetPassoword.jsx';
+import ResetingPassword from './Auth/ResettingPassoword.jsx';
 
 const Routes = () => (
   <Router>
@@ -23,9 +25,12 @@ const Routes = () => (
         <Route exact path="/login" component={Login} />
         <Route exact path="/profile" component={viewProfile} />
         <Route exact path="/profile/edit" component={editProfile} />
+        <Route exact path="/reset-password" component={ResetPassword} />
+        <Route exact path="/resetting-password" component={ResetingPassword} />
       </Fragment>
     </Switch>
   </Router>
 );
+
 
 export default Routes;
