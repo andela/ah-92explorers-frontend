@@ -21,7 +21,6 @@ body {
   .logo img {
     position: absolute;
     top: 50%;
-    left: 120%;
     -webkit-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%); }
@@ -123,11 +122,11 @@ body {
       border-color: #0b99cd; }
 
   .fa-facebook {
-      color: #3C599F;
+      color: #FFF;
   }
   
   .fa-twitter {
-      color: #0b99cd;
+      color: #FFF;
   }
 
   .fa-google {

@@ -7,6 +7,8 @@ import Signup from './Auth/Signup.jsx';
 import { Continue } from './Continue/Continue.jsx';
 import Home from './Home.jsx';
 import Login from './Containers/Login.jsx';
+import viewProfile from './Views/viewProfile';
+import editProfile from './Views/editProfile';
 
 const Routes = () => (
   <Router>
@@ -19,6 +21,8 @@ const Routes = () => (
         <Route path="/signup" component={Signup} />
         <Route path="/continue" component={Continue} />
         <Route exact path="/login" component={Login} />
+        <Route exact path="/profile" component={viewProfile} />
+        <Route exact path="/profile/edit" component={editProfile} />
       </Fragment>
     </Switch>
   </Router>

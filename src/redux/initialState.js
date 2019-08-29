@@ -6,6 +6,11 @@ const initialState = {
     signUpSuccess: '',
     signUpfailure: '',
   },
+  home: '',
+  profile: '',
+  login: {
+    user: {},
+  },
 };
 
 export default initialState;

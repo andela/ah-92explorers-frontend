@@ -42,6 +42,8 @@ export function logout() {
     localStorage.removeItem('jwtToken');
     setAuthorizationToken(false);
     dispatch(setCurrentUser({}));
+    window.history.pushState({ title: 'Authors Haven' }, 'Authors Haven', '/');
+    window.location.reload(true);
   };
 }
 
