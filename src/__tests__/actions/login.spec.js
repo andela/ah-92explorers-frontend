@@ -1,3 +1,4 @@
+import '@babel/polyfill';
 import moxios from 'moxios';
 import dotenv from 'dotenv';
 import axios from 'axios';

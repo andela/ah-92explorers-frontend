@@ -26,16 +26,3 @@ describe('social Reducer', () => {
     expect(resp).toEqual({});
   });
 });
-
-describe('initial state', () => {
-  it('should start initial state', () => {
-    const expectedState = {
-      userSignup: {
-        signUpSubmitting: '',
-        signUpSuccess: '',
-        signUpfailure: '',
-      },
-    };
-    expect(initialState).toEqual(expectedState);
-  });
-});

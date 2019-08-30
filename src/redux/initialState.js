@@ -1,4 +1,6 @@
 const initialState = {
+  article: {},
+  loading: null,
   userSignup: {
     signUpSubmitting: '',
     signUpSuccess: '',
