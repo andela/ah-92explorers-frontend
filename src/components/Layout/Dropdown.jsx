@@ -45,7 +45,7 @@ export class Dropdown extends Component {
 
         { this.state.displayMenu ? (
           <ul>
-            <li><Link to="/">Profile</Link></li>
+            <li><Link to="/profile">Profile</Link></li>
             <li><Link to="/">My Articles</Link></li>
             <li><Link to="/">People</Link></li>
             <li><Link to="/">Stats</Link></li>
