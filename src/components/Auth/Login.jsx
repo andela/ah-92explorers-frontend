@@ -9,7 +9,7 @@ import Input from '../Common/Input';
 class LoginComponent extends React.Component {
   render() {
     const {
-      loginError, onSubmit, onChange, email, password, errors, onFocus, touched, handleBlur,
+      loginError, onSubmit, onChange, email, password, errors,
     } = this.props;
     return (
       <div>
@@ -53,6 +53,5 @@ class LoginComponent extends React.Component {
     );
   }
 }
-
 
 export default LoginComponent;

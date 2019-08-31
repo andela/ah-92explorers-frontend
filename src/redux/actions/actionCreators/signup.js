@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 import '@babel/polyfill';
 import axios from 'axios';
 import dotenv from 'dotenv';

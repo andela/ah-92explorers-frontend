@@ -33,22 +33,15 @@ export class Dropdown extends Component {
   }
 
   render() {
-    const { user } = this.props.login;
-
     return (
       <div className="menu-dropdown" style={{ width: '100px' }}>
         <div className="user-caret" onClick={this.showDropdownMenu} onKeyDown={this.handleClick}>
-          {user.username}
-          {' '}
           <span className="fa fa-caret-down" />
         </div>
 
         { this.state.displayMenu ? (
           <ul>
             <li><Link to="/profile">Profile</Link></li>
-            <li><Link to="/">My Articles</Link></li>
-            <li><Link to="/">People</Link></li>
-            <li><Link to="/">Stats</Link></li>
             <hr />
             <li><button type="button" onClick={this.logout} className="signout">Sign out</button></li>
           </ul>

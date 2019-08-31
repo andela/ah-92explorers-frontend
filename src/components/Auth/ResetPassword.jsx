@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import Validator from '../../utils/resetPswdValidation';
-import { submitEmail } from '../../redux/actions/actionCreators/resetPassoword';
+import { submitEmail } from '../../redux/actions/actionCreators/resetPassword';
 import '../../assets/scss/resetPassword.scss';
 import TopNavbar from '../Layout/TopNavbar.jsx';
 import Messages from '../Messages/Messages.jsx';

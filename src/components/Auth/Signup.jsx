@@ -82,7 +82,7 @@ export class Signup extends Component {
     };
     return (
       <Fragment>
-        <div className="d-flex">
+        <div className="d-flex bodySignup">
           <div className="form-wrap d-flex">
             <div className="align-self-center">
               <div className="form-wrap-inner align-self-center h-100">

@@ -1,9 +1,5 @@
-/* eslint-disable import/no-named-as-default */
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable react/require-default-props */
 /* eslint-disable react/forbid-prop-types */
-/* eslint-disable no-console */
-/* eslint-disable no-shadow */
+/* eslint-disable react/require-default-props */
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -104,7 +100,7 @@ export class EditProfile extends Component {
 
    render() {
      const {
-       username, firstName, lastName, bio, phone, location,
+       firstName, lastName, bio, phone, location,
        facebook, twitter, instagram, linkedIn, file, fileImg,
      } = this.state;
      const img = file === '' ? avatar : file;

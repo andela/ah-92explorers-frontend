@@ -17,7 +17,7 @@ describe('Renders CreateArticleComponent', () => {
 
   const errorProps = {
     success: undefined,
-    error: 'undefined',
+    error: 'unauthorised to use this resource, please signup/login',
     file: undefined
   };
 

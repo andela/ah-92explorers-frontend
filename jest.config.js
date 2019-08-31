@@ -16,6 +16,8 @@ module.exports = {
     './src/redux/reducers/home.js',
     './src/redux/reducers/index.js',
     './src/utils/checkToken.js',
+    './src/Containers/Login.jsx',
+    './src/redux/actions/actionCreators/login.js',
   ],
   collectCoverageFrom: ['src/**/*.{js,jsx}'],
   modulePathIgnorePatterns: ['<rootDir>/cypress'],

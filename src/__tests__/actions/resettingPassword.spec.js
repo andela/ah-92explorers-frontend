@@ -2,7 +2,7 @@ import moxios from 'moxios';
 import dotenv from 'dotenv';
 import http from '../../utils/axios';
 import store from '../../__mocks__/store';
-import * as resettingPassword from '../../redux/actions/actionCreators/resettingPassoword';
+import * as resettingPassword from '../../redux/actions/actionCreators/resettingPassword';
 import {
   PASSWORD_RESET,
   RESET_SUCCESS,

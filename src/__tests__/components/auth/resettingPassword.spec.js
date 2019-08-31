@@ -5,7 +5,7 @@ import { MemoryRouter } from 'react-router-dom';
 import promiseMiddleware from 'redux-promise-middleware';
 import thunk from 'redux-thunk';
 import configureMockStore from 'redux-mock-store';
-import { ResettingPassword } from '../../../components/Auth/ResettingPassoword.jsx';
+import { ResettingPassword } from '../../../components/Auth/ResettingPassword.jsx';
 
 const middlewares = [thunk, promiseMiddleware];
 const mockStore = configureMockStore(middlewares);

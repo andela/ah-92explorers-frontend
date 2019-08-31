@@ -2,7 +2,7 @@ import moxios from 'moxios';
 import dotenv from 'dotenv';
 import http from '../../utils/axios';
 import store from '../../__mocks__/store';
-import * as submitEmail from '../../redux/actions/actionCreators/resetPassoword';
+import * as submitEmail from '../../redux/actions/actionCreators/resetPassword';
 import {
   EMAIL_SUBMIT,
   SUBMIT_SUCCESS,

@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { Spinner } from '../../components/Spinner/Spinner.jsx';
+import Spinner from '../../components/Spinner/Spinner.jsx';
 
 describe('Renders CreateArticleComponent', () => {
   const wrapper = shallow(
