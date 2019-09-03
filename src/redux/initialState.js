@@ -11,6 +11,16 @@ const initialState = {
   login: {
     user: {},
   },
+  userResetPsw: {
+    emailSubmitting: '',
+    submittedSuccess: '',
+    submittedFailure: '',
+  },
+  resettingPsw: {
+    passwordSubmitting: '',
+    resetSuccess: '',
+    resetFailure: '',
+  },
 };
 
 export default initialState;

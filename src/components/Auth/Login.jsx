@@ -38,6 +38,12 @@ class LoginComponent extends React.Component {
               {' '}
               <Link to="/signup">Join</Link>
             </span>
+            <br />
+            <span className="small">
+              Forgot password?
+              {' '}
+              <Link to="/reset-password"> Click here</Link>
+            </span>
           </div>
           <div className="form-group">
             <input type="submit" className="btn btn-primary btn-block" value="Log in with Email" />

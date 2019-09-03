@@ -1,20 +1,21 @@
 import React from 'react';
 
 export default class Validator {
-  static validateUsername(info) {
+  static validateEmail(info) {
     const fields = Object.keys(info);
-    let usernameError;
+    let emailError;
+    const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
     for (const key of fields) {
-      if (info[key].length < 5 || info[key].length > 15) {
-        return (usernameError = (
+      if (emailRegex.test(info[key]) === false) {
+        return (emailError = (
           <ul>
-            <li>Username should be more than 5 characters</li>
-            <li>Username should be less than 15 characters</li>
+            <li>Please enter a valid email address</li>
+            <li> e.g yournames@yahoo.com </li>
           </ul>
         ));
       }
     }
-    return usernameError;
+    return emailError;
   }
 
   static validatePassoword(info) {
@@ -34,22 +35,5 @@ export default class Validator {
       }
     }
     return passwordError;
-  }
-
-  static validateEmail(info) {
-    const fields = Object.keys(info);
-    let emailError;
-    const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
-    for (const key of fields) {
-      if (emailRegex.test(info[key]) === false) {
-        return (emailError = (
-          <ul>
-            <li>Please enter a valid email address</li>
-            <li> e.g yournames@yahoo.com </li>
-          </ul>
-        ));
-      }
-    }
-    return emailError;
   }
 }

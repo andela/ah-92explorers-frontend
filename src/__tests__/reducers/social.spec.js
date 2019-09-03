@@ -1,6 +1,5 @@
 import { social } from '../../redux/reducers/social.reducer';
 import { socialTypes } from '../../redux/actions/actionTypes';
-import initialState from '../../redux/initialState';
 
 describe('social Reducer', () => {
   it('LOGIN_SUCCESS', () => {

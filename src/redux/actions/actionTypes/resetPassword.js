@@ -1,0 +1,3 @@
+export const SUBMIT_SUCCESS = 'SUBMIT_SUCCESS';
+export const SUBMIT_FAILURE = 'SUBMIT_FAILURE';
+export const EMAIL_SUBMIT = 'EMAIL_SUBMIT';

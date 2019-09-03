@@ -6,3 +6,5 @@ export * from './loading';
 export * from './profile';
 export * from './alert';
 export * from './social.type';
+export * from './resetPassword';
+export * from './resettingPassword';

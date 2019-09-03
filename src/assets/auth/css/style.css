@@ -150,3 +150,86 @@ body {
   color:white;
   padding: 10px;
 }
+
+
+.error {
+  width: auto;
+  position: relative;
+  border-radius: 5px;
+  color: #bd3226;
+  margin-top: -15px;
+}
+.error ul{
+padding: 3px 19px;
+margin-left:-2%;
+}
+.error ul li {
+font-size: 13px;
+display: block;
+}
+
+.success{
+background: #5aa169;
+width: auto;
+position: relative;
+border-radius: 5px;
+color: #fff;
+padding: 3px 3px;
+}
+
+.existEmail{
+margin: 30px;
+background: #e47105;
+width: 60px;
+height: 60px;
+position: relative; 
+border-radius: 5px; 
+}
+
+input.form-control.input-error  {
+border: 1px solid #dc3545;
+}
+
+@media (max-width:600px) {
+  .resetPasswordForm {
+    width: auto;
+    margin: 0;
+  }
+  .resetPasswordForm > .resetPasswordForm__main {
+    height: 20%;
+    width: auto !important;
+    margin: 2px !important;
+    background: rgb(255, 255, 255);
+    padding: 2%;
+  }
+
+  .resetPasswordForm > .resetPasswordForm__main > input.form-control {
+    width: auto;
+    padding: 2%;
+    border: 1px solid #dc3545;
+  }
+}
+
+
+@media (max-width:900px) {
+  .resetPasswordForm {
+    width: auto;
+    margin: 0;
+  }
+  .resetPasswordForm > .resetPasswordForm__main {
+    height: 20%;
+    background: rgb(255, 255, 255);
+    padding: 2%;
+  }
+  .form-control {
+    width: 50%;
+    margin-left: 0px !important;
+ }
+ .logo {
+  width: 60px;
+  margin-left: -80px !important;
+}
+ul li {
+  display: block !important;
+ }
+}

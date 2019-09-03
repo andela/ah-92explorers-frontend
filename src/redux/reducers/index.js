@@ -6,7 +6,9 @@ import home from './home';
 import login from './login';
 import profile from './profile';
 import alert from './alert';
+import resetPassword from './resetPassword';
+import resettingPassword from './resettingPassword';
 
 export default combineReducers({
-  articles, home, signup, login, social, profile, alert,
+  articles, home, signup, login, social, profile, alert, resetPassword, resettingPassword,
 });
