@@ -4,9 +4,9 @@ import thunk from 'redux-thunk';
 import dotenv from 'dotenv';
 import {
     CREATE_ARTICLE, GET_ARTICLE, FAILED_ARTICLE_CREATION, UPDATE_ARTICLE, FAILED_ARTICLE_UPDATE,
-    SET_LOADING
+    SET_LOADING, GET_FEED,
   } from '../../redux/actions/actionTypes';
-import { getArticle, publishArticle, updateArticle } from '../../redux/actions/actionCreators';
+import { getArticle, publishArticle, updateArticle, getFeed } from '../../redux/actions/actionCreators';
 
 dotenv.config();
 
@@ -30,9 +30,9 @@ describe('Testing Article Actions', () => {
             request.respondWith({
                 status: 200,
                 response: {
-                        article: {
-                            message: 'successfully fetched article'
-                        }
+                    article: {
+                        message: 'successfully fetched article'
+                    }
                 }
             });
         });
@@ -54,9 +54,9 @@ describe('Testing Article Actions', () => {
             request.respondWith({
                 status: 201,
                 response: {
-                        article: {
-                            message: 'Article successfully created'
-                        }
+                    article: {
+                        message: 'Article successfully created'
+                    }
                 }
             });
         });

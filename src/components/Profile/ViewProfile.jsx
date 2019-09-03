@@ -1,9 +1,4 @@
-/* eslint-disable react/jsx-no-target-blank */
-/* eslint-disable jsx-a11y/control-has-associated-label */
-/* eslint-disable import/no-named-as-default */
-/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/require-default-props */
-/* eslint-disable no-shadow */
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -12,7 +7,7 @@ import '../../assets/css/profile.css';
 import '../../assets/css/styleSignup.css';
 import Navbar from '../Layout/navBar';
 import Alert from '../Layout/Alert';
-import Spinner from '../Layout/Spinner';
+import Spinner from '../Spinner/Spinner.jsx';
 import cam from '../../assets/images/cam.png';
 import {
   getCurrentProfile,

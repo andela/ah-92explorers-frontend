@@ -4,8 +4,10 @@ import dotenv from 'dotenv';
 import axios from 'axios';
 import {
   CREATE_ARTICLE, GET_ARTICLE, FAILED_ARTICLE_CREATION,
-  FAILED_ARTICLE_UPDATE, UPDATE_ARTICLE, SET_LOADING,
+  FAILED_ARTICLE_UPDATE, UPDATE_ARTICLE, SET_LOADING, GET_FEED,
 } from '../actionTypes';
+import fetchImage from '../../../helpers/createDisplayImage';
+import man from '../../../assets/icons/man.svg';
 
 dotenv.config();
 
@@ -70,6 +72,35 @@ export const getArticle = (slug) => async (dispatch) => {
   dispatch({
     type: GET_ARTICLE,
     payload: article.data.article,
+  });
+  dispatch(setLoading(false));
+};
+
+export const getFeed = () => async (dispatch) => {
+  dispatch(setLoading(true));
+  const article = await axios.get(`${process.env.APP_URL_BACKEND}/api/articles/feed?page=1&limit=14`);
+  const username = localStorage.getItem('username');
+  const token = localStorage.getItem('jwtToken');
+  const image = localStorage.getItem('image');
+  const { articles } = article.data;
+  const newArticles = [];
+  articles.forEach((art) => {
+    if (art.title.length < 25) {
+      const newObject = {
+        author: art.author.username || 'Isaiah',
+        profile: art.author.image || man,
+        title: art.title || 'Revenge of the dreamers',
+        image: fetchImage(art.body),
+        slug: art.slug || 'No-weher',
+        date: `${new Date(art.createdAt).toDateString()}` || 'Fri Aug 30 2019',
+      };
+      newArticles.push(newObject);
+    }
+  });
+  newArticles.push({ username, token, image });
+  dispatch({
+    type: GET_FEED,
+    payload: newArticles,
   });
   dispatch(setLoading(false));
 };

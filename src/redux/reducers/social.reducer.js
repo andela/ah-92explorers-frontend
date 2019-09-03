@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 import { socialTypes } from '../actions/actionTypes';
 
 export const social = (state = {}, action) => {

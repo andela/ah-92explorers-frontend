@@ -1,5 +1,6 @@
 const initialState = {
   article: {},
+  feed: [],
   loading: null,
   userSignup: {
     signUpSubmitting: '',

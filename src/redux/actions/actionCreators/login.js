@@ -9,6 +9,7 @@ import {
 dotenv.config();
 const baseURL = process.env.APP_URL_BACKEND;
 
+
 export function setCurrentUser(user) {
   return {
     type: SET_CURRENT_USER,
@@ -58,8 +59,10 @@ export function login(email, password) {
     dispatch(setLoginError(null));
     axios.post(`${baseURL}/api/users/login`, data)
       .then((res) => {
-        const { token } = res.data.user;
+        const { token, username, image } = res.data.user;
         localStorage.setItem('jwtToken', token);
+        localStorage.setItem('username', username);
+        localStorage.setItem('image', image === undefined || image === null ? process.env.DEFAULT_IMAGE : image);
         setAuthorizationToken(token);
         dispatch(setCurrentUser(jwtDecode(token)));
         dispatch(setLoginSuccess(true));

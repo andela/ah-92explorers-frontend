@@ -40,7 +40,7 @@ describe('Renders CreateArticleComponent', () => {
   });
 
   it('should render a mainDiv class', () => {
-    expect(wrapper.find('div').length).toBe(1);
+    expect(wrapper.find('div').length).toBe(2);
   });
   it('test update state onchange', () => {
     wrapper.instance().componentDidMount()

@@ -14,10 +14,8 @@ export const submitEmail = submitAnEmail => async (dispatch) => {
     const { data } = await axios.post(`${APP_URL_BACKEND}/api/password`, {
       ...submitAnEmail,
     });
-    // console.log('data', data.message);
     dispatch({ type: SUBMIT_SUCCESS, payload: data.message });
   } catch (error) {
-    // console.log('err=', error.response.data.error);
     dispatch({ type: SUBMIT_FAILURE, payload: error.response.data.error });
   }
 };

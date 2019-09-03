@@ -11,7 +11,7 @@ import thunk from 'redux-thunk';
 import configureMockStore from 'redux-mock-store';
 import {
   EditProfile,
-} from '../../components/Views/editProfile';
+} from '../../components/Profile/EditProfile';
 
 const middlewares = [thunk, promiseMiddleware];
 const mockStore = configureMockStore(middlewares);

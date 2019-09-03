@@ -1,15 +1,30 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import AuthNavbar from '../../../components/Layout/AuthNavbar.jsx';
+import Navbar from '../../../components/Layout/Navbar.jsx';
 
 
-describe('<AuthNavbar />', () => {
-  let wrapper;
-  beforeEach(() => {
-    wrapper = shallow(<AuthNavbar />);
-  });
+describe('<Navbar />', () => {
+  const props = {
+    token: 'something', 
+    username: 'username',
+    avatar: 'avatar'
+  };
 
-  it('should render AuthNavbar component', () => {
+  const secondProps = {
+    token: undefined, 
+    username: 'username',
+    avatar: 'avatar'
+  };
+  it('should render Navbar component', () => {
+    let wrapper = shallow(
+        <Navbar {...props} />,
+      );
     expect(wrapper).toMatchSnapshot();
+  });
+  it('should render Navbar component', () => {
+    let wrapper = shallow(
+        <Navbar {...secondProps} />,
+      );
+      expect(wrapper.find('.feedNavbar').length).toBe(1);
   });
 });
