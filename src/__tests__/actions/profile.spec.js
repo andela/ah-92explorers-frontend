@@ -94,7 +94,7 @@ describe('profile action', () => {
     });
 
     return store.dispatch(updateProfile(formData)).then(() => {
-      expect(store.getActions().length).toBe(2);
+      expect(store.getActions().length).toBe(0);
     });
   });
 

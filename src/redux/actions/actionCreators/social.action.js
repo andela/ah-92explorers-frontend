@@ -36,7 +36,7 @@ export const getInfo = (search) => (dispatch) => {
   try {
     const data = dec(tokenStr);
     const { user, token } = JSON.parse(data);
-    localStorage.setItem('user', token);
+    localStorage.setItem('jwtToken', token);
     return dispatch(success(user));
   } catch (error) {
     return dispatch(failure('something went wrong'));

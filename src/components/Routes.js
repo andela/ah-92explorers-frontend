@@ -2,31 +2,33 @@ import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import CreateArticle from './Articles/CreateArticle.jsx';
 import UpdateArticle from './Articles/UpdateArticle.jsx';
-import ArticleItem from './Articles/ArticleItem.jsx';
+import { ReadArticle } from './Articles/ArticleItem.jsx';
 import Signup from './Auth/Signup.jsx';
-import ResetPassword from './Auth/ResetPassword.jsx';
-import ResettingPassword from './Auth/ResettingPassword.jsx';
-import { Continue } from './Continue/Continue.jsx';
+import { Continuee } from './Continue/Continue.jsx';
 import Feed from './Articles/Feed.jsx';
 import Login from './Containers/Login.jsx';
 import ViewProfile from './Profile/ViewProfile';
 import EditProfile from './Profile/EditProfile';
+import ResetPassword from './Auth/ResetPassword';
+import ResetingPassword from './Auth/ResettingPassword';
+import { NotFound } from './NotFound/NotFound';
 
 const Routes = () => (
   <Router>
     <Switch>
       <Fragment>
         <Route exact path="/article" component={CreateArticle} />
-        <Route exact path="/article/:articleSlug" component={ArticleItem} />
-        <Route path="/article/:articleSlug/update" component={UpdateArticle} />
+        <Route exact path="/article/:articleSlug/update" component={UpdateArticle} />
+        <Route exact path="/article/:articleSlug" component={ReadArticle} />
         <Route exact path="/" component={Feed} />
         <Route path="/signup" component={Signup} />
-        <Route path="/continue" component={Continue} />
+        <Route path="/continue" component={Continuee} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/profile" component={ViewProfile} />
         <Route exact path="/profile/edit" component={EditProfile} />
         <Route exact path="/reset-password" component={ResetPassword} />
-        <Route exact path="/resetting-password" component={ResettingPassword} />
+        <Route exact path="/resetting-password" component={ResetingPassword} />
+        <Route exact path="/not-found" component={NotFound} />
       </Fragment>
     </Switch>
   </Router>

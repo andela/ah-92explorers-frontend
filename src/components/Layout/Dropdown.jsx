@@ -42,6 +42,7 @@ export class Dropdown extends Component {
         { this.state.displayMenu ? (
           <ul>
             <li><Link to="/profile">Profile</Link></li>
+            <li><Link to="/article">Create Article</Link></li>
             <hr />
             <li><button type="button" onClick={this.logout} className="signout">Sign out</button></li>
           </ul>

@@ -4,6 +4,7 @@ import '../../assets/auth/css/style.css';
 import '../../assets/auth/css/bootstrap.min.css';
 import '../../assets/auth/css/animate.css';
 import Input from '../Common/Input';
+import { Social } from './Social';
 
 
 class LoginComponent extends React.Component {
@@ -48,6 +49,7 @@ class LoginComponent extends React.Component {
           <div className="form-group">
             <input type="submit" className="btn btn-primary btn-block" value="Log in with Email" />
           </div>
+          <Social />
         </form>
       </div>
     );

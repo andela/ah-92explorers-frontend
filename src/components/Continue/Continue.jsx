@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Redirect, BrowserRouter as Router } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Button } from 'reactstrap';
 import { getInfo } from '../../redux/actions/actionCreators';
@@ -19,7 +19,7 @@ export class Continue extends Component {
             <div className="text-center">
               <Button className="btn__continue" onClick={this.handleOnClick}>Continue to Authors Haven </Button>
               {
-                success && <Router><Redirect to="/" /></Router>
+                success && <Redirect to="/" />
               }
             </div>
           </div>

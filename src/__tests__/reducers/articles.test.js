@@ -36,7 +36,9 @@ describe('Article Reducer', () => {
         tagList: 'best',
         image: 'image',
       },
-    };
+      owner: true,
+      fetched: true,
+    }
     const initialState = {
       article: {},
     };
@@ -44,7 +46,7 @@ describe('Article Reducer', () => {
       type: GET_ARTICLE,
       payload,
     });
-    expect(state).toEqual({ article: payload });
+    expect(state).toEqual(payload);
   });
   it('should return payload when FAILED_ARTICLE_CREATION types performed', () => {
     const payload = {
