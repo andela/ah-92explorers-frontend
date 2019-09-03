@@ -28,6 +28,10 @@ const articles = (state = initialState, action) => {
       return {
         ...state,
         feed: action.payload,
+        page: action.page,
+        totalPages: action.totalPages,
+        nextPage: action.nextPage,
+        previousPage: action.previousPage,
       };
     case ARTICLE_GET_FAIL:
       return {

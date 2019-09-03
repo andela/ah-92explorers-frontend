@@ -105,20 +105,18 @@ export const getArticle = (slug) => async (dispatch) => {
   }
 };
 
-export const getFeed = () => async (dispatch) => {
+export const getFeed = (page) => async (dispatch) => {
   dispatch(setLoading(true));
-  const article = await axios.get(`${process.env.APP_URL_BACKEND}/api/articles/feed?page=1&limit=14`);
-  const username = localStorage.getItem('username');
-  const token = localStorage.getItem('jwtToken');
-  const image = localStorage.getItem('image');
+  const article = await axios.get(`${process.env.APP_URL_BACKEND}/api/articles/feed?page=${!page || page === undefined ? 1 : page}&limit=13`);
   const { articles } = article.data;
   const newArticles = [];
+
   articles.forEach((art) => {
-    if (art.title.length < 25) {
+    if (art.title) {
       const newObject = {
         author: art.author.username || 'Isaiah',
         profile: art.author.image || man,
-        title: art.title || 'Revenge of the dreamers',
+        title: art.title.length > 25 ? `${art.title.slice(0, 20)}...` : art.title,
         image: fetchImage(art.body),
         slug: art.slug || 'No-weher',
         date: `${new Date(art.createdAt).toDateString()}` || 'Fri Aug 30 2019',
@@ -126,10 +124,14 @@ export const getFeed = () => async (dispatch) => {
       newArticles.push(newObject);
     }
   });
-  newArticles.push({ username, token, image });
+  newArticles.push({ page: article.data.metadata.currentPage });
   dispatch({
     type: GET_FEED,
     payload: newArticles,
+    page: article.data.metadata.currentPage,
+    totalPages: article.data.metadata.totalPages,
+    nextPage: article.data.metadata.nextPage,
+    previousPage: article.data.metadata.previousPage,
   });
   dispatch(setLoading(false));
 };

@@ -1,5 +1,6 @@
 import {
   CREATE_ARTICLE, GET_ARTICLE, FAILED_ARTICLE_CREATION, UPDATE_ARTICLE, FAILED_ARTICLE_UPDATE,
+  GET_FEED
 } from '../../redux/actions/actionTypes';
 import articles from '../../redux/reducers/articles';
 
@@ -100,5 +101,32 @@ describe('Article Reducer', () => {
       payload,
     });
     expect(state).toEqual({ article: payload });
+  });
+  it('should return payload when FEED_ARTICLE type performed', () => {
+    const payload = {
+      feed: {
+        time: '2 minutes',
+        slug: 'slug',
+        title: 'title',
+        description: 'description',
+        body: 'Best ever',
+        tagList: 'best',
+        image: 'image',
+      },
+      owner: true,
+      fetched: true,
+    }
+    const initialState = {
+      feed: [],
+    };
+    const state = articles(initialState, {
+      type: GET_FEED,
+      payload,
+      page: 1,
+      nextPage: 1,
+      previousPage: null,
+      totalPages: 7
+    });
+    expect(state).toBeDefined();
   });
 });

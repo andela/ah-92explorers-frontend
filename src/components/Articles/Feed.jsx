@@ -1,4 +1,8 @@
+/* eslint-disable no-restricted-globals */
+/* eslint-disable react/no-find-dom-node */
 /* eslint-disable global-require */
+// Component handling hompage
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -6,10 +10,64 @@ import Spinner from '../Spinner/Spinner.jsx';
 import { getFeed } from '../../redux/actions/actionCreators';
 import Navbar from '../Layout/Navbar.jsx';
 import '../../assets/css/homepage.css';
+import '../../assets/css/pagination.css';
 
 export class Feed extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      pagValue: 'first' || this.props.page,
+    };
+    this.inputRef = React.createRef();
+    this.btnLeft = React.createRef();
+    this.btnRight = React.createRef();
+    this.Span = React.createRef();
+  }
+
   componentDidMount() {
     this.props.getFeed();
+  }
+
+  componentDidUpdate() {
+    if (this.state.pagValue === 'first' && this.props.page !== undefined) {
+      this.setState({ pagValue: this.props.page });
+    }
+    return false;
+  }
+
+  changePage = (e) => {
+    this.setState({ pagValue: e.target.value });
+  }
+
+  toLastPage = (e) => {
+    this.setState({ pagValue: e.target.value });
+    this.props.getFeed(this.props.totalPages - 1);
+  }
+
+  checkPage = (e) => {
+    if (e.key === 'Enter' && parseInt(e.target.value, 10) <= this.props.totalPages - 1) {
+      this.setState({ pagValue: e.target.value });
+      this.props.getFeed(this.state.pagValue);
+    }
+
+    return false;
+  }
+
+  changePaginationLeft = () => {
+    if (this.props.page > 1) {
+      this.inputRef.current.style.display = 'none';
+      this.setState({ pagValue: this.props.previousPage });
+      this.props.getFeed(this.props.previousPage);
+    }
+    return false;
+  }
+
+  changePaginationRight = () => {
+    if (this.props.page < this.props.totalPages - 1) {
+      this.setState({ pagValue: this.props.nextPage });
+      this.props.getFeed(this.props.nextPage);
+    }
+    return false;
   }
 
   render() {
@@ -19,11 +77,7 @@ export class Feed extends Component {
     const { articles } = this.props;
     return (
       <div data-test="homePage" className="feedHome">
-        <Navbar
-          token={articles[14].token}
-          username={articles[14].username}
-          avatar={articles[14].image}
-        />
+        <Navbar token={localStorage.getItem('jwtToken')} username={localStorage.getItem('username')} avatar={localStorage.getItem('image')} />
         <div className="theBody">
           <div className="headline disappear">
             <div className="headlinePop">
@@ -194,6 +248,13 @@ export class Feed extends Component {
               </div>
             </div>
           </div>
+          <div className="pagination">
+            <button type="button" className="paginationBtnsIcons" style={!this.props.previousPage ? { cursor: 'not-allowed' } : { cursor: 'pointer' }} onClick={this.changePaginationLeft} ref={this.btnLeft}><img src="https://image.flaticon.com/icons/svg/892/892513.svg" alt="" className="paginationIconBack" /></button>
+            <input type="text" value={this.state.pagValue} onChange={this.changePage} onKeyPress={this.checkPage} ref={this.inputRef} className="paginationInput" />
+            <span className="moreBtn">...</span>
+            <button type="button" onClick={this.toLastPage} value={this.props.totalPages - 1} className="paginationBtnsIcons">{this.props.totalPages - 1}</button>
+            <button type="button" style={this.props.page === this.props.totalPages - 1 ? { cursor: 'not-allowed' } : { cursor: 'pointer' }} className="paginationBtnsIcons" onClick={this.changePaginationRight} ref={this.btnRight}><img src="https://image.flaticon.com/icons/svg/892/892529.svg" alt="" className="paginationIconNext" /></button>
+          </div>
         </div>
       </div>
     );
@@ -203,6 +264,10 @@ export class Feed extends Component {
 const mapStateToProps = (state) => ({
   articles: state.articles.feed,
   loading: state.articles.loading,
+  page: state.articles.page,
+  totalPages: state.articles.totalPages,
+  nextPage: state.articles.nextPage,
+  previousPage: state.articles.previousPage,
 });
 
 export default connect(mapStateToProps, { getFeed })(Feed);

@@ -43,9 +43,7 @@ describe('Testing Article Actions', () => {
     
         return store.dispatch(getArticle('lessh1greaterwrite-a-titlelessh1greater-4')).then(() => {
             let dispatchedActions = store.getActions();
-            console.log
             let dispatchedTypes = dispatchedActions.map(action => action.type);
-            console.log(dispatchedTypes);
             expect(dispatchedTypes).toEqual(expectedActions);
         })
     });
@@ -59,7 +57,6 @@ describe('Testing Article Actions', () => {
         let expectedActions = [];
         return store.dispatch(deleteArticle('lessh1greaterwrite-a-titlelessh1greater-4')).then(() => {
             let dispatchedActions = store.getActions();
-            console.log(store.getActions())
             let dispatchedTypes = dispatchedActions.map(action => action.type);
             expect(dispatchedTypes).toEqual(expectedActions);
         })

@@ -14,10 +14,8 @@ export const resettingPassword = submitresetPswd => async (dispatch) => {
     const { data } = await axios.put(`${APP_URL_BACKEND}/api/password`, {
       ...submitresetPswd,
     });
-    // console.log('data', data.message);
     dispatch({ type: RESET_SUCCESS, payload: data.message });
   } catch (error) {
-    // console.log('err=', error.response.data.error);
     dispatch({ type: RESET_FAILURE, payload: error.response.data.error });
   }
 };
