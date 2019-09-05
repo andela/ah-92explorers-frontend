@@ -17,7 +17,7 @@ const initialState = {
     signUpfailure: '',
   },
   home: '',
-  profile: '',
+  profile: {},
   login: {
     user: {},
   },
@@ -36,6 +36,11 @@ const initialState = {
   comments: [],
   isCommentDelete: false,
   rating: {},
+  follow: {
+    following: '',
+    followSuccess: '',
+    followFailure: '',
+  },
 };
 
 export default initialState;

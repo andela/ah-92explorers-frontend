@@ -92,7 +92,7 @@ export class Feed extends Component {
               <small style={{ color: '#ffffff' }} className="fRST">{ articles[0].date }</small>
               <div className="profileDisplay pDFRF">
                 <img src={articles[0].profile} alt="" className="profImg pIFRF" />
-                <Link to={`/profile/${articles[0].author}`}><small className="profNameFeed pNFRF">{ articles[0].author }</small></Link>
+                <Link to={`/user-profile/${articles[0].author}`}><small className="profNameFeed pNFRF">{ articles[0].author }</small></Link>
                 <img src={require('../../assets/icons/bookmark.svg')} alt="" className="profBookmark bmCD" />
               </div>
             </div>
@@ -103,7 +103,7 @@ export class Feed extends Component {
                 <br />
                 <div className="profileDisplay">
                   <img src={articles[1].profile} alt="" className="profImg sbCI" />
-                  <Link to={`/profile/${articles[1].author}`}><span className="profNameFeed sbCN">{ articles[1].author }</span></Link>
+                  <Link to={`/user-profile/${articles[1].author}`}><span className="profNameFeed sbCN">{ articles[1].author }</span></Link>
                   <img src={require('../../assets/icons/bookmark.svg')} alt="" className="profBookmark sbCBM" />
                 </div>
               </div>
@@ -114,7 +114,7 @@ export class Feed extends Component {
                 <br />
                 <div className="profileDisplay">
                   <img src={articles[2].profile} alt="" className="profImg sbCI" />
-                  <Link to={`/profile/${articles[2].author}`}><span className="profNameFeed sbCN">{ articles[2].author }</span></Link>
+                  <Link to={`/user-profile/${articles[2].author}`}><span className="profNameFeed sbCN">{ articles[2].author }</span></Link>
                   <img src={require('../../assets/icons/bookmark.svg')} alt="" className="profBookmark sbCBM" />
                 </div>
               </div>
@@ -127,7 +127,7 @@ export class Feed extends Component {
                 <br />
                 <div className="profileDisplay">
                   <img src={articles[3].profile} alt="" className="profImg sbCI" />
-                  <Link to={`/profile/${articles[3].author}`}><span className="profNameFeed sbCN">{ articles[3].author }</span></Link>
+                  <Link to={`/user-profile/${articles[3].author}`}><span className="profNameFeed sbCN">{ articles[3].author }</span></Link>
                   <img src={require('../../assets/icons/bookmark.svg')} alt="" className="profBookmark sbCBM" />
                 </div>
               </div>
@@ -138,7 +138,7 @@ export class Feed extends Component {
                 <br />
                 <div className="profileDisplay">
                   <img src={articles[4].profile} alt="" className="profImg sbCI" />
-                  <Link to={`/profile/${articles[4].author}`}><span className="profNameFeed sbCN">{ articles[4].author }</span></Link>
+                  <Link to={`/user-profile/${articles[4].author}`}><span className="profNameFeed sbCN">{ articles[4].author }</span></Link>
                   <img src={require('../../assets/icons/bookmark.svg')} alt="" className="profBookmark sbCBM" />
                 </div>
               </div>
@@ -155,7 +155,7 @@ export class Feed extends Component {
                   <small className="cardSpan">{articles[5].date}</small>
                   <div className="profileDisplay sRCP">
                     <img src={articles[5].profile} alt="" className="sbPI sbCI" />
-                    <Link to={`/profile/${articles[5].author}`}><span className="profNameFeed sbCN">{ articles[5].author }</span></Link>
+                    <Link to={`/user-profile/${articles[5].author}`}><span className="profNameFeed sbCN">{ articles[5].author }</span></Link>
                     <img src={require('../../assets/icons/bookmark.svg')} alt="" className="profBookmark bmCD" />
                   </div>
                 </div>
@@ -168,7 +168,7 @@ export class Feed extends Component {
                   <small className="cardSpan">{articles[6].date}</small>
                   <div className="profileDisplay sRCP">
                     <img src={articles[6].profile} alt="" className="sbPI sbCI" />
-                    <Link to={`/profile/${articles[6].author}`}><span className="profNameFeed sbCN">{ articles[6].author }</span></Link>
+                    <Link to={`/user-profile/${articles[6].author}`}><span className="profNameFeed sbCN">{ articles[6].author }</span></Link>
                     <img src={require('../../assets/icons/bookmark.svg')} alt="" className="profBookmark bmCD" />
                   </div>
                 </div>
@@ -182,7 +182,7 @@ export class Feed extends Component {
                   <small className="sRCT cardSpan" style={{ color: '#ffffff' }}>{ articles[7].date }</small>
                   <div className="profileDisplay sRCP">
                     <img src={articles[7].profile} alt="" className="profImg sbCI" />
-                    <Link to={`/profile/${articles[7].author}`}><span className="profNameFeed sbCN" style={{ color: '#ffffff' }}>{ articles[7].author }</span></Link>
+                    <Link to={`/user-profile/${articles[7].author}`}><span className="profNameFeed sbCN" style={{ color: '#ffffff' }}>{ articles[7].author }</span></Link>
                     <img src={require('../../assets/icons/bookmark.svg')} alt="" className="profBookmark sbCBM sbCMLong" />
                   </div>
                 </div>
@@ -195,7 +195,7 @@ export class Feed extends Component {
                   <small className="cardSpan">{articles[8].date}</small>
                   <div className="profileDisplay sRCP">
                     <img src={articles[8].profile} alt="" className="profImg sbCI" />
-                    <Link to={`/profile/${articles[8].author}`}><span className="profNameFeed sbCN">{ articles[8].author }</span></Link>
+                    <Link to={`/user-profile/${articles[8].author}`}><span className="profNameFeed sbCN">{ articles[8].author }</span></Link>
                     <img src={require('../../assets/icons/bookmark.svg')} alt="" className="profBookmark bmCD" />
                   </div>
                 </div>
@@ -210,7 +210,7 @@ export class Feed extends Component {
               <small className="cardSpan">{articles[9].date}</small>
               <div className="profileDisplay cardProfile">
                 <img src={articles[9].profile} alt="" className="profImg sbCI" />
-                <Link to={`/profile/${articles[9].author}`}><span className="profNameFeed sbCN">{articles[9].author}</span></Link>
+                <Link to={`/user-profile/${articles[9].author}`}><span className="profNameFeed sbCN">{articles[9].author}</span></Link>
                 <img src={require('../../assets/icons/bookmark.svg')} alt="" className="profBookmark sbCBM" />
               </div>
             </div>
@@ -221,7 +221,7 @@ export class Feed extends Component {
               <small className="cardSpan">{articles[10].date}</small>
               <div className="profileDisplay cardProfile">
                 <img src={articles[10].profile} alt="" className="profImg sbCI" />
-                <Link to={`/profile/${articles[10].author}`}><span className="profNameFeed sbCN">{articles[10].author}</span></Link>
+                <Link to={`/user-profile/${articles[10].author}`}><span className="profNameFeed sbCN">{articles[10].author}</span></Link>
                 <img src={require('../../assets/icons/bookmark.svg')} alt="" className="profBookmark sbCBM" />
               </div>
             </div>
@@ -232,7 +232,7 @@ export class Feed extends Component {
               <small className="cardSpan">{articles[11].date}</small>
               <div className="profileDisplay cardProfile">
                 <img src={articles[11].profile} alt="" className="profImg sbCI" />
-                <Link to={`/profile/${articles[11].author}`}><span className="profNameFeed sbCN">{articles[11].author}</span></Link>
+                <Link to={`/user-profile/${articles[11].author}`}><span className="profNameFeed sbCN">{articles[11].author}</span></Link>
                 <img src={require('../../assets/icons/bookmark.svg')} alt="" className="profBookmark sbCBM" />
               </div>
             </div>
@@ -242,7 +242,7 @@ export class Feed extends Component {
               <Link to={`/article/${articles[12].slug}`}><div className="cardHeader" style={{ fontWeight: 'bold' }}>{articles[12].title}</div></Link>
               <span className="cardSpan">{articles[12].date}</span>
               <div className="profileDisplay cardProfile">
-                <Link to={`/profile/${articles[12].author}`}><img src={articles[12].profile} alt="" className="profImg sbCI" /></Link>
+                <Link to={`/user-profile/${articles[12].author}`}><img src={articles[12].profile} alt="" className="profImg sbCI" /></Link>
                 <span className="profNameFeed sbCN">{articles[12].author}</span>
                 <img src={require('../../assets/icons/bookmark.svg')} alt="" className="profBookmark sbCBM" />
               </div>

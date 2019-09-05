@@ -9,6 +9,9 @@ import initialState from '../../../redux/initialState';
 const props = {
   loading: false,
   getCurrentProfile: jest.fn(),
+  following: jest.fn(),
+  followers: jest.fn(),
+  componentWillReceiveProps: jest.fn(),
   profile: {
     image: '',
   },
@@ -20,14 +23,38 @@ describe('viewProfile component', () => {
     expect(component).toHaveLength(1);
   });
 
-  it('', () => {
+  it(' It should render the states', () => {
     const component = mount(
       <MemoryRouter>
-        <Provider store={mockStore({ ...initialState, profile: { profile: {} } })}>
+        <Provider store={mockStore({ ...initialState, profile: { profile: {}}, follow:{ follow:{}}  })}>
           <ViewProfile {...props} />
         </Provider>
       </MemoryRouter>,
     );
+    expect(component).toHaveLength(1);
+  });
+
+  it('renders viewProfile component with the thefollowingUsers Props', () => {
+    const component = shallow(<ViewProfileComponent {...props} />);
+    component.instance().componentWillReceiveProps({thefollowingUsers:[{username:'karasira',image:null}],thefollowerUsers:[{username:'karasira',image:null}]})
+    expect(component).toHaveLength(1);
+  });
+
+  it('renders viewProfile component with the thefollowerUsers Props', () => {
+    const component = shallow(<ViewProfileComponent {...props} />);
+    component.instance().componentWillReceiveProps({thefollowingUsers:[{username:'karasira',image:null}],thefollowerUsers:[{username:'karasira',image:null}]})
+    expect(component).toHaveLength(1);
+  });
+
+  it('renders viewProfile with followerToggle', () => {
+    const component = shallow(<ViewProfileComponent {...props} />);
+    component.instance().followerToggle()
+    expect(component).toHaveLength(1);
+  });
+
+  it('renders viewProfile with followingToggle', () => {
+    const component = shallow(<ViewProfileComponent {...props} />);
+    component.instance().followingToggle()
     expect(component).toHaveLength(1);
   });
 });

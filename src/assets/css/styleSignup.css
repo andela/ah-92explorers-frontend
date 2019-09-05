@@ -189,7 +189,7 @@ td {
 .following {
     display: inline-block;
     vertical-align: top;
-    width: 30%;
+    width: 50%;
     padding: 15px 5px;
     color: #fff;
 }
@@ -339,4 +339,8 @@ footer p {
     .user-profile-s2 {
         width: 100%;
     }
+}
+
+.socialMediaTitle {
+    margin-left: 25px;
 }

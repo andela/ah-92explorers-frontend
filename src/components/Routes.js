@@ -13,6 +13,7 @@ import EditProfile from './Profile/EditProfile';
 import ResetPassword from './Auth/ResetPassword';
 import ResetingPassword from './Auth/ResettingPassword';
 import ViewArticleRatings from './Articles/getRatings';
+import Follow from './Follow/Follow.jsx';
 import { NotFound } from './NotFound/NotFound';
 
 const Routes = () => (
@@ -28,6 +29,7 @@ const Routes = () => (
         <Route path="/continue" component={Continuee} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/profile" component={ViewProfile} />
+        <Route exact path="/user-profile/:username" component={Follow} />
         <Route exact path="/profile/edit" component={EditProfile} />
         <Route exact path="/reset-password" component={ResetPassword} />
         <Route exact path="/resetting-password" component={ResetingPassword} />
