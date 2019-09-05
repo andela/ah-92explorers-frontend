@@ -41,6 +41,8 @@ const initialState = {
     followSuccess: '',
     followFailure: '',
   },
+  bookmark: '',
+  bookmarks: [],
 };
 
 export default initialState;

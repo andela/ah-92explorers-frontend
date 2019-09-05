@@ -10,3 +10,4 @@ export * from './comments';
 export * from './rating';
 export * from './follow';
 export * from './likes';
+export * from './bookMark';

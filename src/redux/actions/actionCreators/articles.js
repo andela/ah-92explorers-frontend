@@ -5,8 +5,15 @@ import dotenv from 'dotenv';
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 import {
-  CREATE_ARTICLE, GET_ARTICLE, FAILED_ARTICLE_CREATION,
-  FAILED_ARTICLE_UPDATE, UPDATE_ARTICLE, SET_LOADING, GET_FEED, ARTICLE_GET_FAIL, GET_RATING,
+  CREATE_ARTICLE,
+  GET_ARTICLE,
+  FAILED_ARTICLE_CREATION,
+  FAILED_ARTICLE_UPDATE,
+  UPDATE_ARTICLE,
+  SET_LOADING,
+  GET_FEED,
+  ARTICLE_GET_FAIL,
+  GET_RATING,
 } from '../actionTypes';
 import fetchImage from '../../../helpers/createDisplayImage';
 import terrestial from '../../../assets/icons/terrestial.jpg';
@@ -36,7 +43,11 @@ export const setLoading = (data) => (dispatch) => {
 
 export const publishArticle = (articleData) => async (dispatch) => {
   try {
-    const { title, body, tagList } = articleData;
+    const {
+      title,
+      body,
+      tagList,
+    } = articleData;
     const tags = tagList[0];
     if (!title || title.length < 5 || !body) {
       return dispatch({
@@ -51,7 +62,11 @@ export const publishArticle = (articleData) => async (dispatch) => {
       body,
       tagList: tags === 'Tag' ? null : tags,
     };
-    const article = await axios.post(`${process.env.APP_URL_BACKEND}/api/articles`, newData, { headers: { Authorization: localStorage.getItem('jwtToken') } });
+    const article = await axios.post(`${process.env.APP_URL_BACKEND}/api/articles`, newData, {
+      headers: {
+        Authorization: localStorage.getItem('jwtToken'),
+      },
+    });
     dispatch({
       type: CREATE_ARTICLE,
       payload: article.data,
@@ -66,7 +81,11 @@ export const publishArticle = (articleData) => async (dispatch) => {
 
 export const updateArticle = (articleData, slug) => async (dispatch) => {
   try {
-    const { title, body, tagList } = articleData;
+    const {
+      title,
+      body,
+      tagList,
+    } = articleData;
     const tags = tagList[0];
     if (!title || title.length < 5 || !body) {
       return dispatch({
@@ -81,7 +100,11 @@ export const updateArticle = (articleData, slug) => async (dispatch) => {
       body,
       tagList: tags === 'Tag' ? null : tags,
     };
-    const article = await axios.put(`${process.env.APP_URL_BACKEND}/api/articles/${slug}`, newData, { headers: { Authorization: localStorage.getItem('jwtToken') } });
+    const article = await axios.put(`${process.env.APP_URL_BACKEND}/api/articles/${slug}`, newData, {
+      headers: {
+        Authorization: localStorage.getItem('jwtToken'),
+      },
+    });
     dispatch({
       type: UPDATE_ARTICLE,
       payload: article.data,
@@ -161,6 +184,7 @@ export const getFeed = (page) => async (dispatch) => {
         title: art.title.length > 25 ? `${art.title.slice(0, 20)}...` : art.title,
         image: fetchImage(art.body),
         slug: art.slug || 'No-weher',
+        id: art.id,
         date: `${new Date(art.createdAt).toDateString()}` || 'Fri Aug 30 2019',
       };
       newArticles.push(newObject);

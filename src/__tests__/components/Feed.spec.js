@@ -10,7 +10,10 @@ describe('Renders CreateArticleComponent', () => {
     ],
     loading: false,
     history: {},
+    bookmarks: [],
     getFeed: jest.fn(),
+    getAllBookmarks: jest.fn(),
+    bookmarkArticle: jest.fn(),
   };
 
   const localStorage = {
@@ -50,6 +53,19 @@ describe('Renders CreateArticleComponent', () => {
     expect(wrapper).toBeDefined();
   });
 
+  it('should change page Numbers', () => {
+    const instance = wrapper.instance();
+    instance.changePaginationRight();
+    expect(wrapper).toBeDefined();
+  });
+
+  it('should call wrapper .changePage', () => {
+    const fakeEvent = { target: { value: 1 } };
+    const instance = wrapper.instance();
+    instance.checkPage(fakeEvent);
+    expect(wrapper).toBeDefined();
+  });
+
   it('should change to last page', () => {
     const fakeEvent = { target: { value: 7 } };
     const instance = wrapper.instance();
@@ -79,5 +95,128 @@ describe('Renders CreateArticleComponent', () => {
     const component = shallow(<Feed {...props} />);
     component.instance().changePaginationRight()
     expect(component).toHaveLength(1);
+  });
+  
+  it('renders bookmark with handleClick', () => {
+    const component = shallow(<Feed {...props} />);
+    component.instance().handleClick()
+    expect(component).toHaveLength(1);
+  });
+  it('to have wrapper class', async () => {
+    const wrapper = shallow(<Feed {
+              ...props
+            }
+    />);
+    const btn = wrapper.find('.prof1');
+    btn.simulate('click', { preventDefault: jest.fn() });
+    expect(btn.length).toBe(1);
+  });
+  it('to have wrapper class', async () => {
+    const wrapper = shallow(<Feed {
+              ...props
+            }
+    />);
+    const btn = wrapper.find('.prof2');
+    btn.simulate('click', { preventDefault: jest.fn() });
+    expect(btn.length).toBe(1);
+  });
+  it('to have wrapper class', async () => {
+    const wrapper = shallow(<Feed {
+              ...props
+            }
+    />);
+    const btn = wrapper.find('.prof3');
+    btn.simulate('click', { preventDefault: jest.fn() });
+    expect(btn.length).toBe(1);
+  });
+  it('to have wrapper class', async () => {
+    const wrapper = shallow(<Feed {
+              ...props
+            }
+    />);
+    const btn = wrapper.find('.prof4');
+    btn.simulate('click', { preventDefault: jest.fn() });
+    expect(btn.length).toBe(1);
+  });
+  it('to have wrapper class', async () => {
+    const wrapper = shallow(<Feed {
+              ...props
+            }
+    />);
+    const btn = wrapper.find('.prof5');
+    btn.simulate('click', { preventDefault: jest.fn() });
+    expect(btn.length).toBe(1);
+  });
+  it('to have wrapper class', async () => {
+    const wrapper = shallow(<Feed {
+              ...props
+            }
+    />);
+    const btn = wrapper.find('.prof6');
+    btn.simulate('click', { preventDefault: jest.fn() });
+    expect(btn.length).toBe(1);
+  });
+  it('to have wrapper class', async () => {
+    const wrapper = shallow(<Feed {
+              ...props
+            }
+    />);
+    const btn = wrapper.find('.prof7');
+    btn.simulate('click', { preventDefault: jest.fn() });
+    expect(btn.length).toBe(1);
+  });
+  it('to have wrapper class', async () => {
+    const wrapper = shallow(<Feed {
+              ...props
+            }
+    />);
+    const btn = wrapper.find('.prof8');
+    btn.simulate('click', { preventDefault: jest.fn() });
+    expect(btn.length).toBe(1);
+  });
+  it('to have wrapper class', async () => {
+    const wrapper = shallow(<Feed {
+              ...props
+            }
+    />);
+    const btn = wrapper.find('.prof9');
+    btn.simulate('click', { preventDefault: jest.fn() });
+    expect(btn.length).toBe(1);
+  });
+  it('to have wrapper class', async () => {
+    const wrapper = shallow(<Feed {
+              ...props
+            }
+    />);
+    const btn = wrapper.find('.prof10');
+    btn.simulate('click', { preventDefault: jest.fn() });
+    expect(btn.length).toBe(1);
+  });
+  it('to have wrapper class', async () => {
+    const wrapper = shallow(<Feed {
+              ...props
+            }
+    />);
+    const btn = wrapper.find('.prof11');
+    btn.simulate('click', { preventDefault: jest.fn() });
+    expect(btn.length).toBe(1);
+  });
+  it('to have wrapper class', async () => {
+    const wrapper = shallow(<Feed {
+              ...props
+            }
+    />);
+    const btn = wrapper.find('.prof12');
+    btn.simulate('click', { preventDefault: jest.fn() });
+    expect(btn.length).toBe(1);
+  });
+  it('to have wrapper class', async () => {
+    const wrapper = shallow(<Feed {
+              ...props
+            }
+    />);
+    const btn = wrapper.find('.prof13');
+    btn.simulate('click', { preventDefault: jest.fn() });
+    expect(btn.length).toBe(1);
   });
 });
