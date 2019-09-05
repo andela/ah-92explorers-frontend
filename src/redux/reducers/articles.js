@@ -1,7 +1,7 @@
 import initialState from '../initialState';
 import {
   CREATE_ARTICLE, GET_ARTICLE, FAILED_ARTICLE_CREATION, UPDATE_ARTICLE, FAILED_ARTICLE_UPDATE,
-  GET_FEED, SET_LOADING,
+  GET_FEED, SET_LOADING, ARTICLE_GET_FAIL,
 } from '../actions/actionTypes';
 
 const articles = (state = initialState, action) => {
@@ -19,12 +19,21 @@ const articles = (state = initialState, action) => {
     case GET_ARTICLE:
       return {
         ...state,
-        article: action.payload,
+        article: action.payload.article,
+        owner: action.payload.owner,
+        authenticated: action.payload.authenticated,
+        fetched: true,
       };
     case GET_FEED:
       return {
         ...state,
         feed: action.payload,
+      };
+    case ARTICLE_GET_FAIL:
+      return {
+        ...state,
+        article: action.error,
+        fetched: false,
       };
     case UPDATE_ARTICLE:
       return {

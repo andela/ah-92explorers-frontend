@@ -2,11 +2,12 @@ import moxios from 'moxios';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import dotenv from 'dotenv';
+import { BrowserRouter as Router } from 'react-router-dom';
 import {
     CREATE_ARTICLE, GET_ARTICLE, FAILED_ARTICLE_CREATION, UPDATE_ARTICLE, FAILED_ARTICLE_UPDATE,
     SET_LOADING, GET_FEED,
   } from '../../redux/actions/actionTypes';
-import { getArticle, publishArticle, updateArticle, getFeed } from '../../redux/actions/actionCreators';
+import { getArticle, publishArticle, updateArticle, getFeed, deleteArticle } from '../../redux/actions/actionCreators';
 
 dotenv.config();
 
@@ -37,13 +38,28 @@ describe('Testing Article Actions', () => {
             });
         });
         let expectedActions = [
-            SET_LOADING,
-            GET_ARTICLE,
-            SET_LOADING
+            GET_ARTICLE
         ];
     
         return store.dispatch(getArticle('lessh1greaterwrite-a-titlelessh1greater-4')).then(() => {
             let dispatchedActions = store.getActions();
+            console.log
+            let dispatchedTypes = dispatchedActions.map(action => action.type);
+            console.log(dispatchedTypes);
+            expect(dispatchedTypes).toEqual(expectedActions);
+        })
+    });
+    it('should delete an article', () => {
+        moxios.wait(() => {
+            let request = moxios.requests.mostRecent();
+            request.respondWith({
+                status: 204
+            });
+        });
+        let expectedActions = [];
+        return store.dispatch(deleteArticle('lessh1greaterwrite-a-titlelessh1greater-4')).then(() => {
+            let dispatchedActions = store.getActions();
+            console.log(store.getActions())
             let dispatchedTypes = dispatchedActions.map(action => action.type);
             expect(dispatchedTypes).toEqual(expectedActions);
         })

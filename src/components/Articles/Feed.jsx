@@ -19,7 +19,11 @@ export class Feed extends Component {
     const { articles } = this.props;
     return (
       <div data-test="homePage" className="feedHome">
-        <Navbar token={articles[14].token} username={articles[14].username} avatar={articles[14].image} />
+        <Navbar
+          token={articles[14].token}
+          username={articles[14].username}
+          avatar={articles[14].image}
+        />
         <div className="theBody">
           <div className="headline disappear">
             <div className="headlinePop">

@@ -11,8 +11,8 @@ import avatar from '../../assets/icons/avatar.svg';
 
 export class UpdateArticle extends Component {
   state = {
-    title: 'Beneath the lies' || this.props.article.title,
-    body: '<p>Beneath the lies</p>' || this.props.article.body,
+    title: 'Beneath the lies' || this.props.article.article.title,
+    body: '<p>Beneath the lies</p>' || this.props.article.article.body,
   }
 
   componentDidMount() {
@@ -27,7 +27,10 @@ export class UpdateArticle extends Component {
 
   componentDidUpdate() {
     if (this.state.title === '<h1>Beneath the lies</h1>' || this.state.body === '<p>Beneath the lies</p>') {
-      this.setState({ title: this.props.article.title, body: this.props.article.body });
+      this.setState({
+        title: this.props.article.article.title,
+        body: this.props.article.article.body,
+      });
     }
     if (this.props.article.message) {
       const { slug } = this.props.article.article;
@@ -80,8 +83,8 @@ UpdateArticle.propTypes = {
 };
 
 const getStateFromStore = state => ({
-  article: state.articles.article,
-  error: state.articles.article.error,
+  article: state.articles,
+  error: state.articles.error,
 });
 
 export default connect(getStateFromStore, { updateArticle, getArticle })(UpdateArticle);

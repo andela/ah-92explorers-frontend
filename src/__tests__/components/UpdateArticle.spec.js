@@ -14,6 +14,7 @@ global.MutationObserver = class {
 describe('Renders CreateArticleComponent', () => {
   const props = {
     article: {
+      article: { slug: 'test' },
       message: 'test',
     },
     error: '',
@@ -41,12 +42,24 @@ describe('Renders CreateArticleComponent', () => {
   it('should render a titleContent class', () => {
     expect(wrapper.find('.titleContent').length).toBe(1);
   });
+  it('should test componentDidUpdate', () => {
+    wrapper.setState({title: 'did i change again'});
+    expect(wrapper.instance().props.article.article.slug).toEqual('test');
+  })
   it('should publish article on click', () => {
     const btn = wrapper.find('.publishBtnArticle');
     const component = wrapper.instance();
     btn.simulate('click')
     component.onClickPublish();
     expect(component).toBeDefined();
+  });
+  it('should change state onChange', () => {
+    const input = wrapper.find('.titleContent').find('input');
+    const event = {
+      preventDefault() {},
+      event: { value: 'changed it ooops' },
+    }
+    input.simulate('change', event);
   });
   it('test update state onchange', () => {
     wrapper.instance().componentDidMount()

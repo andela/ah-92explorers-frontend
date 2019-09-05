@@ -1,0 +1,274 @@
+.bodyIcons
+{
+    height: 20px;
+    width: 20px;
+}
+
+.bodyIcons_rate
+{
+    height: 25px;
+    width: 25px;
+}
+
+.bodyImg
+{
+    height: 466.5px;
+    width: 700px;
+}
+.image img {
+    width: 109%;
+    height: 500px;
+    border-radius: 8px;
+}
+.dropdown-links {
+    padding-right: 20px;
+    margin-left: 0px;
+    display: none;
+    padding-left: 20px;
+    background: #fff;
+    box-shadow: -1px 3px 8px 0px #00000038;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 4px;
+    margin-right: 0px;
+    position: absolute;
+    top: 40px;
+
+}
+
+
+.dropdown-links > li:nth-of-type(0) {
+    margin-bottom: 10px;
+}
+.dropdown-links > li {
+    margin-left: 0px
+}
+.dropdown-links > li > a {
+    cursor: pointer;
+    color: #000 !important;
+}
+.theBodyArticle
+{
+    display: flex;
+    flex-direction: row;
+    margin-left: 15%;
+    margin-top: 110px;
+}
+
+.colOne
+{
+    margin-top: 25%;
+}
+
+.colTwo
+{
+    margin-left: 10%;
+    width: 700px;
+}
+
+.title
+{
+    font-family: 'Sniglet', cursive;
+}
+
+.tags
+{
+    padding: 5px 18px;
+    background: rgba(0,0,0,.05);
+    border: none;
+    color: rgba(0,0,0,.68);
+    outline: rgba(0,0,0,.05);
+    cursor: pointer;
+}
+
+p
+{
+    color: rgba(3, 3, 3, 0.84);
+}
+
+.artFooter
+{
+    display: flex;
+    flex-direction: row;
+    margin-top: 5%;
+    border-bottom: 1px solid #e2e2e2;
+    padding-bottom: 20px;
+}
+
+.socialNet
+{
+    margin-left: 45%;
+}
+
+.profileSection
+{
+    display: flex;
+    flex-direction: row;
+}
+
+.commPic
+{
+    height: 50px;
+    width: 50px;
+}
+
+.commentCard
+{
+    background: #eeeeee;
+    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,.04);
+    box-shadow: 0 1px 4px rgba(0,0,0,.04);
+    border: 1px solid rgba(0,0,0,.09);
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    padding: 20px !important;
+    margin-top: 20px;
+    margin-bottom: 25px;
+}
+
+.commentForm
+{
+    background: #eeeeee;
+    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,.04);
+    box-shadow: 0 1px 4px rgba(0,0,0,.04);
+    border: 1px solid rgba(0,0,0,.09);
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    padding: 20px !important;
+    margin-top: 30px;
+}
+
+.profileName
+{
+    margin-left: 15px;
+    margin-top: 10px;
+}
+
+.publish
+{
+    margin-top: 30px;
+    height: 40px;
+    padding: 5px 38px;
+    color: #26D07C;
+    border: 1px solid #26D07C;
+    outline: #26D07C;
+    cursor: pointer;
+    background: none;
+}
+
+.shareIcons
+{
+    margin-left: 10px;
+}
+
+.commentFooter
+{
+    margin-left: 80%;
+}
+
+.fb
+{
+    filter: invert(33%) sepia(10%) saturate(3382%) hue-rotate(183deg) brightness(93%) contrast(86%);
+}
+
+.gp
+{
+    filter: invert(26%) sepia(37%) saturate(5056%) hue-rotate(347deg) brightness(88%) contrast(80%);
+}
+
+.tw
+{
+    filter: invert(60%) sepia(44%) saturate(4337%) hue-rotate(182deg) brightness(101%) contrast(91%);
+}
+
+.cm
+{
+    filter: invert(91%) sepia(10%) saturate(2196%) hue-rotate(150deg) brightness(92%) contrast(89%);
+}
+
+.bm
+{
+    filter: invert(72%) sepia(12%) saturate(2630%) hue-rotate(90deg) brightness(92%) contrast(82%);
+}
+
+.rate
+{
+    filter: invert(78%) sepia(31%) saturate(3213%) hue-rotate(2deg) brightness(108%) contrast(89%);
+}
+
+.bodyIcons.footerIconsRight.trash {
+    filter: invert(26%) sepia(37%) saturate(5056%) hue-rotate(347deg) brightness(88%) contrast(80%);
+}
+
+.cmBox
+{
+    background: none;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    width: 100%;
+}
+
+.ratingSection
+{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 25px;
+}
+
+.ratings
+{
+    margin-left: 15px;
+}
+
+.time
+{
+    font-size: 13px;
+    color: rgba(0, 0, 0, 0.54);
+}
+
+
+@media(max-width: 900px)
+{
+    .theBody
+    {
+        margin-left: 0px;
+    }
+
+    .bodyImg
+    {
+        width: 85%;
+        height: 300px;
+    }
+
+    .colTwo
+    {
+        margin-left: 20px;
+        width: 85%
+    }
+
+    .socialNet
+    {
+        margin-left: 25%;
+    }
+
+    .commentFooter
+    {
+        margin-left: 70%
+    }
+}
+
+.logout
+{
+    margin-top: -20%;
+    margin-left: 60%;
+    -webkit-border-radius: 36px;
+    border-radius: 36px;
+    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,.04);
+    box-shadow: 0 1px 4px rgba(0,0,0,.04);
+    background: #DC143C;
+    padding: 5px 18px;
+    outline: none;
+    border: 1px solid rgba(0,0,0,.04);
+    cursor: pointer;
+    color: #ffffff;
+}

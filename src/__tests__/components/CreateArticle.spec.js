@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import { CreateArticle } from '../../components/Articles/CreateArticle.jsx';
 
 // mock for mutations observer window object
@@ -14,6 +14,7 @@ global.MutationObserver = class {
 describe('Renders CreateArticleComponent', () => {
   const props = {
     article: {
+      article: { slug: 'test' },
       message: 'test',
     },
     title: '<h1>Write my name</h1>',
@@ -22,7 +23,7 @@ describe('Renders CreateArticleComponent', () => {
     publishArticle: jest.fn(),
   };
 
-  const wrapper = shallow(
+  const wrapper = mount(
     <CreateArticle {...props} />,
   );
   it('should render create component', () => {
@@ -38,6 +39,19 @@ describe('Renders CreateArticleComponent', () => {
   it('should render a titleContent class', () => {
     expect(wrapper.find('.titleContent').length).toBe(1);
   });
+  it('should render componentOnUpdate', () => {
+    wrapper.setState({title: 'did i change'});
+    expect(wrapper.instance().props.article.article.slug).toEqual('test');
+  });
+  it('should change state onChange', () => {
+    const input = wrapper.find('.titleContent').find('input');
+    const event = {
+      preventDefault() {},
+      event: { value: 'changed it ooops' },
+    }
+    input.simulate('change', event);
+  });
+
   it('should publish article on click', () => {
     const btn = wrapper.find('.publishBtnArticle');
     const component = wrapper.instance();

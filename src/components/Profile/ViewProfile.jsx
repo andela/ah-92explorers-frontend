@@ -45,7 +45,7 @@ export class ViewProfile extends Component {
               <div className="multi-widget">
                 <div className="widget user-profile-s1">
                   <div className="profile-img">
-                    <img src={profile.image} alt="avatar" />
+                    <img src={(profile && profile.image) || require('../../assets/icons/man.svg')} alt="avatar" />
                     <div className="change-image">
                       <Link to="/profile/edit">
                         {' '}
@@ -75,14 +75,14 @@ export class ViewProfile extends Component {
                     </h3>
                     <ul>
                       <li className="facebook">
-                        <a href={profile.facebook} target="_blank">
+                        <a href={profile && profile.facebook} target="_blank">
                           <i className="fa fa-facebook" />
                         </a>
 
                       </li>
-                      <li className="twitter"><a href={profile.twitter} target="_blank"><i className="fa fa-twitter" /></a></li>
-                      <li className="instagram"><a href={profile.instagram} target="_blank"><i className="fa fa-instagram" /></a></li>
-                      <li className="linkedin"><a href={profile.linkedIn} target="_blank"><i className="fa fa-linkedin" /></a></li>
+                      <li className="twitter"><a href={profile && profile.twitter} target="_blank"><i className="fa fa-twitter" /></a></li>
+                      <li className="instagram"><a href={profile && profile.instagram} target="_blank"><i className="fa fa-instagram" /></a></li>
+                      <li className="linkedin"><a href={profile && profile.linkedIn} target="_blank"><i className="fa fa-linkedin" /></a></li>
                     </ul>
                   </div>
                 </div>
@@ -101,31 +101,31 @@ export class ViewProfile extends Component {
                       <li>
                         <span>Firstname: </span>
                         {' '}
-                        {profile.firstName}
+                        {profile && profile.firstName}
                       </li>
                       <li>
                         <span>Lastname: </span>
                         {' '}
-                        {profile.lastName}
+                        {profile && profile.lastName}
                       </li>
                       <li>
                         <span>Username: </span>
                         {' '}
-                        {profile.username}
+                        {profile && profile.username}
                       </li>
                       <li>
                         <span>Mobile Phone: </span>
                         {' '}
-                        {profile.phone}
+                        {profile && profile.phone}
                       </li>
                       <li>
                         <span>Location: </span>
                         {' '}
-                        {profile.location}
+                        {profile && profile.location}
                       </li>
                       <li>
                         <span>Bio: </span>
-                        {profile.bio}
+                        {profile && profile.bio}
                       </li>
                     </ul>
                   </div>

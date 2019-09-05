@@ -8,7 +8,9 @@ const Navbar = ({ token, username, avatar }) => {
     return (
       <nav className="feedNavbar" style={{ backgroundColor: '#fffff' }}>
         <div className="firstNavbar">
-          <img src={require('../../assets/icons/logo.png')} alt="" className="logoNavbar" />
+          <a href="/">
+            <img src={require('../../assets/icons/logo.png')} alt="" className="logoNavbar" />
+          </a>
           <div className="notifications-drop">
             <ul>
               <li className="title">
