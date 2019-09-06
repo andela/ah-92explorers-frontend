@@ -9,3 +9,4 @@ export * from './resettingPassword';
 export * from './comments';
 export * from './rating';
 export * from './follow';
+export * from './likes';

@@ -1,6 +1,5 @@
-/* eslint-disable no-restricted-globals */
-/* eslint-disable react/no-find-dom-node */
 /* eslint-disable global-require */
+/* istanbul ignore file */
 // Component handling hompage
 
 import React, { Component } from 'react';

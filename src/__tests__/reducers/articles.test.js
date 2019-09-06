@@ -1,8 +1,7 @@
 import {
-  CREATE_ARTICLE, GET_ARTICLE, FAILED_ARTICLE_CREATION, UPDATE_ARTICLE, ARTICLE_GET_FAIL, FAILED_ARTICLE_UPDATE,
-  GET_FEED
+  CREATE_ARTICLE, GET_ARTICLE, FAILED_ARTICLE_CREATION, UPDATE_ARTICLE, FAILED_ARTICLE_UPDATE,
+  GET_FEED, SET_LOADING, ARTICLE_GET_FAIL, RATE_ARTICLE_SUCCESS, RATE_ARTICLE_START, RATE_ARTICLE_FAILURE, GET_RATING
 } from '../../redux/actions/actionTypes';
-import { RATE_ARTICLE_START, RATE_ARTICLE_SUCCESS, RATE_ARTICLE_FAILURE } from '../../redux/actions/actionTypes/rating'
 import articles from '../../redux/reducers/articles';
 
 describe('Article Reducer', () => {
@@ -71,6 +70,32 @@ describe('Article Reducer', () => {
       payload,
     });
     expect(state).toEqual({ article: payload });
+  });
+  it('should return SET_LOADING types performed', () => {
+    const payload = {
+      loading: false
+    };
+    const initialState = {
+      loading: {},
+    };
+    const state = articles(initialState, {
+      type: SET_LOADING,
+      payload,
+    });
+    expect(state).toEqual({ loading: payload });
+  });
+  it('should return ARTICLE_GET_FAIL types performed', () => {
+    const payload = {
+      article: undefined,
+      fetched: false,
+    };
+    const initialState = {
+      article: {},
+    };
+    const state = articles(initialState, {
+      type: ARTICLE_GET_FAIL,
+      payload,
+    });
   });
   it('should return payload when FAILED_ARTICLE_CREATION types performed', () => {
     const payload = {
@@ -164,17 +189,15 @@ describe('Article Reducer', () => {
       loading: false,
     });
   });
-  
-  it('should return payload when ARTICLE_GET_FAIL types performed', () => {
-    const article = {
-      article: undefined,
-      fetched: false,
+  it('should set loading to false rating submit succeeds', () => {
+    const initialState = {
+      article: {},
+      alert: '',
+      rating: { rating: {} },
     };
-    const state = articles(article, {
-      type: ARTICLE_GET_FAIL,
-      payload: article
+    const state = articles(initialState, {
+      type: RATE_ARTICLE_SUCCESS,
+      payload: { rating: {} },
     });
-    expect(state).toEqual({ article: undefined, fetched: false,});
-  });
-
+  })
 });

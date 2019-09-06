@@ -1,0 +1,2 @@
+export const LIKE_ARTICLE = 'LIKE_ARTICLE';
+export const DISLIKE_ARTICLE = 'DISLIKE_ARTICLE';

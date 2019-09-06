@@ -11,3 +11,4 @@ export * from './comments';
 export * from './rating';
 export * from './follow';
 export * from './viewUser';
+export * from './likes';

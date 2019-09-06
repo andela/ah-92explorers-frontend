@@ -10,6 +10,7 @@ import resettingPassword from './resettingPassword';
 import comments from './comments';
 import follow from './follow';
 import viewUser from './viewUser';
+import likes from './likes';
 
 export default combineReducers({
   articles,
@@ -23,4 +24,5 @@ export default combineReducers({
   comments,
   follow,
   viewUser,
+  likes,
 });
