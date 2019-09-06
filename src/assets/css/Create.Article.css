@@ -22,6 +22,37 @@ figure {
     width: 100% !important;
 }
 
+.tagInput
+{
+    background: #eeeeee;
+    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,.04);
+    box-shadow: 0 1px 4px rgba(0,0,0,.04);
+    border: 1px solid #367fa9;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    padding: 20px !important;
+    margin-top: 20px;
+    margin-bottom: 25px;
+    height: 40px;
+    padding: 5px 48px;
+    outline: none;
+    margin-left: 30%;
+}
+
+.spanCA
+{
+    margin-left: 10px;
+    margin-top: 25px;
+}
+
+.tagsArticle
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-column-gap: 100px;
+    margin-left: 100px;
+}
+
 p 
 {
     font-size: 21px;
@@ -43,24 +74,67 @@ button a{
     margin-top: 20px;
 }
 
+.articleCreationDiv
+{
+    display: grid;
+    grid-template-columns: 25% 75%;
+}
+
+.tagCA
+{
+    font-weight: 400;
+    color: #000;
+    font-size: 15px;
+    letter-spacing: 0;
+    text-decoration: none;
+    background: #fff;
+    border: 1px solid #f0f0f0;
+    padding: 5px 10px;
+}
+
+.theTags
+{
+    display: grid;
+    grid-template-columns: 90% 10%;
+    width: 250px;
+    margin-bottom: 10px;
+}
+
+.tagClose
+{
+    border: none;
+    font-size: 15px;
+    background: #d91e18;
+    padding: 5px 10px;
+    color: #fff;
+}
+
+.tagsArticle
+{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 150px;
+}
+
 .man
 {
     width: 40px;
     height: 40px;
     margin-top: 20px;
     margin-left: 20px;
+    border-radius: 20px;
 }
 
 .navbarArticle
 {
     display: flex;
     flex-direction: row;
-    margin-left: 10%;
+    margin-left: 5%;
 }
 
 .titleContent
 {
-    margin-left: 20%;
     width: 60%;
     border-left: 1px solid black;
     padding-left: 5px;
@@ -69,7 +143,6 @@ button a{
 
 .textContent 
 {
-    margin-left: 20%;
     width: 60%;
     margin-top: 50px;
     margin-bottom: 150px;
@@ -85,7 +158,7 @@ button a{
     outline: none !important;
     cursor: pointer;
     background: none;
-    margin-left: 40%;
+    margin-left: 1%;
 }
 
 .signoutBtn
@@ -105,6 +178,12 @@ button a{
 {
     margin-left: 20px;
     margin-top: 30px;
+}
+
+.cADW
+{
+    margin-left: 10px;
+    margin-top: 25px;
 }
 
 .logo
