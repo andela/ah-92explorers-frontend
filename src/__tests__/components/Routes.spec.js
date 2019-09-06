@@ -3,7 +3,8 @@ import { shallow } from 'enzyme';
 import Routes from '../../components/Routes';
 
 describe('<Routes />', () => {
-  it('renders without crashing', () => {
-    expect(() => shallow(<Routes />)).not.toThrow();
+  it('should render App component', () => {
+    const component = shallow(<Routes />)
+    expect(component).toMatchSnapshot();
   });
 });

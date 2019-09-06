@@ -1,43 +1,72 @@
-/* Pagination */
-.pagination.on-landing {
-    width: auto;
-    float: none;
-    margin: 20px auto;
-    display: block;
-    padding: 0px;
-    width: 25%;
-}
-
 .pagination {
-    display: inline-block;
-    width: 34%;
-    float: right;
-    margin-bottom: 30px;
+    display: flex;
+    flex-direction: row;
+    margin-left: 61.5%;
+    margin-bottom: 100px;
 }
 
-.pagination a {
-    color: black;
-    float: left;
+.paginationInput
+{
     padding: 8px 16px;
-    text-decoration: none;
     border: 1px solid #ddd;
-    background: #fff;
+    outline: none;
+    width: 50px;
+    text-align: start;
+    background-color: #367fa9;
+    color: #ffffff;
 }
 
-.pagination a.active {
-    background-color: #367FA9;
-    color: white;
-    border: 1px solid #367FA9;
+.moreBtn
+{
+    padding: 8px 16px;
+    border: none;
+    text-align: justify
+
 }
 
-.pagination a:hover:not(.active) {background-color: #ddd;}
-
-.pagination a:first-child {
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
+.paginationBtns:hover
+{
+    background: #eeeeee;
 }
 
-.pagination a:last-child {
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
+.paginationBtns:focus
+{
+    color: #ffffff;
+}
+
+.paginationBtnsIcons
+{
+    padding: 8px 16px;
+    border: 1px solid #ddd;
+    outline: none;
+}
+
+.paginationIconBack
+{
+    width: 20px;
+    height: 10px;
+}
+
+.paginationIconNext
+{
+    width: 20px;
+    height: 10px;
+}
+
+@media only screen and (min-width : 1824px)
+{
+    .pagination
+    {
+        margin-left: 53%
+    }
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px)
+{
+    .pagination
+    {
+        margin-left: 25%;
+        width: 50px;
+        flex-direction: column;
+    }
 }

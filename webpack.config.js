@@ -63,7 +63,13 @@ module.exports = {
     url: false
   },
   plugins: [ 
-    new Dotenv(),
+    new Dotenv({
+      path: path.resolve(__dirname, './.env'),
+      safe: true,
+      systemvars: true,
+      silent: true,
+      defaults: false
+    }),
     new CleanWebpackPlugin(), 
     new HtmlWebpackPlugin({ 
         template: './public/index.html',

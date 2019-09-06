@@ -81,7 +81,6 @@ describe('Renders CreateArticleComponent', () => {
   it('should render a the body class', () => {
     const btn = wrapper.find('.deleteIcon').first();
     wrapper.setState({modal: true})
-    console.log(wrapper.debug());
     expect(btn.length).toBe(1);
     btn.simulate('click')
     expect(wrapper.find('.theBodyArticle').length).toBe(1);
