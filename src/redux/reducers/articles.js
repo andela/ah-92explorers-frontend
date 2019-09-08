@@ -1,8 +1,19 @@
+/* eslint-disable max-len */
 import initialState from '../initialState';
 
 import {
-  CREATE_ARTICLE, GET_ARTICLE, FAILED_ARTICLE_CREATION, UPDATE_ARTICLE, FAILED_ARTICLE_UPDATE,
-  GET_FEED, SET_LOADING, ARTICLE_GET_FAIL,
+  CREATE_ARTICLE,
+  GET_ARTICLE,
+  FAILED_ARTICLE_CREATION,
+  UPDATE_ARTICLE,
+  FAILED_ARTICLE_UPDATE,
+  GET_FEED,
+  SET_LOADING,
+  GET_RATING,
+  ARTICLE_GET_FAIL,
+  RATE_ARTICLE_START,
+  RATE_ARTICLE_SUCCESS,
+  RATE_ARTICLE_FAILURE,
 } from '../actions/actionTypes';
 
 const articles = (state = initialState, action) => {
@@ -20,7 +31,10 @@ const articles = (state = initialState, action) => {
     case GET_ARTICLE:
       return {
         ...state,
-        article: action.payload.article,
+        article: {
+          ...action.payload.article,
+          rateAvg: Math.floor(action.payload.article.ratings ? (action.payload.article.ratings.reduce((accumulator, currentValue) => (accumulator + currentValue.rating), 0) / action.payload.article.ratings.length) : 0),
+        },
         owner: action.payload.owner,
         authenticated: action.payload.authenticated,
         fetched: true,
@@ -54,6 +68,40 @@ const articles = (state = initialState, action) => {
       return {
         ...state,
         article: action.payload,
+      };
+    case RATE_ARTICLE_START:
+      return {
+        ...state,
+        loading: true,
+      };
+    case RATE_ARTICLE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        rating: {
+          ...action.payload,
+          rating: state.rating.rating || [],
+        },
+        alert: action.message,
+        article: {
+          ...state.article,
+          rateAvg: action.payload.rating.rates,
+        },
+      };
+    case RATE_ARTICLE_FAILURE:
+      return {
+        ...state,
+        loading: false,
+      };
+    case GET_RATING:
+      return {
+        ...state,
+        rating: action.payload,
+        article: {
+          ...state.article,
+          rateAvg: action.payload.rating ? (action.payload.rating.reduce((accumulator, currentValue) => accumulator.rating + currentValue.rating) / action.payload.rating.length) : 0,
+        },
+        fetched: true,
       };
     default:
       return state;

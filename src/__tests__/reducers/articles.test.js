@@ -2,6 +2,7 @@ import {
   CREATE_ARTICLE, GET_ARTICLE, FAILED_ARTICLE_CREATION, UPDATE_ARTICLE, FAILED_ARTICLE_UPDATE,
   GET_FEED
 } from '../../redux/actions/actionTypes';
+import { RATE_ARTICLE_START, RATE_ARTICLE_SUCCESS, RATE_ARTICLE_FAILURE } from '../../redux/actions/actionTypes/rating'
 import articles from '../../redux/reducers/articles';
 
 describe('Article Reducer', () => {
@@ -14,6 +15,7 @@ describe('Article Reducer', () => {
         slug: 'slug',
         image: 'image',
         tagList: 'sjdas',
+        rating: 'lslk',
         description: 'dskfdbsf',
       },
     };
@@ -32,16 +34,22 @@ describe('Article Reducer', () => {
         time: '2 minutes',
         slug: 'slug',
         title: 'title',
+        rateAvg: 0,
         description: 'description',
         body: 'Best ever',
         tagList: 'best',
         image: 'image',
       },
+      authenticated: undefined,
       owner: true,
       fetched: true,
     }
     const initialState = {
-      article: {},
+      article: {
+        rating: {
+          rating: [],
+        },
+      },
     };
     const state = articles(initialState, {
       type: GET_ARTICLE,
@@ -74,6 +82,7 @@ describe('Article Reducer', () => {
           slug: 'slug',
           image: 'image',
           tagList: 'sjdas',
+          rating: 'lslk',
           description: 'dskfdbsf',
         },
       },
@@ -128,5 +137,31 @@ describe('Article Reducer', () => {
       totalPages: 7
     });
     expect(state).toBeDefined();
+  });
+  it('should set loading to true rating submit is clicked', () => {
+    const initialState = {
+      article: {},
+      alert: '',
+      rating: '',
+    };
+    expect(articles(initialState, {
+      type: RATE_ARTICLE_START,
+    })).toEqual({
+      ...initialState,
+      loading: true,
+    });
+  });
+  it('should set loading to false rating submit fails', () => {
+    const initialState = {
+      article: {},
+      alert: '',
+      rating: '',
+    };
+    expect(articles(initialState, {
+      type: RATE_ARTICLE_FAILURE,
+    })).toEqual({
+      ...initialState,
+      loading: false,
+    });
   });
 });

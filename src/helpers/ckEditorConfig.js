@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import '@babel/polyfill';
 import axios from 'axios';
 import dotenv from 'dotenv';

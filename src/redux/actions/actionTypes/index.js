@@ -8,3 +8,4 @@ export * from './profile';
 export * from './social.type';
 export * from './loading';
 export * from './comments';
+export * from './rating';

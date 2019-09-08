@@ -27,6 +27,7 @@ describe('Renders CreateArticleComponent', () => {
       },
       getArticle: jest.fn(),
       deleteArticle: jest.fn(),
+      getRating: jest.fn,
       loading: false,
       getCurrentProfile: jest.fn(),
       profile: { profile: {}},
@@ -35,12 +36,13 @@ describe('Renders CreateArticleComponent', () => {
           articleSlug: 'jest',
         },
       },
+      articleRating: jest.fn(),
   }
 
   const wrapper = shallow(
-      <MemoryRouter>
-        <Provider store={mockStore({props})}><ArticleReadDelete {...props} /></Provider>
-      </MemoryRouter>
+    <MemoryRouter>
+      <Provider store={mockStore({props})}><ArticleReadDelete {...props} /></Provider>
+    </MemoryRouter>
   );
 
   const wrapper2 = shallow(
@@ -71,6 +73,9 @@ describe('Renders CreateArticleComponent', () => {
     );
     const component = wrapper2.instance();
     component.toggle();
+    component.toggle1();
+    component.onStarClick();
+    component.handleRatingsSubmit();
     expect(component).toBeDefined();
   });
 });
