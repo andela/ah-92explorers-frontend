@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import Validator from '../../utils/resetPswdValidation';
 import { resettingPassword } from '../../redux/actions/actionCreators/resettingPassword';
 import '../../assets/scss/resetPassword.scss';
@@ -12,6 +13,7 @@ export class ResettingPassword extends Component {
     confirmPassword: '',
     passwordError: '',
     confirmPasswordError: '',
+    redirecting: false,
   };
 
   handleOnChange = e => {
@@ -63,6 +65,16 @@ export class ResettingPassword extends Component {
     } = this.state;
 
     const { resetSuccess, resetFailure } = this.props;
+
+    if (resetSuccess) {
+      setTimeout(() => this.setState({
+        redirecting: true,
+      }), 2000);
+    }
+
+    if (this.state.redirecting) {
+      return <Redirect to="/login" />;
+    }
 
     return (
       <Fragment>

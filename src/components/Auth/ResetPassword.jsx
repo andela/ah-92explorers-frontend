@@ -51,6 +51,18 @@ export class ResetPassword extends Component {
 
     const { submittedSuccess, submittedFailure } = this.props;
 
+    if (submittedSuccess) {
+      setTimeout(() => this.setState({
+        email: '',
+      }), 2000);
+    }
+
+    if (submittedSuccess) {
+      setTimeout(() => this.setState({
+        submittedSuccess: true,
+      }), 5000);
+    }
+
     return (
       <Fragment>
         <TopNavbar />
