@@ -3,10 +3,16 @@ import { connect } from 'react-redux';
 import {
   Button, Modal, ModalHeader, ModalBody, ModalFooter,
 } from 'reactstrap';
+import { Link } from 'react-router-dom';
 import ReactHtmlParser from 'react-html-parser';
+import jwtDecode from 'jwt-decode';
+import '../../assets/scss/ratings.scss';
+import Starbtn from '../../assets/icons/star.svg';
+import RatingsModal from './Rating/RatingsModal';
 import NavBar from '../Layout/navBar';
 import Navbar from '../Layout/Navbar.jsx';
-import { getArticle, deleteArticle } from '../../redux/actions/actionCreators';
+import { getArticle, deleteArticle, getRating } from '../../redux/actions/actionCreators';
+import { articleRating } from '../../redux/actions/actionCreators/rating';
 import '../../assets/css/articleread.css';
 import manIcon from '../../assets/images/man.jpg';
 import Comments from '../Comments/Comments.jsx';
@@ -15,13 +21,39 @@ import Messages from '../Messages/Messages.jsx';
 export class ArticleReadDelete extends Component {
   state = {
     modal: false,
+    modal1: false,
     slug: '',
+    value: 0,
+    rateAvg: 0,
   }
 
   componentDidMount() {
-    const { match: { params } } = this.props;
-    this.setState({ slug: params.articleSlug });
-    this.props.getArticle(params.articleSlug);
+    const slug = this.props.match.params.articleSlug;
+    this.props.getArticle(slug);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { rating } = nextProps.article.rating;
+    this.setState(prevState => ({
+      ...prevState,
+      value: rating ? rating.rates : 0,
+      rateAvg: nextProps.rateAvg || prevState.rateAvg,
+    }));
+  }
+
+  onStarClick = (nextValue) => {
+    this.setState({ value: nextValue });
+  }
+
+  handleRatingsSubmit = () => {
+    const { match } = this.props;
+    const { articleSlug } = match.params;
+    const { value } = this.state;
+    const { articleRating } = this.props;
+    articleRating(articleSlug, value);
+    this.setState(prevState => ({
+      modal1: !prevState.modal1,
+    }));
   }
 
   handleOnDelete = () => {
@@ -35,19 +67,39 @@ export class ArticleReadDelete extends Component {
     }));
   }
 
+  toggle1 = () => {
+    this.setState(prevState => ({
+      modal1: !prevState.modal1,
+    }));
+  }
+
   render() {
     const { match: { params } } = this.props;
     const { isAuthenticated } = this.props;
-    const { fetched, owner, authenticated } = this.props.article;
-    const loader = Object.keys(this.props.article.article).length === 0;
     const userName = localStorage.getItem('username') ? localStorage.getItem('username') : '';
     const profileImg = localStorage.getItem('image') ? localStorage.getItem('image') : manIcon;
     const { commentError } = this.props;
+    const { value } = this.state;
+    const {
+      fetched, owner, authenticated,
+    } = this.props.article;
+    const { slug } = this.props.article.article;
+    const {
+      rateAvg,
+    } = this.state;
+    const loader = Object.keys(this.props.article.article).length === 0;
+    const token = localStorage.getItem('jwtToken');
     return (
       <Fragment>
         { isAuthenticated ? <NavBar /> : <Navbar /> }
         <div className="theBodyArticle">
           <div className="colOne">
+            { !owner && (
+              <div className="rateIcon" onClick={this.toggle1}>
+                <img src={Starbtn} className="rateIcon bodyIcons disappear rate" alt="" />
+              </div>
+            )}
+            <br></br>
             { owner && (
             <div className="deleteIcon" onClick={this.toggle}>
               <img src={require('../../assets/icons/trash.svg')} className="bodyIcons" alt="..." />
@@ -56,7 +108,7 @@ export class ArticleReadDelete extends Component {
             <br></br>
             { owner && (
             <div>
-              <a href={`/article/${this.state.slug}/update`}><img src={require('../../assets/icons/edit.svg')} className="bodyIcons disappear edit" alt="..." /></a>
+              <a href={`/article/${slug}/update`}><img src={require('../../assets/icons/edit.svg')} className="bodyIcons disappear edit" alt="..." /></a>
             </div>
             )}
           </div>
@@ -71,6 +123,14 @@ export class ArticleReadDelete extends Component {
                 read
               </span>
               { ReactHtmlParser(fetched && this.props.article.article.body) }
+              <div>
+                <Link to={`/rating/${slug}`}>
+                  {' '}
+                  <img src="https://image.flaticon.com/icons/svg/291/291205.svg" className="bodyIcons" alt="" />
+                  <small>{rateAvg}</small>
+                </Link>
+              </div>
+              <hr></hr>
             </div>
             <div className="commentsZone">
               { commentError === 'unauthorised to use this resource, please signup/login'
@@ -101,6 +161,14 @@ export class ArticleReadDelete extends Component {
             <Button color="secondary" onClick={this.toggle}>Cancel</Button>
           </ModalFooter>
         </Modal>
+        <Modal isOpen={this.state.modal1} toggle={this.toggle1} className={this.props.className}>
+          <RatingsModal
+            title="Article Ratings"
+            rating={value}
+            starClick={this.onStarClick}
+            handleRatingsSubmit={this.handleRatingsSubmit}
+          />
+        </Modal>
       </Fragment>
     );
   }
@@ -110,8 +178,13 @@ const mapStateToProps = (state) => ({
   article: state.articles,
   isAuthenticated: state.login.isAuthenticated,
   commentError: state.comments.commentError,
+  rating: state.articles.rating,
+  rateAvg: state.articles.article.rateAvg,
+  articlee: state.articles.article,
 });
 
 export const connectReadDelete = connect(mapStateToProps,
-  { getArticle, deleteArticle })(ArticleReadDelete);
+  {
+    getArticle, articleRating, deleteArticle, getRating,
+  })(ArticleReadDelete);
 export { connectReadDelete as ReadArticle };

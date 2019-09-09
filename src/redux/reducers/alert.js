@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import { SET_ALERT, REMOVE_ALERT } from '../actions/actionTypes/alert';
 
 const initialState = [];

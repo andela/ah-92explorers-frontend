@@ -4,6 +4,13 @@ const initialState = {
   isLoginSuccess: false,
   isLoginPending: false,
   loginError: null,
+  article: {
+    rating: {
+      rating: [],
+    },
+  },
+  feed: [],
+  loading: null,
   userSignup: {
     signUpSubmitting: '',
     signUpSuccess: '',
@@ -24,13 +31,11 @@ const initialState = {
     resetSuccess: '',
     resetFailure: '',
   },
-  article: {},
-  feed: [],
-  loading: null,
   comment: '',
   commentError: null,
   comments: [],
   isCommentDelete: false,
+  rating: {},
 };
 
 export default initialState;

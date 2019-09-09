@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import jwtDecode from 'jwt-decode';
 import store from '../redux/store';
 import setAuthToken from './setAuthToken';
