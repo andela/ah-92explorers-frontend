@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import {shallow, mount } from 'enzyme';
 import { CreateArticle } from '../../components/Articles/CreateArticle.jsx';
 
 // mock for mutations observer window object

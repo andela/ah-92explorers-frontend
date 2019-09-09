@@ -6,3 +6,4 @@ export * from './social.action';
 export * from './profile';
 export * from './resetPassword';
 export * from './resettingPassword';
+export * from './comments';

@@ -4,14 +4,17 @@ import configureStore from 'redux-mock-store';
 import LoginComponent from '../../../components/Auth/Login.jsx';
 import { LoginContainer } from '../../../components/Containers/Login.jsx';
 
-
 const props = {
   isLoginSuccess: false,
   loginError: {},
   email: '',
   password: '',
   errors: {},
+  login: jest.fn(),
+  auth: { isAuthenticated: false },
+  loading: false,
 };
+
 let wrapper;
 const initialState = {};
 // here it is possible to pass in any middleware if needed into //configureStore
@@ -27,6 +30,12 @@ describe('<LoginContainer />', () => {
 
   it('should render Login container', () => {
     expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should check componentDidMount', () => {
+    wrapper.instance().componentDidMount()
+    expect(wrapper.instance().props.auth.isAuthenticated).toBeDefined();
+    expect(jest.isMockFunction(window.location.href)).toBeDefined();
   });
 
   it('Should render <LoginComponent />  component', () => {

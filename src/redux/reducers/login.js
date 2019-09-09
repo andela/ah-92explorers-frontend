@@ -1,16 +1,9 @@
 import isEmpty from 'lodash/isEmpty';
+import initialState from '../initialState';
 import {
   SET_CURRENT_USER, SET_LOGIN_PENDING,
   SET_LOGIN_SUCCESS, SET_LOGIN_ERROR,
 } from '../actions/actionTypes';
-
-const initialState = {
-  isAuthenticated: false,
-  user: {},
-  isLoginSuccess: false,
-  isLoginPending: false,
-  loginError: null,
-};
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
