@@ -252,7 +252,45 @@ a {
     margin-right: 10px;
     margin-top: 25px;
 }
-
+.viewmoreList {
+    z-index: -9999;
+    width: 100%;
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+}
+.list-group {
+    margin-top: 30px !important;
+    position: absolute;
+}
+.list-group-item {
+    color: #000 !important;
+}
+.unread {
+    background-color: #dc3545;
+}
+.read {
+    background-color: #343a40;
+}
+.read, .unread {
+    color: #fff;
+    display: inline-block;
+    padding: .25em .4em;
+    margin-left: 10px;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.badge {
+    bottom: 28px;
+    position: absolute;
+    right: 283px;
+    border: 1px solid #fff;
+}
 .navName
 {
     margin-left: 10px;

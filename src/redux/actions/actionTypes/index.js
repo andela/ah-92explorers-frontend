@@ -9,3 +9,4 @@ export * from './social.type';
 export * from './loading';
 export * from './comments';
 export * from './rating';
+export * from './notifications';

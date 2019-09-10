@@ -12,6 +12,11 @@ const props = {
   profile: {
     image: '',
   },
+  notifications: {
+    notifications: {
+        notifications: {}
+    },
+  },
 };
 
 describe('viewProfile component', () => {

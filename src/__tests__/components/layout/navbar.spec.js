@@ -3,21 +3,39 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
-import Navbar from '../../../components/Layout/navBar';
+import { Navbar } from '../../../components/Layout/navBar';
 
 const mockStore = configureMockStore();
 const store = mockStore({});
 describe('<Navbar />', () => {
-  let wrapper;
-  beforeEach(() => {
-    wrapper = shallow(
-      <Provider store={store}>
-        <Navbar />
-      </Provider>,
-    );
+  const props = {
+    notifications: {
+      notifications: {
+          allNotification: []
+      },
+    },
+    getNotifications: jest.fn(),
+    readNotification: jest.fn(),
+  }
+  const wrapper = shallow(
+      <Navbar {...props}/>
+  );
+  it('should render Navbar component', () => {
+    const li = wrapper.find('ListGroupItem').first();
+    expect(wrapper).toMatchSnapshot();
+  });
+  
+  it('test update state onchange', () => {
+    wrapper.instance().componentDidMount()
+    expect(wrapper.instance().props.getNotifications).toBeCalled();
   });
 
-  it('should render Navbar component', () => {
-    expect(wrapper).toMatchSnapshot();
+  it('shoudl handle on comment', () => {
+    const component = wrapper.instance();
+    component.onclickNotif({ target: { getAttribute: jest.fn()}});
+    component.refresh();
+    component.onHandleClick();
+    component.viewmore();
+    expect(component).toBeDefined();
   });
 });

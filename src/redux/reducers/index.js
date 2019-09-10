@@ -8,9 +8,11 @@ import alert from './alert';
 import resetPassword from './resetPassword';
 import resettingPassword from './resettingPassword';
 import comments from './comments';
+import { notifications } from './notifications';
 
 export default combineReducers({
   articles,
+  notifications,
   signup,
   login,
   social,

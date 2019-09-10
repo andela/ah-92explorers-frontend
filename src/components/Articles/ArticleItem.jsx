@@ -122,6 +122,7 @@ export class ArticleReadDelete extends Component {
                 {' '}
                 read
               </span>
+              <br></br>
               { ReactHtmlParser(fetched && this.props.article.article.body) }
               <div>
                 <Link to={`/rating/${slug}`}>

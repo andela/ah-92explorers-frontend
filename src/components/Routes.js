@@ -14,6 +14,7 @@ import ResetPassword from './Auth/ResetPassword';
 import ResetingPassword from './Auth/ResettingPassword';
 import ViewArticleRatings from './Articles/getRatings';
 import { NotFound } from './NotFound/NotFound';
+import ViewMore from './ViewMore/ViewMore';
 
 const Routes = () => (
   <Router>
@@ -32,6 +33,7 @@ const Routes = () => (
         <Route exact path="/reset-password" component={ResetPassword} />
         <Route exact path="/resetting-password" component={ResetingPassword} />
         <Route exact path="/not-found" component={NotFound} />
+        <Route exact path="/more/notifications" component={ViewMore} authenticated="true" />
       </Fragment>
     </Switch>
   </Router>

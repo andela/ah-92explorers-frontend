@@ -122,13 +122,13 @@ export const getArticle = (slug) => async (dispatch) => {
   try {
     if (token && token.email) authenticated = true;
     const articles = await axios.get(`${process.env.APP_URL_BACKEND}/api/articles/${slug}/`);
-    if (articles.status === 404) {
+    if (articles.status === 500) {
       window.location.replace('/not-found');
     }
     const owner = token && token.id === articles.data.article.author.id;
     return dispatch(success(articles.data.article, owner, authenticated));
   } catch (error) {
-    if (error.response && error.response.status === 404) window.location.replace('/not-found');
+    if (error.response && error.response.status === 500) window.location.replace('/not-found');
     return dispatch(failure('something went wrong'));
   }
 };

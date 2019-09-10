@@ -49,27 +49,38 @@ export function logout() {
   };
 }
 
-export const login = (email, password) => async (dispatch) => {
-  try {
-    const data = { email, password };
+export function login(email, password) {
+  const data = {
+    email,
+    password,
+  };
+  let authenticated = false;
+  return (dispatch) => {
     dispatch(setLoginPending(true));
-    const res = await axios.post(`${baseURL}/api/users/login`, data);
-    const { token, username, image } = res.data.user;
-    localStorage.setItem('jwtToken', token);
-    localStorage.setItem('username', username);
-    localStorage.setItem('image', image === undefined || image === null ? process.env.DEFAULT_IMAGE : image);
-    setAuthorizationToken(token);
-    dispatch(setCurrentUser(jwtDecode(token)));
-    dispatch(setLoginSuccess(true));
-    dispatch(setLoginPending(false));
-  } catch (error) {
-    let errorMessage = null;
-    if (error.response) {
-      errorMessage = error.response.data.error;
-    } else {
-      errorMessage = 'Something went wrong. Check your internet connection.';
-    }
-    dispatch(setLoginError(errorMessage));
-    dispatch(setLoginPending(false));
-  }
-};
+    dispatch(setLoginSuccess(false));
+    dispatch(setLoginError(null));
+    axios.post(`${baseURL}/api/users/login`, data)
+      .then((res) => {
+        const { token, username, image } = res.data.user;
+        if (token && token.email) authenticated = true;
+        localStorage.setItem('jwtToken', token);
+        localStorage.setItem('authenticated', authenticated);
+        localStorage.setItem('username', username);
+        localStorage.setItem('image', image === undefined || image === null ? process.env.DEFAULT_IMAGE : image);
+        setAuthorizationToken(token);
+        dispatch(setCurrentUser(jwtDecode(token)));
+        dispatch(setLoginSuccess(true));
+        dispatch(setLoginPending(false));
+      })
+      .catch((error) => {
+        let errorMessage = null;
+        if (error.response) {
+          errorMessage = error.response.data.error;
+        } else {
+          errorMessage = 'Something went wrong. Check your internet connection.';
+        }
+        dispatch(setLoginError(errorMessage));
+        dispatch(setLoginPending(false));
+      });
+  };
+}

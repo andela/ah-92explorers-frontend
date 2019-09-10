@@ -10,7 +10,7 @@ import Alert from '../Layout/Alert';
 import Spinner from '../Spinner/Spinner.jsx';
 import cam from '../../assets/images/cam.png';
 import {
-  getCurrentProfile, opt
+  getCurrentProfile, opt,
 } from '../../redux/actions/actionCreators/profile';
 
 export class ViewProfile extends Component {

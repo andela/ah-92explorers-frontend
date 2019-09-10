@@ -28,6 +28,7 @@ export const dec = (token) => {
 
 export const getInfo = (search) => (dispatch) => {
   const stringObj = qs.parse(search);
+  let authenticated = false;
   const tokenStr = stringObj && stringObj.token;
   if (!tokenStr) {
     const error = 'something went wrong';
@@ -36,6 +37,8 @@ export const getInfo = (search) => (dispatch) => {
   try {
     const data = dec(tokenStr);
     const { user, token } = JSON.parse(data);
+    if (token && token.email) authenticated = true;
+    localStorage.setItem('authenticated', authenticated);
     localStorage.setItem('jwtToken', token);
     return dispatch(success(user));
   } catch (error) {
