@@ -23,8 +23,12 @@
   
   .menu-dropdown ul li {
     display: block; 
-    padding: 5px 20px;
+    padding: 5px 10px;
     margin: 0px;
+  }
+
+  .navbar  .menu-dropdown ul li a{
+    color: #000;
   }
   
   .menu-dropdown ul li:hover {

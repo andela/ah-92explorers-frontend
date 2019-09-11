@@ -18,6 +18,7 @@ import '../../assets/css/articleread.css';
 import manIcon from '../../assets/images/man.jpg';
 import Comments from '../Comments/Comments.jsx';
 import Messages from '../Messages/Messages.jsx';
+import ShareArticle from './ShareArticle.jsx';
 
 export class ArticleReadDelete extends Component {
   state = {
@@ -97,13 +98,13 @@ export class ArticleReadDelete extends Component {
                 <img src={Starbtn} className="rateIcon bodyIcons disappear rate" alt="" />
               </div>
             )}
-            <br></br>
+            <br />
             { owner && (
             <div className="deleteIcon" onClick={this.toggle}>
               <img src={require('../../assets/icons/trash.svg')} className="bodyIcons deleteIcon" alt="..." />
             </div>
             )}
-            <br></br>
+            <br />
             { owner && (
             <div>
               <a href={`/article/${slug}/update`}><img src={require('../../assets/icons/edit.svg')} className="bodyIcons disappear edit tw" alt="..." /></a>
@@ -120,6 +121,7 @@ export class ArticleReadDelete extends Component {
                 {' '}
               read
               </span>
+              <br />
               { ReactHtmlParser(fetched && this.props.article.article.body) }
               <div className="tagsArticleFeed">
                 {tags === null || tags[0] === 'Tag' ? '' : tags[0].split(' ').map((tag) => (
@@ -131,23 +133,27 @@ export class ArticleReadDelete extends Component {
                 )) }
               </div>
               <div className="restOfIcons">
-                <Link to={`/rating/${slug}`}>
-                  {' '}
-                  <img src="https://image.flaticon.com/icons/svg/291/291205.svg" className="bodyIcons" alt="" />
-                  <small>{rateAvg}</small>
-                </Link>
               </div>
-            </div>
-            <div className="commentsZone">
-              { commentError === 'unauthorised to use this resource, please signup/login'
+              <div className="artFooter">
+                <div className="likes">
+                  <Link to={`/rating/${slug}`}>
+                    {' '}
+                    <img src="https://image.flaticon.com/icons/svg/291/291205.svg" className="bodyIcons" alt="" />
+                    <small>{rateAvg}</small>
+                  </Link>
+                </div>
+                <ShareArticle fetched={fetched} article={this.props.article.article} />
+              </div>
+              <div className="commentsZone">
+                { commentError === 'unauthorised to use this resource, please signup/login'
                && (<Messages danger={commentError} error={commentError} />) }
-              <div className="commentSection">
-                <h4>Comments </h4>
-                <Comments
-                  username={userName}
-                  userImage={profileImg}
-                  slug={params.articleSlug}
-                />
+                <div className="commentSection">
+                  <Comments
+                    username={userName}
+                    userImage={profileImg}
+                    slug={params.articleSlug}
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -159,7 +165,7 @@ export class ArticleReadDelete extends Component {
             {fetched && this.props.article.article.title}
           </ModalHeader>
           <ModalBody>
-            would you like to delete article?
+            Would you like to delete article?
           </ModalBody>
           <ModalFooter>
             <Button color="danger" onClick={this.handleOnDelete}>Delete Article</Button>

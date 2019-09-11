@@ -101,6 +101,11 @@ body
     cursor: pointer;
     font-size: 12px;
 }
+
+h1.title {
+    font-size: 1.8em;
+}
+
 .title {
     font-weight: bolder;
     font-size: 18px;
@@ -118,6 +123,10 @@ body
     display: inline-grid;
     position: relative;
     bottom: 80px;
+}
+
+.theBodyArticle .colTwo p{
+    text-align: justify;
 }
 .search-bar {
     position: relative;

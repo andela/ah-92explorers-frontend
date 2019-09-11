@@ -49,27 +49,28 @@
 }
 .theBodyArticle
 {
-    display: flex;
-    flex-direction: row;
-    margin-left: 15%;
-    margin-top: 110px;
+    position: relative;
+    width: 65%;
+    margin: 40px auto;
+    padding: 0 80px;
+    min-height: 300px;
 }
 
-.colOne
-{
-    margin-top: 5%;
+.colOne {
+    position: absolute;
+    top: 200px;
+    left: 0px;
 }
 
 .colTwo
 {
-    margin-left: 10%;
-    width: 700px;
+    width: 100%;
 }
 
 .titleFeedAI
 {
     font-family: 'Sniglet', cursive;
-    font-size: 50px;
+    font-size: 35px;
 }
 
 .tags
@@ -97,9 +98,10 @@ p
     padding-bottom: 20px;
 }
 
+
 .socialNet
 {
-    margin-left: 45%;
+    margin-left: 80%;
 }
 
 .profileSection
