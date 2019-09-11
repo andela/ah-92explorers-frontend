@@ -9,6 +9,8 @@ import {
   FOLLOWING_FAILURE,
   FOLLOWING_SUCCESS,
   FOLLOWING_USERS_SUCCESS,
+  OPTED_IN_OUT,
+  OPTED_IN_OUT_FAIL,
 } from '../actions/actionTypes/profile';
 
 const initialState = {
@@ -23,7 +25,6 @@ const initialState = {
 
 export default function (state = initialState, action) {
   const { type, payload } = action;
-
   switch (type) {
     case GET_PROFILE:
       return {

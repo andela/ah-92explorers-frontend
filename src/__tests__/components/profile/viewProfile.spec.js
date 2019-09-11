@@ -12,6 +12,7 @@ const props = {
   following: jest.fn(),
   followers: jest.fn(),
   componentWillReceiveProps: jest.fn(),
+  opt: jest.fn(),
   profile: {
     image: '',
   },
@@ -20,6 +21,7 @@ const props = {
 describe('viewProfile component', () => {
   it('renders without crashing', () => {
     const component = shallow(<ViewProfileComponent {...props} />);
+    const component2 = component.instance();
     expect(component).toHaveLength(1);
   });
 

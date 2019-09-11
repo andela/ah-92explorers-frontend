@@ -974,4 +974,69 @@ a {
     }
 }
 
+.optInOut {
+    margin-top: 20px;
+    padding: 5px;
+}
 
+.notificationOnOff {
+    color: #000;
+}
+
+input[type=checkbox]{
+	height: 0;
+	width: 0;
+	visibility: hidden;
+}
+.buttonClose{
+    position: relative;
+    left: 130px;
+    bottom: 24px;
+    color: #000;
+    border: 2px solid #000;
+    border-radius: 4px;
+    width: 0px;
+    height: 0px;
+    padding-bottom: 26px;
+    padding-right: 18px;
+    padding-left: 8px;
+    cursor: pointer;
+}
+.label {
+	cursor: pointer;
+	text-indent: -9999px;
+    width: 40px;
+    height: 18px;
+    margin-left: 119px;
+    margin-bottom: 0px;
+    margin-top: -20px;
+	background: grey;
+	display: block;
+	border-radius: 100px;
+	position: relative;
+}
+
+.label:after {
+	content: '';
+	position: absolute;
+	top: 2.8px;
+	left: 3px;
+	width: 12px;
+	height: 12px;
+	background: #fff;
+	border-radius: 90px;
+	transition: 0.3s;
+}
+
+.inputCheck:checked + label {
+	background: #367fa9;
+}
+
+input:checked + label:after {
+	left: calc(100% - 5px);
+	transform: translateX(-90%);
+}
+
+.label:active:after {
+	width: 130px;
+}

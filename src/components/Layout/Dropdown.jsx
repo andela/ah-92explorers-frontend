@@ -4,21 +4,22 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { logout } from '../../redux/actions/actionCreators/login';
+import { opt } from '../../redux/actions/actionCreators/profile';
 import '../../assets/css/dropdown.css';
 
 export class Dropdown extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      displayMenu: false,
-    };
-  }
+  state = {
+    displayMenu: false,
+  };
+
+  toggleCheck = React.createRef();
 
   showDropdownMenu = (event) => {
     event.preventDefault();
-    this.setState({ displayMenu: true }, () => {
-      document.addEventListener('click', this.hideDropdownMenu);
-    });
+    setTimeout(() => {
+      this.toggleCheck.current.checked = JSON.parse(localStorage.getItem('opted'));
+    }, 1);
+    this.setState({ displayMenu: true });
   }
 
   hideDropdownMenu = () => {
@@ -32,6 +33,10 @@ export class Dropdown extends Component {
     this.props.logout();
   }
 
+  handleCheck = () => {
+    this.props.opt();
+  }
+
   render() {
     return (
       <div className="menu-dropdown" style={{ width: '100px' }}>
@@ -40,7 +45,7 @@ export class Dropdown extends Component {
         </div>
 
         { this.state.displayMenu ? (
-          <ul>
+          <ul onMouseLeave={this.hideDropdownMenu}>
             <li>
               <Link to="/profile">
                 <i className="fa fa-user"></i>
@@ -55,8 +60,16 @@ export class Dropdown extends Component {
                 Create Article
               </Link>
             </li>
+            <li className="optInOut">
+              <i className="fa fa-bell" style={{ color: '#000' }}></i>
+              {' '}
+              <span className="notificationOnOff">Notifications</span>
+              {' '}
+              <input className="inputCheck" type="checkbox" ref={this.toggleCheck} id="switch" onChange={this.handleCheck} />
+              <label className="label" htmlFor="switch"></label>
+            </li>
             <hr />
-            <li>
+            <li style={{ height: '20px', position: 'relative', bottom: '18px' }}>
               <button type="button" onClick={this.logout} className="signout">
                 <i className="fa fa-sign-out"></i>
                 {' '}
@@ -79,11 +92,9 @@ Dropdown.propTypes = {
   logout: PropTypes.func.isRequired,
 };
 
-function mapStateToProps(state) {
-  return {
-    login: state.login,
-  };
-}
+const mapStateToProps = (state) => ({
+  login: state.login,
+});
 
 
-export default connect(mapStateToProps, { logout })(Dropdown);
+export default connect(mapStateToProps, { logout, opt })(Dropdown);

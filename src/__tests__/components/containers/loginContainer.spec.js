@@ -34,6 +34,7 @@ describe('<LoginContainer />', () => {
 
   it('should check componentDidMount', () => {
     wrapper.instance().componentDidMount()
+    wrapper.setState({email: 'ele@rlr.com'})
     expect(wrapper.instance().props.auth.isAuthenticated).toBeDefined();
     expect(jest.isMockFunction(window.location.href)).toBeDefined();
   });

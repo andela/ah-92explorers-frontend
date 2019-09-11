@@ -12,6 +12,11 @@ import {
 } from '../../redux/actions/actionTypes/profile';
 import profile from '../../redux/reducers/profile';
 import reducer from '../../redux/reducers/profile';
+import {
+  OPTED_IN_OUT,
+  OPTED_IN_OUT_FAIL
+} from '../../redux/actions/actionTypes/profile';
+import notifications from '../../redux/reducers/notifications'
 
 describe('profile reducer', () => {
   it('should return default state', () => {
@@ -19,7 +24,7 @@ describe('profile reducer', () => {
     expect(newSate).toEqual([]);
   });
 
-  it('should return new state if action type is GET_PROFILE OR UPDATE_PROFILE_SUCCESS', () => {
+  it('should return new state if action type is GET_PROFILE', () => {
     const payload = {
       loading: false,
       profile: {
@@ -43,8 +48,31 @@ describe('profile reducer', () => {
     });
     expect(newSate).toEqual(payload);
   });
-
-  it('should return new state if action type is PROFILE_ERROR OR UPDATE_PROFILE_FAIL', () => {
+  it('should return new state if action type is UPDATE_PROFILE_SUCCESS', () => {
+    const payload = {
+      loading: false,
+      profile: {
+        username: 'isaiah',
+        firstName: 'runoro',
+        lastName: 'isaie',
+        phone: '+250788767676',
+        location: 'gisozi',
+        facebook: 'facebook.com/isaie',
+        instagram: 'instagram.com/doe',
+        linkedIn: 'linkedin.com/isaieDoe',
+        twitter: 'twitter.com/isaiah',
+        bio: 'My bio',
+        image: 'image',
+      },
+      error: null,
+    };
+    const newSate = profile([], {
+      type: UPDATE_PROFILE_SUCCESS,
+      payload,
+    });
+    expect(newSate).toEqual(payload);
+  });
+  it('should return new state if action type is PROFILE_ERROR', () => {
     const payload = {
       loading: false,
       profile: null,
@@ -68,7 +96,35 @@ describe('profile reducer', () => {
       payload: payload.error,
     });
     expect(newSate).toEqual(payload);
-  })
+  });
+  it('should return new state OPTED_IN_OUT', () => {
+    const payload = {
+      message: "successful",
+      allow: true,
+    };
+
+    const expecting = {response:{
+      "allow": true,
+      "message": "successful",
+    }
+  };
+
+    const newSate = notifications([], {
+      type: OPTED_IN_OUT,
+      payload: payload,
+    });
+    expect(newSate).toEqual(expecting);
+  });
+  it('should return new state OPTED_IN_OUT_FAILED', () => {
+    const payload = {
+      error: 'Error',
+    };
+    const newSate = notifications([], {
+      type: OPTED_IN_OUT_FAIL,
+      payload: payload.error,
+    });
+    expect(newSate).toEqual(payload);
+  });
 });
 
 describe('Testing Reducers Action type UPDATE_PROFILE_FAIL', () => {
