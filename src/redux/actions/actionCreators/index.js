@@ -8,3 +8,4 @@ export * from './resetPassword';
 export * from './resettingPassword';
 export * from './comments';
 export * from './rating';
+export * from './bookMark';

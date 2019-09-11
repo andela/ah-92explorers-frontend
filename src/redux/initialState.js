@@ -36,6 +36,7 @@ const initialState = {
   comments: [],
   isCommentDelete: false,
   rating: {},
+  bookmarks: {},
 };
 
 export default initialState;
