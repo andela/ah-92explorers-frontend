@@ -10,7 +10,7 @@ import Alert from '../Layout/Alert';
 import Spinner from '../Spinner/Spinner.jsx';
 import cam from '../../assets/images/cam.png';
 import {
-  getCurrentProfile,
+  getCurrentProfile, opt
 } from '../../redux/actions/actionCreators/profile';
 
 export class ViewProfile extends Component {
@@ -23,6 +23,11 @@ export class ViewProfile extends Component {
       window.location = '/login';
     }
     getCurrentProfile();
+  }
+
+  handleCheck = (e) => {
+    this.props.opt();
+    console.log(e.target.checked);
   }
 
   render() {
@@ -66,6 +71,11 @@ export class ViewProfile extends Component {
                       <label>400</label>
                       <label>Following</label>
                     </div>
+                  </div>
+                  <div className="optInOut">
+                    <span className="notificationOnOff">Notifications</span>
+                    <input className="inputCheck" type="checkbox" id="switch" onChange={this.handleCheck} />
+                    <label className="label" htmlFor="switch"></label>
                   </div>
                   <div className="social">
                     <h3>
@@ -152,6 +162,6 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   {
-    getCurrentProfile,
+    getCurrentProfile, opt,
   },
 )(ViewProfile);

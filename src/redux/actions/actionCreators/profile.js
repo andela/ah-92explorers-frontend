@@ -70,3 +70,12 @@ export const updateProfile = (profileData, history) => async (dispatch) => {
     }
   }
 };
+
+export const opt = () => async (dispatch) => {
+  try {
+    const opt = await axios.patch(`${process.env.APP_URL_BACKEND}/api/notifications/subscribe`, { headers: { Authorization: window.localStorage.getItem('jwtToken') } });
+    console.log(opt);
+  } catch (error) {
+    console.log(error);
+  }
+};
