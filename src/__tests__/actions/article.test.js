@@ -2,10 +2,10 @@ import moxios from 'moxios';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import dotenv from 'dotenv';
-import { BrowserRouter as Router } from 'react-router-dom';
+
 import {
     CREATE_ARTICLE, GET_ARTICLE, FAILED_ARTICLE_CREATION, UPDATE_ARTICLE, FAILED_ARTICLE_UPDATE,
-    SET_LOADING, GET_FEED,
+    SET_LOADING, GET_FEED, ARTICLE_GET_FAIL,
   } from '../../redux/actions/actionTypes';
 import { getArticle, publishArticle, updateArticle, getFeed, deleteArticle } from '../../redux/actions/actionCreators';
 
@@ -47,20 +47,6 @@ describe('Testing Article Actions', () => {
             expect(dispatchedTypes).toEqual(expectedActions);
         })
     });
-    it('should delete an article', () => {
-        moxios.wait(() => {
-            let request = moxios.requests.mostRecent();
-            request.respondWith({
-                status: 204
-            });
-        });
-        let expectedActions = [];
-        return store.dispatch(deleteArticle('lessh1greaterwrite-a-titlelessh1greater-4')).then(() => {
-            let dispatchedActions = store.getActions();
-            let dispatchedTypes = dispatchedActions.map(action => action.type);
-            expect(dispatchedTypes).toEqual(expectedActions);
-        })
-    });
     it('should dispatch CREATE_ARTICLE incase of success', () => {
         moxios.wait(() => {
             let request = moxios.requests.mostRecent();
@@ -79,7 +65,8 @@ describe('Testing Article Actions', () => {
 
         let data = {
             title: '<h1>So I remained</h1>',
-            body: '<p>Kolai cncnsj ks</p>'
+            body: '<p>Kolai cncnsj ks</p>',
+            tagList: ['Money']
         }
     
         return store.dispatch(publishArticle(data)).then(() => {
@@ -92,14 +79,14 @@ describe('Testing Article Actions', () => {
         moxios.wait(() => {
             let request = moxios.requests.mostRecent();
             request.respondWith({
-                error: 'Missing title/body'
+                error: 'Did you forget to write a title/body!!!'
             });
         });
         let expectedActions = [
             FAILED_ARTICLE_CREATION
         ];
     
-        return store.dispatch(publishArticle({ title: undefined, body: undefined })).then(() => {
+        return store.dispatch(publishArticle({ title: undefined, body: 'You', tagList: ['Tgads'] })).then(() => {
             let dispatchedActions = store.getActions();
             let dispatchedTypes = dispatchedActions.map(action => action.type);
             expect(dispatchedTypes).toEqual(expectedActions);
@@ -111,9 +98,9 @@ describe('Testing Article Actions', () => {
             request.respondWith({
                 status: 200,
                 response: {
-                        article: {
-                            message: 'Article updated successfully'
-                        }
+                    article: {
+                        message: 'Article updated successfully'
+                    }
                 }
             });
         });
@@ -123,7 +110,8 @@ describe('Testing Article Actions', () => {
 
         let data = {
             title: '<h1>So I remained</h1>',
-            body: '<p>Kolai cncnsj ks</p>'
+            body: '<p>Kolai cncnsj ks</p>',
+            tagList: ['Tgads'],
         }
     
         return store.dispatch(updateArticle(data)).then(() => {
@@ -148,10 +136,27 @@ describe('Testing Article Actions', () => {
             FAILED_ARTICLE_UPDATE
         ];
     
-        return store.dispatch(updateArticle({ title: undefined, body: undefined })).then(() => {
+        return store.dispatch(updateArticle({ title: undefined, body: undefined, tagList: ['Tgads'] })).then(() => {
             let dispatchedActions = store.getActions();
             let dispatchedTypes = dispatchedActions.map(action => action.type);
             expect(dispatchedTypes).toEqual(expectedActions);
+        })
+    });
+    it('should not delete an article', () => {
+        moxios.wait(() => {
+            let request = moxios.requests.mostRecent();
+            request.respondWith({
+                response:  {
+                        error: 'something went wrong'
+                    }
+            });
+        });
+        let expectedActions = [
+            ARTICLE_GET_FAIL
+        ];
+        return store.dispatch(deleteArticle()).then(() => {
+            let dispatchedActions = store.getActions();
+            let dispatchedTypes = dispatchedActions.map(action => action.type);
         })
     });
 });

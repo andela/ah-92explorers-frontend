@@ -1,11 +1,11 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
+import uuid from 'uuidv4';
 import {
   Button, Modal, ModalHeader, ModalBody, ModalFooter,
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import ReactHtmlParser from 'react-html-parser';
-import jwtDecode from 'jwt-decode';
 import '../../assets/scss/ratings.scss';
 import Starbtn from '../../assets/icons/star.svg';
 import RatingsModal from './Rating/RatingsModal';
@@ -13,6 +13,7 @@ import NavBar from '../Layout/navBar';
 import Navbar from '../Layout/Navbar.jsx';
 import { getArticle, deleteArticle, getRating } from '../../redux/actions/actionCreators';
 import { articleRating } from '../../redux/actions/actionCreators/rating';
+import Spinner from '../Spinner/Spinner.jsx';
 import '../../assets/css/articleread.css';
 import manIcon from '../../assets/images/man.jpg';
 import Comments from '../Comments/Comments.jsx';
@@ -25,6 +26,7 @@ export class ArticleReadDelete extends Component {
     slug: '',
     value: 0,
     rateAvg: 0,
+    tagList: ['Tag'],
   }
 
   componentDidMount() {
@@ -33,7 +35,7 @@ export class ArticleReadDelete extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { rating } = nextProps.article.rating;
+    const { rating } = nextProps.article;
     this.setState(prevState => ({
       ...prevState,
       value: rating ? rating.rates : 0,
@@ -74,20 +76,16 @@ export class ArticleReadDelete extends Component {
   }
 
   render() {
-    const { match: { params } } = this.props;
-    const { isAuthenticated } = this.props;
+    const tags = this.props.article.article.tagList;
+    if (tags === undefined) {
+      return <Spinner />;
+    }
+    const { match: { params }, isAuthenticated, commentError } = this.props;
     const userName = localStorage.getItem('username') ? localStorage.getItem('username') : '';
     const profileImg = localStorage.getItem('image') ? localStorage.getItem('image') : manIcon;
-    const { commentError } = this.props;
-    const { value } = this.state;
-    const {
-      fetched, owner, authenticated,
-    } = this.props.article;
+    const { value, rateAvg } = this.state;
+    const { fetched, owner, authenticated } = this.props.article;
     const { slug } = this.props.article.article;
-    const {
-      rateAvg,
-    } = this.state;
-    const loader = Object.keys(this.props.article.article).length === 0;
     const token = localStorage.getItem('jwtToken');
     return (
       <Fragment>
@@ -102,35 +100,43 @@ export class ArticleReadDelete extends Component {
             <br></br>
             { owner && (
             <div className="deleteIcon" onClick={this.toggle}>
-              <img src={require('../../assets/icons/trash.svg')} className="bodyIcons" alt="..." />
+              <img src={require('../../assets/icons/trash.svg')} className="bodyIcons deleteIcon" alt="..." />
             </div>
             )}
             <br></br>
             { owner && (
             <div>
-              <a href={`/article/${slug}/update`}><img src={require('../../assets/icons/edit.svg')} className="bodyIcons disappear edit" alt="..." /></a>
+              <a href={`/article/${slug}/update`}><img src={require('../../assets/icons/edit.svg')} className="bodyIcons disappear edit tw" alt="..." /></a>
             </div>
             )}
           </div>
           <div className="colTwo">
             <div>
-              <h1 className="title">
+              <h1 className="titleFeedAI">
                 {fetched && this.props.article.article.title}
               </h1>
               <span className="time">
                 {fetched && this.props.article.article.time.readTime}
                 {' '}
-                read
+              read
               </span>
               { ReactHtmlParser(fetched && this.props.article.article.body) }
-              <div>
+              <div className="tagsArticleFeed">
+                {tags === null || tags[0] === 'Tag' ? '' : tags[0].split(' ').map((tag) => (
+                  <div key={uuid()} style={tags[0] === '' ? { display: 'none' } : { display: 'block' }} className="tagsFeed">
+                    <button type="button" className="tags">
+                      { tag }
+                    </button>
+                  </div>
+                )) }
+              </div>
+              <div className="restOfIcons">
                 <Link to={`/rating/${slug}`}>
                   {' '}
                   <img src="https://image.flaticon.com/icons/svg/291/291205.svg" className="bodyIcons" alt="" />
                   <small>{rateAvg}</small>
                 </Link>
               </div>
-              <hr></hr>
             </div>
             <div className="commentsZone">
               { commentError === 'unauthorised to use this resource, please signup/login'
@@ -180,7 +186,6 @@ const mapStateToProps = (state) => ({
   commentError: state.comments.commentError,
   rating: state.articles.rating,
   rateAvg: state.articles.article.rateAvg,
-  articlee: state.articles.article,
 });
 
 export const connectReadDelete = connect(mapStateToProps,

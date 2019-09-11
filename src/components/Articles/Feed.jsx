@@ -239,7 +239,7 @@ export class Feed extends Component {
 
             <div className="lastCards spaceRight">
               <Link to={`/article/${articles[12].slug}`}><img src={articles[12].image} alt="" className="lastCardImage" /></Link>
-              <Link to={`/article/${articles[12].slug}`}><div className="cardHeader">{articles[12].title}</div></Link>
+              <Link to={`/article/${articles[12].slug}`}><div className="cardHeader" style={{ fontWeight: 'bold' }}>{articles[12].title}</div></Link>
               <span className="cardSpan">{articles[12].date}</span>
               <div className="profileDisplay cardProfile">
                 <Link to={`/profile/${articles[12].author}`}><img src={articles[12].profile} alt="" className="profImg sbCI" /></Link>

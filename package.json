@@ -116,9 +116,7 @@
     "tesla-error-handler": "^2.8.0",
     "toastr": "^2.1.4",
     "uuid": "^3.3.3",
-    "validator": "^11.1.0",
-    "webpack": "^4.39.1",
-    "webpack-cli": "^3.3.6",
-    "webpack-dev-server": "^3.8.0"
+    "uuidv4": "^5.0.1",
+    "validator": "^11.1.0"
   }
 }

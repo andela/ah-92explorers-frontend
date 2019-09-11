@@ -6,8 +6,8 @@
 
 .bodyIcons_rate
 {
-    height: 25px;
-    width: 25px;
+    height: 20px;
+    width: 20px;
 }
 
 .bodyImg
@@ -57,7 +57,7 @@
 
 .colOne
 {
-    margin-top: 25%;
+    margin-top: 5%;
 }
 
 .colTwo
@@ -66,9 +66,10 @@
     width: 700px;
 }
 
-.title
+.titleFeedAI
 {
     font-family: 'Sniglet', cursive;
+    font-size: 50px;
 }
 
 .tags
@@ -79,6 +80,7 @@
     color: rgba(0,0,0,.68);
     outline: rgba(0,0,0,.05);
     cursor: pointer;
+    outline: none;
 }
 
 p
@@ -180,6 +182,8 @@ p
     filter: invert(60%) sepia(44%) saturate(4337%) hue-rotate(182deg) brightness(101%) contrast(91%);
 }
 
+
+
 .cm
 {
     filter: invert(91%) sepia(10%) saturate(2196%) hue-rotate(150deg) brightness(92%) contrast(89%);
@@ -197,6 +201,11 @@ p
 
 .bodyIcons.footerIconsRight.trash {
     filter: invert(26%) sepia(37%) saturate(5056%) hue-rotate(347deg) brightness(88%) contrast(80%);
+}
+
+.deleteIcon
+{
+    filter: invert(18%) sepia(70%) saturate(2857%) hue-rotate(354deg) brightness(126%) contrast(90%);
 }
 
 .cmBox
@@ -226,6 +235,30 @@ p
     color: rgba(0, 0, 0, 0.54);
 }
 
+.tagsArticleFeed
+{
+    display: flex;
+    flex-direction: row;
+}
+
+.restOfIcons
+{
+    margin-top: 10px;
+    border-bottom: 1px solid #e2e2e2;
+    padding-bottom: 20px;
+}
+
+.commentsZone
+{
+    margin-top: 50px;
+}
+
+.tags
+{
+    margin-right: 10px;
+    padding: 5px 18px;
+    outline: none
+}
 
 @media(max-width: 900px)
 {

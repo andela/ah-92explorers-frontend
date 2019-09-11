@@ -1,5 +1,5 @@
 import React from 'react';
-import {shallow, mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import { CreateArticle } from '../../components/Articles/CreateArticle.jsx';
 
 // mock for mutations observer window object
@@ -14,7 +14,7 @@ global.MutationObserver = class {
 describe('Renders CreateArticleComponent', () => {
   const props = {
     article: {
-      article: { slug: 'test' },
+      article: { slug: 'test', tagList: ['Tag'] },
       message: 'test',
     },
     title: '<h1>Write my name</h1>',
@@ -23,7 +23,7 @@ describe('Renders CreateArticleComponent', () => {
     publishArticle: jest.fn(),
   };
 
-  const wrapper = mount(
+  const wrapper = shallow(
     <CreateArticle {...props} />,
   );
   it('should render create component', () => {
@@ -43,13 +43,25 @@ describe('Renders CreateArticleComponent', () => {
     wrapper.setState({title: 'did i change'});
     expect(wrapper.instance().props.article.article.slug).toEqual('test');
   });
-  it('should change state onChange', () => {
-    const input = wrapper.find('.titleContent').find('input');
-    const event = {
-      preventDefault() {},
-      event: { value: 'changed it ooops' },
-    }
-    input.simulate('change', event);
+  it('should change state enterTag', () => {
+    const fakeEvent = { target: { value: 'name' } };
+    const instance = wrapper.instance();
+    instance.enterTags(fakeEvent);
+    expect(wrapper).toBeDefined();
+  });
+
+  it('should change state enterTag', () => {
+    const fakeEvent = { key: 'Enter', target: { value: 'name' } };
+    const instance = wrapper.instance();
+    instance.showTag(fakeEvent);
+    expect(wrapper).toBeDefined();
+  });
+
+  it('should change state enterTag', () => {
+    const fakeEvent = { key: 'Enter', target: { value: 'name' } };
+    const instance = wrapper.instance();
+    instance.removeTag(fakeEvent);
+    expect(wrapper).toBeDefined();
   });
 
   it('should publish article on click', () => {
@@ -58,5 +70,11 @@ describe('Renders CreateArticleComponent', () => {
     btn.simulate('click')
     component.onClickPublish();
     expect(component).toBeDefined();
+  });
+  it('should change state onChange', () => {
+    const fakeEvent = { target: { value: 7 } };
+    const instance = wrapper.instance();
+    instance.signOut();
+    expect(wrapper).toBeDefined();
   });
 });

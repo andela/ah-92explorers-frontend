@@ -13,11 +13,6 @@ import man from '../../../assets/icons/man.svg';
 
 dotenv.config();
 
-const failure = (error) => ({
-  type: ARTICLE_GET_FAIL,
-  error,
-});
-
 const success = (article, owner, authenticated) => ({
   type: GET_ARTICLE,
   payload: {
@@ -41,10 +36,8 @@ export const setLoading = (data) => (dispatch) => {
 
 export const publishArticle = (articleData) => async (dispatch) => {
   try {
-    const {
-      title,
-      body,
-    } = articleData;
+    const { title, body, tagList } = articleData;
+    const tags = tagList[0];
     if (!title || title.length < 5 || !body) {
       return dispatch({
         type: FAILED_ARTICLE_CREATION,
@@ -53,11 +46,12 @@ export const publishArticle = (articleData) => async (dispatch) => {
         },
       });
     }
-    const article = await axios.post(`${process.env.APP_URL_BACKEND}/api/articles`, articleData, {
-      headers: {
-        Authorization: localStorage.getItem('jwtToken'),
-      },
-    });
+    const newData = {
+      title,
+      body,
+      tagList: tags === 'Tag' ? null : tags,
+    };
+    const article = await axios.post(`${process.env.APP_URL_BACKEND}/api/articles`, newData, { headers: { Authorization: localStorage.getItem('jwtToken') } });
     dispatch({
       type: CREATE_ARTICLE,
       payload: article.data,
@@ -72,10 +66,8 @@ export const publishArticle = (articleData) => async (dispatch) => {
 
 export const updateArticle = (articleData, slug) => async (dispatch) => {
   try {
-    const {
-      title,
-      body,
-    } = articleData;
+    const { title, body, tagList } = articleData;
+    const tags = tagList[0];
     if (!title || title.length < 5 || !body) {
       return dispatch({
         type: FAILED_ARTICLE_UPDATE,
@@ -84,11 +76,12 @@ export const updateArticle = (articleData, slug) => async (dispatch) => {
         },
       });
     }
-    const article = await axios.put(`${process.env.APP_URL_BACKEND}/api/articles/${slug}`, articleData, {
-      headers: {
-        Authorization: localStorage.getItem('jwtToken'),
-      },
-    });
+    const newData = {
+      title,
+      body,
+      tagList: tags === 'Tag' ? null : tags,
+    };
+    const article = await axios.put(`${process.env.APP_URL_BACKEND}/api/articles/${slug}`, newData, { headers: { Authorization: localStorage.getItem('jwtToken') } });
     dispatch({
       type: UPDATE_ARTICLE,
       payload: article.data,
@@ -112,7 +105,10 @@ export const deleteArticle = (slug) => async (dispatch) => {
       window.location.replace('/');
     }
   } catch (error) {
-    return dispatch(failure('something went wrong'));
+    return dispatch({
+      type: ARTICLE_GET_FAIL,
+      error: 'something went wrong',
+    });
   }
 };
 
@@ -129,7 +125,10 @@ export const getArticle = (slug) => async (dispatch) => {
     return dispatch(success(articles.data.article, owner, authenticated));
   } catch (error) {
     if (error.response && error.response.status === 404) window.location.replace('/not-found');
-    return dispatch(failure('something went wrong'));
+    return dispatch({
+      type: ARTICLE_GET_FAIL,
+      error: 'something went wrong',
+    });
   }
 };
 
@@ -166,9 +165,6 @@ export const getFeed = (page) => async (dispatch) => {
       };
       newArticles.push(newObject);
     }
-  });
-  newArticles.push({
-    page: article.data.metadata.currentPage,
   });
   dispatch({
     type: GET_FEED,

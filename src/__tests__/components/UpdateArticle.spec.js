@@ -14,7 +14,7 @@ global.MutationObserver = class {
 describe('Renders CreateArticleComponent', () => {
   const props = {
     article: {
-      article: { slug: 'test' },
+      article: { slug: 'test', tagList: ['Tag'] },
       message: 'test',
     },
     error: '',
@@ -27,7 +27,7 @@ describe('Renders CreateArticleComponent', () => {
     getArticle: jest.fn(),
   };
 
-  const wrapper = mount(
+  const wrapper = shallow(
     <UpdateArticle {...props} />,
   );
   it('should render create component', () => {
@@ -45,7 +45,7 @@ describe('Renders CreateArticleComponent', () => {
   it('should test componentDidUpdate', () => {
     wrapper.setState({title: 'did i change again'});
     expect(wrapper.instance().props.article.article.slug).toEqual('test');
-  })
+ })
   it('should publish article on click', () => {
     const btn = wrapper.find('.publishBtnArticle');
     const component = wrapper.instance();
@@ -53,16 +53,41 @@ describe('Renders CreateArticleComponent', () => {
     component.onClickPublish();
     expect(component).toBeDefined();
   });
-  it('should change state onChange', () => {
-    const input = wrapper.find('.titleContent').find('input');
-    const event = {
-      preventDefault() {},
-      event: { value: 'changed it ooops' },
-    }
-    input.simulate('change', event);
+  it('should enter tags', () => {
+    const fakeEvent = { target: { value: 'name' } };
+    const instance = wrapper.instance();
+    instance.enterTags(fakeEvent);
+    expect(wrapper).toBeDefined();
+  });
+
+  it('should change input state', () => {
+    const fakeEvent = { target: { value: 'name' } };
+    const instance = wrapper.instance();
+    instance.changeTitle(fakeEvent);
+    expect(wrapper).toBeDefined();
+  });
+
+  it('should show tags', () => {
+    const fakeEvent = { key: 'Enter', target: { value: 'name' } };
+    const instance = wrapper.instance();
+    instance.showTag(fakeEvent);
+    expect(wrapper).toBeDefined();
+  });
+
+  it('should remove tags', () => {
+    const fakeEvent = { key: 'Enter', target: { value: 'name' } };
+    const instance = wrapper.instance();
+    instance.removeTag(fakeEvent);
+    expect(wrapper).toBeDefined();
   });
   it('test update state onchange', () => {
     wrapper.instance().componentDidMount()
     expect(wrapper.instance().props.getArticle).toBeCalled();
+  });
+  it('should change state onChange', () => {
+    const fakeEvent = { target: { value: 7 } };
+    const instance = wrapper.instance();
+    instance.signOut();
+    expect(wrapper).toBeDefined();
   });
 });
