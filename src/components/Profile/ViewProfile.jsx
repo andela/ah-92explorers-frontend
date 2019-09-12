@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/mouse-events-have-key-events */
+/* eslint-disable no-unused-expressions */
 /* eslint-disable react/require-default-props */
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
@@ -5,30 +7,121 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import '../../assets/css/profile.css';
 import '../../assets/css/styleSignup.css';
+import {
+  Button, Modal, ModalHeader, ModalBody, ModalFooter,
+} from 'reactstrap';
 import Navbar from '../Layout/navBar';
 import Alert from '../Layout/Alert';
 import Spinner from '../Spinner/Spinner.jsx';
+
 import cam from '../../assets/images/cam.png';
 import {
-  getCurrentProfile,
+  getCurrentProfile, following, followers,
 } from '../../redux/actions/actionCreators/profile';
+import { followOther } from '../../redux/actions/actionCreators/follow';
 
 export class ViewProfile extends Component {
+  state = {
+    followerModal: false,
+    followingModal: false,
+    allFollowing: [],
+    allFollowers: [],
+  }
+
   componentDidMount() {
     const {
-      getCurrentProfile,
+      getCurrentProfile, following, followers,
     } = this.props;
     const token = localStorage.getItem('jwtToken');
     if (!token) {
       window.location = '/login';
     }
     getCurrentProfile();
+    following();
+    followers();
   }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.thefollowingUsers !== null) {
+      this.setState({
+        allFollowing: nextProps.thefollowingUsers,
+      });
+    }
+    if (nextProps.thefollowerUsers !== null) {
+      this.setState({
+        allFollowers: nextProps.thefollowerUsers,
+      });
+    }
+  }
+
+  followerToggle = () => {
+    this.setState(prevState => ({
+      followerModal: !prevState.followerModal,
+    }));
+  }
+
+  followingToggle = () => {
+    this.setState(prevState => ({
+      followingModal: !prevState.followingModal,
+    }));
+  }
+
+  handleFollowing = (usernameInfo) => {
+    this.props.followOther(usernameInfo);
+  };
 
   render() {
     const {
-      loading, profile,
+      loading, profile, totalFollowing, totalFollowers, followSuccess, unfollowSuccess,
     } = this.props;
+
+    let splitStringFollow;
+    let usernameFollow;
+    if (followSuccess) {
+      splitStringFollow = followSuccess.split(' ');
+      usernameFollow = splitStringFollow[splitStringFollow.length - 1];
+    }
+
+    let splitStringUnfollow;
+    let usernameUnfollow;
+    if (unfollowSuccess) {
+      splitStringUnfollow = unfollowSuccess.split(' ');
+      usernameUnfollow = splitStringUnfollow[splitStringUnfollow.length - 1];
+    }
+
+    const {
+      allFollowing, allFollowers,
+    } = this.state;
+
+    const allUsersFollowing = allFollowing.map(user => (
+      <div key={user.username}>
+        <div className="followUser">
+          <div className="user-image">
+            <div className="followerImage">
+              <img className="ImageUrl" src={(user && user.image) || require('../../assets/icons/man.svg')} alt="avatar" />
+            </div>
+            <Link to={`/user-profile/${user.username}`}><div className="followUsername">{user.username}</div></Link>
+          </div>
+          <button type="button" id="followUnFollow" className="upBtn followUnF follow flow-btn" onClick={() => this.handleFollowing(user.username)}>
+            {followSuccess && usernameFollow === user.username ? ('unfollow') : unfollowSuccess && usernameUnfollow === user.username ? ('follow') : 'unfollow'}
+          </button>
+        </div>
+      </div>
+    ));
+
+    const allUsersFollower = allFollowers.map(user => (
+      <div key={user.username}>
+        <div className="followUser">
+          <div className="user-image">
+            <div className="followerImage">
+              <img className="ImageUrl" src={(user && user.image) || require('../../assets/icons/man.svg')} alt="avatar" />
+            </div>
+            <Link to={`/user-profile/${user.username}`}><div className="followUsername">{user.username}</div></Link>
+          </div>
+        </div>
+      </div>
+    ));
+
     return (
       <Fragment>
         <Navbar />
@@ -40,7 +133,7 @@ export class ViewProfile extends Component {
           <div id="container">
             <section id="main">
               <div className="widget page-heading">
-                <h2>User Profile</h2>
+                <h2>My Profile</h2>
               </div>
               <div className="multi-widget">
                 <div className="widget user-profile-s1">
@@ -54,16 +147,12 @@ export class ViewProfile extends Component {
                     </div>
                   </div>
                   <div className="numbers">
-                    <div className="articles">
-                      <label>20</label>
-                      <label>Articles</label>
-                    </div>
                     <div className="followers">
-                      <label>500</label>
+                      <label onMouseOver={this.followerToggle}>{totalFollowers || '0'}</label>
                       <label>Followers</label>
                     </div>
                     <div className="following">
-                      <label>400</label>
+                      <label onMouseOver={this.followingToggle}>{totalFollowing || '0'}</label>
                       <label>Following</label>
                     </div>
                   </div>
@@ -134,6 +223,34 @@ export class ViewProfile extends Component {
             </section>
           </div>
         )}
+
+        <Modal isOpen={this.state.followerModal} followerToggle={this.followerToggle} className={this.props.className}>
+          <ModalHeader followerToggle={this.followerToggle}>
+            My followers
+          </ModalHeader>
+          <ModalBody>
+            {allUsersFollower.length === 0 ? (
+              <div> You have no follower</div>
+            ) : allUsersFollower }
+          </ModalBody>
+          <ModalFooter>
+            <Button color="secondary" onMouseOver={this.followerToggle}>Cancel</Button>
+          </ModalFooter>
+        </Modal>
+
+        <Modal isOpen={this.state.followingModal} followerToggle={this.followingToggle} className={this.props.className}>
+          <ModalHeader followerToggle={this.followingToggle}>
+            My following
+          </ModalHeader>
+          <ModalBody>
+            {allUsersFollowing.length === 0 ? (
+              <div> You have no following</div>
+            ) : allUsersFollowing }
+          </ModalBody>
+          <ModalFooter>
+            <Button color="secondary" onMouseOver={this.followingToggle}>Cancel</Button>
+          </ModalFooter>
+        </Modal>
       </Fragment>
     );
   }
@@ -147,11 +264,17 @@ ViewProfile.propTypes = {
 const mapStateToProps = state => ({
   profile: state.profile.profile,
   loading: state.profile.loading,
+  totalFollowers: state.profile.followers,
+  thefollowerUsers: state.profile.followerUsers,
+  totalFollowing: state.profile.following,
+  thefollowingUsers: state.profile.followingUsers,
+  followSuccess: state.follow.follow.followSuccess,
+  unfollowSuccess: state.follow.follow.unfollowSuccess,
 });
 
 export default connect(
   mapStateToProps,
   {
-    getCurrentProfile,
+    getCurrentProfile, following, followers, followOther,
   },
 )(ViewProfile);

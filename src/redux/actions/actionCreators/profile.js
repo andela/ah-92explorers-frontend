@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable array-callback-return */
 /* eslint-disable import/prefer-default-export */
 import '@babel/polyfill';
@@ -9,6 +10,12 @@ import {
   PROFILE_ERROR,
   UPDATE_PROFILE_SUCCESS,
   UPDATE_PROFILE_FAIL,
+  FOLLOWERS_SUCCESS,
+  FOLLOWERS_USERS_SUCCESS,
+  FOLLOWERS_FAILURE,
+  FOLLOWING_FAILURE,
+  FOLLOWING_SUCCESS,
+  FOLLOWING_USERS_SUCCESS,
 } from '../actionTypes/profile';
 import {
   checkToken,
@@ -68,5 +75,27 @@ export const updateProfile = (profileData, history) => async (dispatch) => {
       dispatch(performAction(UPDATE_PROFILE_FAIL, error.response.data));
       dispatch(setAlert(error.response.data.error, 'danger'));
     }
+  }
+};
+
+export const followers = () => async (dispatch) => {
+  checkToken();
+  try {
+    const res = await axios.get(`${process.env.APP_URL_BACKEND}/api/followers`);
+    dispatch(performAction(FOLLOWERS_SUCCESS, res.data.total));
+    dispatch(performAction(FOLLOWERS_USERS_SUCCESS, res.data.follower));
+  } catch (error) {
+    dispatch(performAction(FOLLOWERS_FAILURE, error.response.data.error));
+  }
+};
+
+export const following = () => async (dispatch) => {
+  checkToken();
+  try {
+    const res = await axios.get(`${process.env.APP_URL_BACKEND}/api/following`);
+    dispatch(performAction(FOLLOWING_SUCCESS, res.data.total));
+    dispatch(performAction(FOLLOWING_USERS_SUCCESS, res.data.following));
+  } catch (error) {
+    dispatch(performAction(FOLLOWING_FAILURE, error.response));
   }
 };

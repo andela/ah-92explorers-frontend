@@ -56,4 +56,28 @@ describe('Renders CreateArticleComponent', () => {
     instance.toLastPage(fakeEvent);
     expect(wrapper).toBeDefined();
   });
+
+  it('renders Feed component with componentDidMount', () => {
+    const component = shallow(<Feed {...props} />);
+    component.instance().componentDidMount()
+    expect(component).toHaveLength(1);
+  });
+
+  it('renders Feed component with componentDidUpdate', () => {
+    const component = shallow(<Feed {...props} />);
+    component.instance().componentDidUpdate()
+    expect(component).toHaveLength(1);
+  });
+
+  it('renders Feed component with checkPage', () => {
+    const component = shallow(<Feed {...props} />);
+    component.instance().checkPage({target: { value: 7 } });
+    expect(component).toHaveLength(1);
+  });
+
+  it('renders Feed component with changePaginationRight', () => {
+    const component = shallow(<Feed {...props} />);
+    component.instance().changePaginationRight()
+    expect(component).toHaveLength(1);
+  });
 });

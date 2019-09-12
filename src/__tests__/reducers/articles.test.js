@@ -1,5 +1,5 @@
 import {
-  CREATE_ARTICLE, GET_ARTICLE, FAILED_ARTICLE_CREATION, UPDATE_ARTICLE, FAILED_ARTICLE_UPDATE,
+  CREATE_ARTICLE, GET_ARTICLE, FAILED_ARTICLE_CREATION, UPDATE_ARTICLE, ARTICLE_GET_FAIL, FAILED_ARTICLE_UPDATE,
   GET_FEED
 } from '../../redux/actions/actionTypes';
 import { RATE_ARTICLE_START, RATE_ARTICLE_SUCCESS, RATE_ARTICLE_FAILURE } from '../../redux/actions/actionTypes/rating'
@@ -164,4 +164,17 @@ describe('Article Reducer', () => {
       loading: false,
     });
   });
+  
+  it('should return payload when ARTICLE_GET_FAIL types performed', () => {
+    const article = {
+      article: undefined,
+      fetched: false,
+    };
+    const state = articles(article, {
+      type: ARTICLE_GET_FAIL,
+      payload: article
+    });
+    expect(state).toEqual({ article: undefined, fetched: false,});
+  });
+
 });
