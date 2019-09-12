@@ -64,6 +64,7 @@ export class ViewProfile extends Component {
     this.setState(prevState => ({
       followingModal: !prevState.followingModal,
     }));
+    this.props.following();
   }
 
   handleFollowing = (usernameInfo) => {
@@ -229,35 +230,27 @@ export class ViewProfile extends Component {
           followerToggle={this.followerToggle}
           className={this.props.className}
         >
-          <ModalHeader followerToggle={this.followerToggle}>
+          <ModalHeader followerToggle={this.followerToggle} className="title-follow">
             My followers
+            <button type="button" className="close BtnClose" aria-label="Close" onClick={this.followerToggle}><span aria-hidden="true">×</span></button>
           </ModalHeader>
           <ModalBody>
-            {allUsersFollower.length === 0 ? (
+            {totalFollowers === null ? (
               <div> You have no follower</div>
             ) : allUsersFollower }
           </ModalBody>
-          <ModalFooter>
-            <Button color="secondary" onMouseOver={this.followerToggle}>Cancel</Button>
-          </ModalFooter>
         </Modal>
 
-        <Modal
-          isOpen={this.state.followingModal}
-          followerToggle={this.followingToggle}
-          className={this.props.className}
-        >
-          <ModalHeader followerToggle={this.followingToggle}>
+        <Modal isOpen={this.state.followingModal} followerToggle={this.followingToggle} className={this.props.className}>
+          <ModalHeader followerToggle={this.followingToggle} className="title-follow">
             My following
+            <button type="button" className="close BtnClose" aria-label="Close" onClick={this.followingToggle}><span aria-hidden="true">×</span></button>
           </ModalHeader>
           <ModalBody>
-            {allUsersFollowing.length === 0 ? (
+            {totalFollowing === null ? (
               <div> You have no following</div>
             ) : allUsersFollowing }
           </ModalBody>
-          <ModalFooter>
-            <Button color="secondary" onMouseOver={this.followingToggle}>Cancel</Button>
-          </ModalFooter>
         </Modal>
       </Fragment>
     );
