@@ -51,20 +51,63 @@
 {
     position: relative;
     width: 65%;
-    margin: 40px auto;
     padding: 0 80px;
     min-height: 300px;
 }
 
-.colOne {
-    position: absolute;
-    top: 200px;
-    left: 0px;
+.stayTop
+{
+    position: fixed;
+    top: 20;
+    left: 20;
+}
+
+.stayTop2
+{
+    position: fixed;
+    top: 20;
+    margin-top: 35px;
+}
+
+.stayTop3
+{
+    position: fixed;
+    top: 20;
+    margin-top: 65px;
+}
+
+.stayTop4
+{
+    position: fixed;
+    top: 20;
+    margin-top: 45px;
+}
+
+.stayTop5
+{
+    position: fixed;
+    top: 20;
+    margin-top: 55px;
+}
+
+.numberLikes
+{
+    margin-left: 5px;
+    color: rgba(0, 0, 0, 0.68);
 }
 
 .colTwo
 {
     width: 100%;
+}
+
+.AI
+{
+    display: grid;
+    grid-template-columns: 10% 90%;
+    grid-column-gap: 50px;
+    margin-left: 10%;
+    margin-top: 5%
 }
 
 .titleFeedAI
@@ -101,7 +144,13 @@ p
 
 .socialNet
 {
-    margin-left: 80%;
+    display: flex;
+    flex-direction: row;
+}
+
+.sharingIcons
+{
+    margin-left: 65%
 }
 
 .profileSection
@@ -237,17 +286,35 @@ p
     color: rgba(0, 0, 0, 0.54);
 }
 
+.likeIcon
+{
+    filter: invert(45%) sepia(32%) saturate(5380%) hue-rotate(315deg) brightness(97%) contrast(105%);
+}
+
 .tagsArticleFeed
 {
     display: flex;
     flex-direction: row;
 }
 
+.dislike
+{
+    filter: invert(8%) sepia(59%) saturate(4681%) hue-rotate(221deg) brightness(97%) contrast(93%);
+}
+
 .restOfIcons
 {
-    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    margin-top: 15px;
     border-bottom: 1px solid #e2e2e2;
     padding-bottom: 20px;
+}
+
+.sharingIcons
+{
+    display: flex;
+    flex-direction: row;
 }
 
 .commentsZone
@@ -260,6 +327,11 @@ p
     margin-right: 10px;
     padding: 5px 18px;
     outline: none
+}
+
+.colOne
+{
+    margin-top: 150px;
 }
 
 @media(max-width: 900px)

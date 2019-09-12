@@ -23,6 +23,7 @@ describe('Renders CreateArticleComponent', () => {
           image: 'image',
           tagList: 'sjdas',
           description: 'dskfdbsf',
+          likes: [],
         },
       },
       getArticle: jest.fn(),
@@ -37,7 +38,41 @@ describe('Renders CreateArticleComponent', () => {
         },
       },
       articleRating: jest.fn(),
+      dislikeRef: { current: { src: 'https://image.flaticon.com/icons/svg/2107/2107623.svg' }},
+      likeRef: { current: { src: 'https://image.flaticon.com/icons/svg/2107/2107623.svg' }},
   }
+
+  const props2 = {
+    article: {
+      fetched: true,
+      owner: true,
+      article: {
+        time: { readTime: '2minutes' },
+        title: 'title',
+        body: 'body',
+        slug: 'slug',
+        image: 'image',
+        tagList: 'sjdas',
+        description: 'dskfdbsf',
+        likes: [],
+      },
+    },
+    getArticle: jest.fn(),
+    deleteArticle: jest.fn(),
+    getRating: jest.fn,
+    loading: true,
+    getCurrentProfile: jest.fn(),
+    profile: { profile: {}},
+    match: {
+      params: {
+        articleSlug: 'jest',
+      },
+    },
+    articleRating: jest.fn(),
+    dislikeRef: { current: { src: 'https://image.flaticon.com/icons/svg/2107/2107623.svg' }},
+    likeRef: { current: { src: 'https://image.flaticon.com/icons/svg/2107/2107623.svg' }},
+}
+
 
   const wrapper = shallow(
     <MemoryRouter>
@@ -49,6 +84,10 @@ describe('Renders CreateArticleComponent', () => {
     <ArticleReadDelete {...props} />,
   );
 
+  const wrapper3 = shallow(
+    <ArticleReadDelete {...props2} />
+  )
+
   it('should render create component', () => {
     expect(wrapper).toMatchSnapshot();
   });
@@ -57,6 +96,11 @@ describe('Renders CreateArticleComponent', () => {
     wrapper2.instance().componentDidMount()
     expect(wrapper2.instance().props.getArticle).toBeCalled();
   });
+
+  it('should test componentDidUpdate', () => {
+    wrapper2.instance().componentDidUpdate()
+    wrapper2.setState({ disliked: false });
+ })
 
   it('shoudl handle on comment', () => {
     const wrapper2 = shallow(
@@ -77,5 +121,16 @@ describe('Renders CreateArticleComponent', () => {
     component.onStarClick();
     component.handleRatingsSubmit();
     expect(component).toBeDefined();
+  });
+
+  it('should like article', () => {
+    const instance = wrapper2.instance();
+    instance.likeArticle();
+    expect(wrapper2).toBeDefined();
+  });
+  it('should dislike article', () => {
+    const instance = wrapper2.instance();
+    instance.dislikeArticle();
+    expect(wrapper2).toBeDefined();
   });
 });

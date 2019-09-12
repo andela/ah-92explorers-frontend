@@ -9,7 +9,7 @@ import {
   FAILED_ARTICLE_UPDATE, UPDATE_ARTICLE, SET_LOADING, GET_FEED, ARTICLE_GET_FAIL, GET_RATING,
 } from '../actionTypes';
 import fetchImage from '../../../helpers/createDisplayImage';
-import man from '../../../assets/icons/man.svg';
+import terrestial from '../../../assets/icons/terrestial.jpg';
 
 dotenv.config();
 
@@ -157,7 +157,7 @@ export const getFeed = (page) => async (dispatch) => {
     if (art.title) {
       const newObject = {
         author: art.author.username || 'Isaiah',
-        profile: art.author.image || man,
+        profile: art.author.image || terrestial,
         title: art.title.length > 25 ? `${art.title.slice(0, 20)}...` : art.title,
         image: fetchImage(art.body),
         slug: art.slug || 'No-weher',

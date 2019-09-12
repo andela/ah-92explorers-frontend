@@ -56,6 +56,19 @@ describe('profile reducer', () => {
     });
     expect(newSate).toEqual(payload);
   });
+
+  it('should return payload when UPDATE_PROFILE_FAIL types performed', () => {
+    const payload = {
+      loading: false,
+      profile: null,
+      error: 'Error',
+    };
+    const newSate = profile([], {
+      type: UPDATE_PROFILE_FAIL,
+      payload: payload.error,
+    });
+    expect(newSate).toEqual(payload);
+  })
 });
 
 describe('Testing Reducers Action type UPDATE_PROFILE_FAIL', () => {
