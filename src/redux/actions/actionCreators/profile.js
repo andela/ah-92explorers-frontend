@@ -86,7 +86,7 @@ export const updateProfile = (profileData, history) => async (dispatch) => {
     });
 
     const res = await axios.patch(`${process.env.APP_URL_BACKEND}/api/profiles`, formData, config);
-    localStorage.setItem('profileImage', res.data.profile.image);
+    localStorage.setItem('image', res.data.profile.image);
     dispatch(performAction(UPDATE_PROFILE_SUCCESS, res.data));
     dispatch(setAlert('Profile successfully updated.', 'success'));
     history.push('/profile');

@@ -237,6 +237,8 @@ body
 
 .navbar
 {
+   top: 0 !important;
+   position: fixed !important;
    width: 100%;
    height: 75px;
    background: #367fa9;
