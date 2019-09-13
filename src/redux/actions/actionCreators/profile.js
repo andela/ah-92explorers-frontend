@@ -4,6 +4,10 @@
 import '@babel/polyfill';
 import dotenv from 'dotenv';
 import axios from 'axios';
+import {
+  toast,
+} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import jwtDecode from 'jwt-decode';
 import {
   GET_PROFILE,
@@ -16,6 +20,8 @@ import {
   FOLLOWING_FAILURE,
   FOLLOWING_SUCCESS,
   FOLLOWING_USERS_SUCCESS,
+  OPTED_IN_OUT,
+  OPTED_IN_OUT_FAIL,
 } from '../actionTypes/profile';
 import {
   checkToken,
@@ -28,6 +34,7 @@ import {
   setCurrentUser,
 } from './login';
 
+toast.configure();
 dotenv.config();
 
 const config = {
@@ -35,6 +42,16 @@ const config = {
     'Content-Type': 'multipart/form-data',
   },
 };
+
+const optedInOut = (payload) => ({
+  type: OPTED_IN_OUT,
+  payload,
+});
+
+const optFail = (payload) => ({
+  type: OPTED_IN_OUT_FAIL,
+  payload,
+});
 
 const performAction = (type, payload) => ({
   type,
@@ -97,5 +114,15 @@ export const following = () => async (dispatch) => {
     dispatch(performAction(FOLLOWING_USERS_SUCCESS, res.data.following));
   } catch (error) {
     dispatch(performAction(FOLLOWING_FAILURE, error.response));
+  }
+};
+
+export const opt = () => async (dispatch) => {
+  try {
+    const opt = await axios.patch(`${process.env.APP_URL_BACKEND}/api/notifications/subscribe`, { headers: { Authorization: window.localStorage.getItem('jwtToken') } });
+    window.localStorage.setItem('opted', opt.data.opted);
+    return dispatch(optedInOut(opt.data));
+  } catch (error) {
+    dispatch(optFail('something went wrong'));
   }
 };

@@ -4,6 +4,7 @@ import thunk from 'redux-thunk';
 import {
   getCurrentProfile,
   updateProfile,
+  opt,
 } from '../../redux/actions/actionCreators/profile';
 
 const mockStore = configureStore([thunk]);
@@ -18,6 +19,23 @@ describe('profile action', () => {
     moxios.uninstall();
   });
 
+  it('should opt in user into notifications', () => {
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent();
+      request.respondWith({
+        status: 200,
+        data: {
+          "user": "successfully unsubscribed to email notifications",
+          "opted": true,
+      }
+      });
+    });
+
+    return store.dispatch(opt()).then(() => {
+      console.log(store.getActions());
+      expect(store.getActions().length).toBe(1);
+    });
+  });
   it('should get current user profile', () => {
     localStorage.setItem('token', 'token');
     const expectedResponse = {
@@ -64,7 +82,6 @@ describe('profile action', () => {
       expect(store.getActions().length).toBe(1);
     });
   });
-
   it('should update profile', () => {
     const expectedResponse = {
       status: 200,
@@ -113,7 +130,8 @@ describe('profile action', () => {
     });
 
     return store.dispatch(updateProfile('')).then(() => {
-      // expect(store.getActions().length).toBe(2);
+      console.log(store.getActions());
+      expect(store.getActions().length).toBe(2);
     });
   });
 });

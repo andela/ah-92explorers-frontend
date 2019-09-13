@@ -224,7 +224,11 @@ export class ViewProfile extends Component {
           </div>
         )}
 
-        <Modal isOpen={this.state.followerModal} followerToggle={this.followerToggle} className={this.props.className}>
+        <Modal
+          isOpen={this.state.followerModal}
+          followerToggle={this.followerToggle}
+          className={this.props.className}
+        >
           <ModalHeader followerToggle={this.followerToggle}>
             My followers
           </ModalHeader>
@@ -238,7 +242,11 @@ export class ViewProfile extends Component {
           </ModalFooter>
         </Modal>
 
-        <Modal isOpen={this.state.followingModal} followerToggle={this.followingToggle} className={this.props.className}>
+        <Modal
+          isOpen={this.state.followingModal}
+          followerToggle={this.followingToggle}
+          className={this.props.className}
+        >
           <ModalHeader followerToggle={this.followingToggle}>
             My following
           </ModalHeader>
@@ -262,6 +270,7 @@ ViewProfile.propTypes = {
 };
 
 const mapStateToProps = state => ({
+  notifications: state.notifications,
   profile: state.profile.profile,
   loading: state.profile.loading,
   totalFollowers: state.profile.followers,

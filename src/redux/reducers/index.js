@@ -11,6 +11,7 @@ import comments from './comments';
 import follow from './follow';
 import viewUser from './viewUser';
 import likes from './likes';
+import notifications from './notifications';
 
 export default combineReducers({
   articles,
@@ -25,4 +26,5 @@ export default combineReducers({
   follow,
   viewUser,
   likes,
+  notifications,
 });

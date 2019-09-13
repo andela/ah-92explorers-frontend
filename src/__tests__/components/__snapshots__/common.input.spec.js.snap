@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render Common Input component to have wrapper class 1`] = `ReactWrapper {}`;
