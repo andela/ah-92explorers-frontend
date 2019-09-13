@@ -2,8 +2,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Dropdown from './Dropdown.jsx';
+import Navbar from './navBar';
 
-const Navbar = ({ token, username, avatar }) => {
+const NavBar = ({ token, username, avatar }) => {
   if (!token || token === undefined) {
     return (
       <nav className="feedNavbar feedLoggedOut" style={{ backgroundColor: '#fffff' }}>
@@ -49,43 +50,8 @@ const Navbar = ({ token, username, avatar }) => {
     );
   }
   return (
-    <nav className="feedNavbar feedLoggedIn" style={{ backgroundColor: '#fffff' }}>
-      <div className="firstNavbar">
-        <img src={require('../../assets/icons/logo.png')} alt="" className="logoNavbar" />
-        <div className="notifications-drop">
-          <ul>
-            <li className="title">
-            hillary liked your article
-              <span>unread</span>
-            </li>
-            <li className="title">
-            hillary liked your article
-              <span>unread</span>
-            </li>
-            <li className="title">
-            hillary liked your article
-              <span>unread</span>
-            </li>
-            <li className="title">
-            hillary liked your article
-              <span>unread</span>
-            </li>
-            <li className="title">
-            hillary liked your article
-              <span>unread</span>
-            </li>
-          </ul>
-        </div>
-        <div className="userStatus">
-          <img src={avatar} alt="" className="avatarFeed" />
-          <span id="userStatusName">{username}</span>
-          <div style={{ marginLeft: '20px' }}>
-            <Dropdown />
-          </div>
-        </div>
-      </div>
-    </nav>
+    <Navbar />
   );
 };
 
-export default Navbar;
+export default NavBar;

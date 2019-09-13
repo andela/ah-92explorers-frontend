@@ -73,7 +73,7 @@ export class ArticleReadDelete extends Component {
       const { likes } = this.props.article.article;
       let counterLikes = 0;
       let counterDislikes = 0;
-      likes.forEach((like) => {
+      likes && likes.forEach((like) => {
         if (like.typeState === 1) {
           counterLikes += 1;
         }
