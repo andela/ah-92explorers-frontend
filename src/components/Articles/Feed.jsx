@@ -10,7 +10,7 @@ import { getFeed } from '../../redux/actions/actionCreators';
 import bookmarkIcon from '../../assets/icons/bookmark.svg';
 import bookmarkGreen from '../../assets/icons/bookmarkBlack.svg';
 import { bookmarkArticle, getAllBookmarks } from '../../redux/actions/actionCreators/bookMark';
-import Navbar from '../Layout/Navbar.jsx';
+import NavBar from '../Layout/Navbar.jsx';
 import '../../assets/css/homepage.css';
 import '../../assets/css/pagination.css';
 
@@ -93,7 +93,7 @@ export class Feed extends Component {
     const { articles, bookmarks } = this.props;
     return (
       <div data-test="homePage" className="feedHome">
-        <Navbar token={localStorage.getItem('jwtToken')} username={localStorage.getItem('username')} avatar={localStorage.getItem('image')} />
+        <NavBar token={localStorage.getItem('jwtToken')} username={localStorage.getItem('username')} avatar={localStorage.getItem('image')} />
         <div className="theBody">
           <div className="headline disappear">
             <div className="headlinePop">

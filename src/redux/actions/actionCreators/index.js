@@ -11,3 +11,4 @@ export * from './rating';
 export * from './follow';
 export * from './likes';
 export * from './bookMark';
+export * from './recvNotifications';

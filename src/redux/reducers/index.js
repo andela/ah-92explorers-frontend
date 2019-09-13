@@ -13,6 +13,7 @@ import viewUser from './viewUser';
 import likes from './likes';
 import notifications from './notifications';
 import boookMarking from './bookmarkArticle';
+import { recvNotifications } from './recvNotifications';
 
 export default combineReducers({
   articles,
@@ -29,4 +30,5 @@ export default combineReducers({
   likes,
   notifications,
   boookMarking,
+  recvNotifications,
 });

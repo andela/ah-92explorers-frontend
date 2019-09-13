@@ -2,6 +2,7 @@ import '@babel/polyfill';
 import qs from 'query-string';
 import dotenv from 'dotenv';
 import crypto from 'crypto';
+import jwtDecode from 'jwt-decode';
 import { socialTypes } from '../actionTypes';
 
 dotenv.config();
@@ -36,6 +37,8 @@ export const getInfo = (search) => (dispatch) => {
   try {
     const data = dec(tokenStr);
     const { user, token } = JSON.parse(data);
+    const { username } = jwtDecode(token);
+    localStorage.setItem('username', username);
     localStorage.setItem('jwtToken', token);
     return dispatch(success(user));
   } catch (error) {
