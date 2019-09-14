@@ -22,6 +22,9 @@ import {
   FOLLOWING_USERS_SUCCESS,
   OPTED_IN_OUT,
   OPTED_IN_OUT_FAIL,
+  READING_STATS_SUCCESS,
+  READING_STATS_TOT,
+  READING_STATS_FAILURE,
 } from '../actionTypes/profile';
 import {
   checkToken,
@@ -124,5 +127,16 @@ export const opt = () => async (dispatch) => {
     return dispatch(optedInOut(opt.data));
   } catch (error) {
     dispatch(optFail('something went wrong'));
+  }
+};
+
+export const readingStats = () => async (dispatch) => {
+  checkToken();
+  try {
+    const { data } = await axios.get(`${process.env.APP_URL_BACKEND}/api/users/reading-stats`);
+    dispatch(performAction(READING_STATS_TOT, data.totalArticlesRead));
+    dispatch(performAction(READING_STATS_SUCCESS, data.articlesRead));
+  } catch (error) {
+    dispatch(performAction(READING_STATS_FAILURE, error.response));
   }
 };

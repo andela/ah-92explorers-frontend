@@ -9,5 +9,6 @@ import './assets/css/bootstrap.min.css';
 import './assets/css/animate.css';
 import './assets/css/continue.css';
 import './assets/css/notfound.css';
+import './assets/css/stats.css';
 
 render(<App />, document.getElementById('root'));

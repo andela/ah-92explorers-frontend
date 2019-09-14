@@ -11,6 +11,7 @@ import ViewProfile from './Profile/ViewProfile';
 import EditProfile from './Profile/EditProfile';
 import ResetPassword from './Auth/ResetPassword';
 import ResetingPassword from './Auth/ResettingPassword';
+import ReadingStats from './Articles/ReadingStats.jsx';
 import ViewArticleRatings from './Articles/getRatings';
 import Follow from './Follow/Follow.jsx';
 import { NotFound } from './NotFound/NotFound';
@@ -31,6 +32,7 @@ const Routes = () => (
         <Route exact path="/profile/edit" component={EditProfile} />
         <Route exact path="/reset-password" component={ResetPassword} />
         <Route exact path="/resetting-password" component={ResetingPassword} />
+        <Route exact path="/reading" component={ReadingStats} />
         <Route exact path="/not-found" component={NotFound} />
       </Fragment>
     </Switch>

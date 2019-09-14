@@ -60,6 +60,13 @@ export class Dropdown extends Component {
                 Create Article
               </Link>
             </li>
+            <li>
+              <Link to="/reading">
+                <i className="fa fa-bar-chart"></i>
+                {' '}
+                Stats
+              </Link>
+            </li>
             <li className="optInOut">
               <i className="fa fa-bell" style={{ color: '#000' }}></i>
               {' '}

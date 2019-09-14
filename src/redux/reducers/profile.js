@@ -11,6 +11,9 @@ import {
   FOLLOWING_USERS_SUCCESS,
   OPTED_IN_OUT,
   OPTED_IN_OUT_FAIL,
+  READING_STATS_SUCCESS,
+  READING_STATS_FAILURE,
+  READING_STATS_TOT,
 } from '../actions/actionTypes/profile';
 
 const initialState = {
@@ -19,6 +22,8 @@ const initialState = {
   followers: null,
   followingUsers: null,
   followerUsers: null,
+  readingStat: null,
+  readingStatTot: null,
   loading: true,
   error: null,
 };
@@ -95,6 +100,27 @@ export default function (state = initialState, action) {
         ...state,
         loading: false,
         following: null,
+        error: payload,
+      };
+    case READING_STATS_TOT:
+      return {
+        ...state,
+        loading: false,
+        readingStatTot: payload,
+        error: null,
+      };
+    case READING_STATS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        readingStat: payload,
+        error: null,
+      };
+    case READING_STATS_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        readingStat: null,
         error: payload,
       };
     default:
