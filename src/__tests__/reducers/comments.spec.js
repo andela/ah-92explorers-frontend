@@ -4,6 +4,7 @@ import {
     SET_COMMENT_ERROR,
     GET_COMMENTS,
     SET_COMMENT_DELETE,
+    EDIT_COMMENT_HISTORY,
   } from '../../redux/actions/actionTypes';
 
 const initialState = {
@@ -85,5 +86,32 @@ describe('Login reducer', () => {
       payload,
     });
     expect(newState).toEqual({ isCommentDelete: payload });
+  });
+
+  it('should return new state if receiving type is EDIT_COMMENT_HISTORY', () => {
+    const payload = {
+      commentHistory: [
+        {
+          commentId: "1241c5a3-7109-4c5a-98f7-218e1427eda4",
+          body: "Celestin you have the same comments, delete one",
+          createdAt: "2019-09-13T08:46:07.013Z",
+          updatedAt: "2019-09-13T08:46:07.013Z"
+        },
+        {
+          commentId: "1241c5a3-7109-4c5a-98f7-218e1427eda5",
+          body: "Cele you have the same comments, delete one",
+          createdAt: "2019-09-13T08:46:07.013Z",
+          updatedAt: "2019-09-13T08:46:07.013Z"
+        }
+      ]
+    };
+    const initialState = { 
+      commentHistory: [],
+    }
+    const newState = commentReducer(initialState, {
+      type: EDIT_COMMENT_HISTORY,
+      payload,
+    });
+    expect(newState).toEqual({ commentHistory: payload });
   });
 });

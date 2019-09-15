@@ -1,3 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`<LoginContainer /> should map dispatch to props 1`] = `
+Array [
+  Array [
+    [Function],
+  ],
+]
+`;
+
 exports[`<LoginContainer /> should render Login container 1`] = `ShallowWrapper {}`;

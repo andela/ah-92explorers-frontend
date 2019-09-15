@@ -6,6 +6,7 @@ import {
   SET_COMMENT_ERROR,
   GET_COMMENTS,
   SET_COMMENT_DELETE,
+  EDIT_COMMENT_HISTORY,
 } from '../actions/actionTypes';
 
 export default (state = initialState, action = {}) => {
@@ -29,6 +30,11 @@ export default (state = initialState, action = {}) => {
       return {
         ...state,
         isCommentDelete: action.payload,
+      };
+    case EDIT_COMMENT_HISTORY:
+      return {
+        ...state,
+        commentHistory: action.payload,
       };
     default: return state;
   }

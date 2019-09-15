@@ -254,7 +254,7 @@ export class ArticleReadDelete extends Component {
                   <small>{rateAvg}</small>
                 </Link>
                 <div className="sharingIcons">
-                  <ShareArticle />
+                  <ShareArticle fetched={fetched} article={this.props.article.article} />
                 </div>
               </div>
             </div>
