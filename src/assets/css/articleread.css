@@ -402,6 +402,41 @@ button.close:focus {
     outline: 0px;
 }
 
+.searchBody
+{
+    margin-left: 6%;
+}
+
+.filterContainer {
+    margin-top: 100px;
+    width: 85%;
+    padding-left: 0;
+}
+
+.filterList filters {
+    display: inline;
+    margin-left: 0;
+}
+
+.filterList {
+    margin-left: 5%;
+    padding-left: 0;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(0,0,0,.0785);
+}
+
+.filters {
+    margin-left: 25px;
+    color: rgba(0,0,0,.54);
+    cursor: pointer;
+}
+
+.noResults
+{
+    text-align: center;
+    margin-top: 10%
+}
+
 @media(max-width: 900px) {
     .theBody {
         margin-left: 0px;
@@ -439,4 +474,8 @@ button.close:focus {
     border: 1px solid rgba(0, 0, 0, .04);
     cursor: pointer;
     color: #ffffff;
+}
+
+small {
+    cursor: pointer;
 }

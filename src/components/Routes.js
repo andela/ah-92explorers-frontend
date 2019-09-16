@@ -3,6 +3,9 @@ import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import CreateArticle from './Articles/CreateArticle.jsx';
 import UpdateArticle from './Articles/UpdateArticle.jsx';
+import Search from './Search/Search.jsx';
+import People from './Search/People.jsx';
+import Tags from './Search/Tags.jsx';
 import { ReadArticle } from './Articles/ArticleItem.jsx';
 import Signup from './Auth/Signup.jsx';
 import Feed from './Articles/Feed.jsx';
@@ -31,6 +34,9 @@ const Routes = () => (
         <Route exact path="/profile/edit" component={EditProfile} />
         <Route exact path="/reset-password" component={ResetPassword} />
         <Route exact path="/resetting-password" component={ResetingPassword} />
+        <Route exact path="/search" component={Search} />
+        <Route exact path="/search/tags" component={Tags} />
+        <Route exact path="/search/people" component={People} />
         <Route exact path="/not-found" component={NotFound} />
       </Fragment>
     </Switch>
