@@ -42,7 +42,6 @@ export const articleRating = (slug, value) => async (dispatch) => {
     const res = await axios.post(`${process.env.APP_URL_BACKEND}/api/article/${slug}/rate`, dataValue);
     dispatch(rateArticleSuccess(res.data));
     dispatch(getArticle(slug));
-    toast.success(res.data.message);
   } catch (error) {
     dispatch(rateArticleFailure());
     toast.error(error.response.data.error);
