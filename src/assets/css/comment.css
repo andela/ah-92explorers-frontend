@@ -33,6 +33,7 @@
     padding: 20px !important;
     margin-top: 20px;
     margin-bottom: 25px;
+    position: relative;
 }
 
 .commentForm
@@ -93,8 +94,8 @@
 
 .bodyIcons_rate
 {
-    height: 20px;
-    width: 20px;
+    height: 25px;
+    width: 25px;
 }
 
 .cm
@@ -135,14 +136,138 @@
 .comment-date {
     color: gray;
     float: right;
+    margin-right: 30px;
 }
 
 .comment-body {
     padding: 0;
-    margin: 0 0 0 4em;
-    font-size: 16px;
+    margin: 0 0 0 3.6em;
+    font-size: 18px;
 }
+
+.comment-body input.cmBox {
+	width: 93%;
+}
+
+.cmBox, .button.x-btn {
+    display: inline-block;
+    vertical-align: top;
+}
+
+button.x-btn {
+    height: 40px;
+    color: #df2c2c;
+    background: transparent;
+    width: 40px;
+    border: 1px solid #919191;
+    border-radius: 5px;
+}
+
 
 .react-confirm-alert-overlay {
     background: transparent;
+}
+
+.commentActions .btn-secondary {
+    color: #151515 !important;
+    background-color: transparent !important;
+    border-color: transparent !important;
+}
+
+.commentActions .dropdown {
+    margin-top: 0px !important;
+}
+
+.commentActions
+{
+    position: absolute;
+    right: 20px;
+    z-index: 50000;
+    top: 12px;
+    margin: 0px;
+}
+
+.commentActions .dropdown-menu {
+    min-width: 100%;
+}
+
+.commentActions .dropdown-menu.show {
+    top: -10px !important;
+    left: -80px !important;
+}
+
+.com-edited {
+    color: #555;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.sub-image, .sub-content {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.sub-image {
+    width: 12%;
+}
+
+.sub-content {
+	padding: 0 0 0 10px;
+    margin: 0 0 40px;
+    width: 88%;
+    text-align: justify;
+}
+
+p.sub-body {
+	margin-bottom: 0px;
+    font-weight: 300;
+    font-size: 16px;
+    font-family: arial;
+}
+
+.sub-time {
+	color: grey;
+	font-size: 12px;
+}
+span.sub-username {
+    font-weight: 700;
+    color: #0f081d;
+}
+
+label.tip-mes {
+    color: #636060;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+}
+
+.com-footer.modal-footer {
+    justify-content: center;
+}
+
+button:focus, span:focus{
+    outline: none !important;
+}
+
+.btn-secondary.focus, .btn-secondary:focus {
+    box-shadow: 0 0 0 0.2rem transparent !important;
+}
+
+.btn-secondary:not(:disabled):not(.disabled).active:focus, .btn-secondary:not(:disabled):not(.disabled):active:focus, .show > .btn-secondary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem transparent !important;
+}
+
+/* Modify error message on comments */
+.commentForm .errorBox,
+.comment-body .errorBox{
+    background: transparent;
+    color: #d24d57;
+    text-align: left;
+    width: 100%;
+    padding-bottom: 0px;
+}
+
+.com-hist-body.modal-body {
+    max-height: calc(100vh - 210px);
+    overflow-y: auto;
 }

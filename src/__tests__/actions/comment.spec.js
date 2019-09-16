@@ -3,10 +3,12 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import dotenv from 'dotenv';
 import {
-    SET_COMMENT_SUCCESS, SET_COMMENT_ERROR, SET_COMMENT_DELETE, 
+    SET_COMMENT_SUCCESS, SET_COMMENT_ERROR, SET_COMMENT_DELETE, EDIT_COMMENT_HISTORY
   } from '../../redux/actions/actionTypes';
 
-import { postComment, getComments, fetchComments,  deleteComment } from '../../redux/actions/actionCreators';
+import { postComment, getComments, fetchComments, deleteComment, 
+    updateComment, editCommentHistory, fetchEditCommentHistory, 
+} from '../../redux/actions/actionCreators';
 
 dotenv.config();
 
@@ -24,7 +26,7 @@ describe('Testing Comment Actions', () => {
         moxios.uninstall()
     });
 
-    it('should dispatch SET_COMMENT_SUCCESS incase of success', () => {
+    it('should dispatch SET_COMMENT_SUCCESS incase of create success', () => {
         moxios.wait(() => {
             let request = moxios.requests.mostRecent();
             request.respondWith({
@@ -169,9 +171,72 @@ describe('Testing Comment Actions', () => {
             },
           ]);
     });   
+
+    it('should dispatch SET_COMMENT_ERROR incase a comment is undefined', async () => {
+        let id = 'fdxfsfsdggggg';
+        moxios.stubRequest(`${process.env.APP_URL_BACKEND}/api/comments/${id}`, {
+            response: { 
+              error: 'Please add a valid comment' 
+            },
+          });
+      
+        const data = '';
+          await store.dispatch(updateComment(data, id));
+          expect(store.getActions()).toEqual([
+            {
+                payload: "Please update to a new comment",
+                type: SET_COMMENT_ERROR,
+            },
+          ]);
+    });        
+
+    it('should dispatch SET_COMMENT_ERROR incase of update failed', async () => {
+        let id = 'fdxfsfsdggggg';
+        moxios.stubRequest(`${process.env.APP_URL_BACKEND}/api/comments/${id}`, {
+            status: 500,
+            response: { 
+              error: 'failed to update and track comment' 
+            },
+          });
+
+        let data = {
+            body: 'I really like this article'
+        }
+
+        await store.dispatch(updateComment(data, id));
+        expect(store.getActions()).toEqual([
+        {
+            type: SET_COMMENT_ERROR,
+            payload: 'Something went wrong. Check your internet connection.' 
+        },
+        ]);
+    });   
+
+    it('should dispatch EDIT_COMMENT_HISTORY incase of success', async () => {
+        let id = 'bc608ed6-1fb7-48aa-9613-ea9e5bd56402';
+        moxios.stubRequest(`${process.env.APP_URL_BACKEND}/api/comments/${id}`, {
+            status: 200,
+            response: { 
+              error: 'successfully updated and tracked comment' 
+            },
+          });
+
+        await store.dispatch(fetchEditCommentHistory(id));
+        expect(store.getActions()).toEqual([
+        {
+            type: EDIT_COMMENT_HISTORY,
+            payload: undefined, 
+        },
+        ]);
+    });   
     
-    it('Should return getComments', () => {
+    it('Should return all comments of an article', () => {
         const response = getComments();
         expect(response).toEqual({payload: undefined, type: "GET_COMMENTS"});
+    });
+
+    it('Should return all edit history of a comment', () => {
+        const response = editCommentHistory();
+        expect(response).toEqual({payload: undefined, type: "EDIT_COMMENT_HISTORY"});
     });
 });

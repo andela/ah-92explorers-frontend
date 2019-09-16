@@ -79,13 +79,13 @@ export class LoginContainer extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+export const mapStateToProps = (state) => ({
   isLoginSuccess: state.login.isLoginSuccess,
   loginError: state.login.loginError,
   auth: state.login,
 });
 
-const mapDispatchToProps = (dispatch) => ({
+export const mapDispatchToProps = (dispatch) => ({
   login: (email, password) => dispatch(login(email, password)),
 });
 

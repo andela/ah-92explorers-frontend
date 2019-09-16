@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import configureStore from 'redux-mock-store';
 import LoginComponent from '../../../components/Auth/Login.jsx';
-import { LoginContainer } from '../../../components/Containers/Login.jsx';
+import { LoginContainer, mapStateToProps, mapDispatchToProps } from '../../../components/Containers/Login.jsx';
 
 const props = {
   isLoginSuccess: false,
@@ -21,6 +21,8 @@ const initialState = {};
 const mockStore = configureStore();
 let store;
 
+window.location.href = '';
+
 describe('<LoginContainer />', () => {
   beforeEach(() => {
     // creates the store with any initial state or middleware needed
@@ -33,9 +35,10 @@ describe('<LoginContainer />', () => {
   });
 
   it('should check componentDidMount', () => {
+    wrapper.setProps({
+      auth: { isAuthenticated: true }
+    })
     wrapper.instance().componentDidMount()
-    wrapper.setState({email: 'ele@rlr.com'})
-    expect(wrapper.instance().props.auth.isAuthenticated).toBeDefined();
     expect(jest.isMockFunction(window.location.href)).toBeDefined();
   });
 
@@ -47,9 +50,30 @@ describe('<LoginContainer />', () => {
     expect(wrapper.state()).toBeDefined();
   });
 
+  it('Should return true when login credentials are found', () => {
+    const data = {
+      email: 'nkuliherve@gmail.com',
+      password: '@Hervera14',
+    } 
+    wrapper.setState({...data});
+    const response = wrapper.instance().isValid();
+    expect(response).toEqual(true);
+  });
+
+  it('Should return errors when email or password is empty', () => {
+    const data = {
+      email: '',
+      password: '',
+    } 
+    wrapper.setState({...data});
+    const response = wrapper.instance().isValid();
+    expect(response).toEqual(false);
+  });
+
   it('should handle on click login', () => {
     const fakeEvent = { preventDefault: () => {} };
     const component = wrapper.instance();
+    component.isValid = jest.fn(() => true);
     component.onSubmit(fakeEvent);
     expect(component).toBeDefined();
   });
@@ -59,5 +83,32 @@ describe('<LoginContainer />', () => {
     const fakeEvent = { target: { name: 'title', value: 'THIS IS TITLE' } };
     component.onChange(fakeEvent);
     expect(component).toBeDefined();
+  });
+
+  it('should handle on change', () => {
+    wrapper.setProps({
+      isLoginSuccess: true 
+    })
+    expect(wrapper.find('Redirect').exists()).toEqual(true);
+  });
+
+  it('should map state to props', () => {
+    const initialState = {
+      login: {
+        isAuthenticated: true,
+        loginError: {},
+        auth: {},
+      }
+    };
+    mapStateToProps({...initialState});
+
+    expect(mapStateToProps).toBe(mapStateToProps);
+
+  });
+
+  it('should map dispatch to props', () => {
+    const dispatch = jest.fn();
+    mapDispatchToProps(dispatch).login('email', 'password');
+    expect(dispatch.mock.calls).toMatchSnapshot();
   });
 });

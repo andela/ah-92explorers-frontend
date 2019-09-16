@@ -34,6 +34,7 @@ const initialState = {
   comment: '',
   commentError: null,
   comments: [],
+  commentHistory: [],
   isCommentDelete: false,
   rating: {},
   follow: {

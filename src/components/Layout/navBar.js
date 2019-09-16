@@ -12,6 +12,7 @@ dotenv.config();
 class Navbar extends Component {
   render() {
     const { profile } = this.props;
+    const userImage = localStorage.getItem('image');
     return (
       <Fragment>
         <div className="navbar">
@@ -23,11 +24,10 @@ class Navbar extends Component {
           <div className="restOfNav">
             <img src={search} alt="" className="navIcons navIconColor" />
             <img src={notification} alt="" className="navIcons navIconColor" />
-            <img src={(profile && profile.image) || process.env.DEFAULT_IMAGE} alt="" className="navIcons manIcon" />
+            <img src={userImage || process.env.DEFAULT_IMAGE} alt="" className="navIcons manIcon" />
             <Dropdown />
           </div>
         </div>
-
       </Fragment>
     );
   }
