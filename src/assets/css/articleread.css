@@ -116,6 +116,32 @@
     font-size: 35px;
 }
 
+.modalLikerImg
+{
+    height: 50px;
+    width: 50px;
+    border-radius: 30px;
+    margin-right: 10px;
+}
+
+.stayTopNo
+{
+    position: fixed;
+    top: 20;
+    margin-left: 25px;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+.stayTopNo2
+{
+    position: fixed;
+    top: 20;
+    margin-left: 25px;
+    margin-top: 37px;
+    cursor: pointer;
+}
+
 .tags
 {
     padding: 5px 18px;

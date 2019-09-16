@@ -32,6 +32,8 @@ export class ArticleReadDelete extends Component {
     this.state = {
       modal: false,
       modal1: false,
+      modal2: false,
+      modal3: false,
       likes: '',
       dislikes: '7',
       likeMessage: '',
@@ -119,6 +121,18 @@ export class ArticleReadDelete extends Component {
     }));
   }
 
+  toggle2 = () => {
+    this.setState(prevState => ({
+      modal2: !prevState.modal2,
+    }));
+  }
+
+  toggle3 = () => {
+    this.setState(prevState => ({
+      modal3: !prevState.modal3,
+    }));
+  }
+
   likeArticle = () => {
     if (this.props.isAuthenticated === false) {
       localStorage.clear();
@@ -131,12 +145,14 @@ export class ArticleReadDelete extends Component {
     if (liked === true && disliked === false && this.likeRef.current) {
       this.setState({ likes: parseInt(likes, 10) - 1, liked: false });
       this.likeRef.current.src = 'https://image.flaticon.com/icons/svg/66/66744.svg';
+      this.props.article.article.likes = this.props.article.article.likes.filter(like => like.liker.username !== localStorage.getItem('username'));
       this.props.likeArticle(slug);
     }
 
     if (liked === false && disliked === false && this.likeRef.current) {
       this.setState({ likes: parseInt(likes, 10) + 1, liked: true });
       this.likeRef.current.src = 'https://image.flaticon.com/icons/svg/179/179539.svg';
+      this.props.article.article.likes.push({ typeState: 1, liker: { username: localStorage.getItem('username'), image: localStorage.getItem('image') } });
       this.props.likeArticle(slug);
     }
     if (liked === false && disliked === true && this.likeRef.current) {
@@ -148,6 +164,8 @@ export class ArticleReadDelete extends Component {
       });
       this.likeRef.current.src = 'https://image.flaticon.com/icons/svg/179/179539.svg';
       this.dislikeRef.current.src = 'https://image.flaticon.com/icons/svg/2107/2107811.svg';
+      this.props.article.article.likes = this.props.article.article.likes.filter(like => like.liker.username !== localStorage.getItem('username'));
+      this.props.article.article.likes.push({ typeState: 1, liker: { username: localStorage.getItem('username'), image: localStorage.getItem('image') } });
       this.props.likeArticle(slug);
     }
   }
@@ -164,11 +182,13 @@ export class ArticleReadDelete extends Component {
     if (disliked === true && liked === false && this.dislikeRef.current) {
       this.setState({ dislikes: parseInt(dislikes, 10) - 1, disliked: false });
       this.dislikeRef.current.src = 'https://image.flaticon.com/icons/svg/2107/2107811.svg';
+      this.props.article.article.likes = this.props.article.article.likes.filter(like => like.liker.username !== localStorage.getItem('username'));
       this.props.dislikeArticle(slug);
     }
     if (disliked === false && liked === false && this.dislikeRef.current) {
       this.setState({ dislikes: parseInt(dislikes, 10) + 1, disliked: true });
       this.dislikeRef.current.src = 'https://image.flaticon.com/icons/svg/2107/2107623.svg';
+      this.props.article.article.likes.push({ typeState: 0, liker: { username: localStorage.getItem('username'), image: localStorage.getItem('image') } });
       this.props.dislikeArticle(slug);
     }
     if (disliked === false && liked === true && this.dislikeRef.current) {
@@ -180,6 +200,8 @@ export class ArticleReadDelete extends Component {
       });
       this.likeRef.current.src = 'https://image.flaticon.com/icons/svg/66/66744.svg';
       this.dislikeRef.current.src = 'https://image.flaticon.com/icons/svg/2107/2107623.svg';
+      this.props.article.article.likes = this.props.article.article.likes.filter(like => like.liker.username !== localStorage.getItem('username'));
+      this.props.article.article.likes.push({ typeState: 0, liker: { username: localStorage.getItem('username'), image: localStorage.getItem('image') } });
       this.props.dislikeArticle(slug);
     }
   }
@@ -195,18 +217,33 @@ export class ArticleReadDelete extends Component {
     const { value, rateAvg } = this.state;
     const { fetched, owner } = this.props.article;
     const { slug } = this.props.article.article;
+    const { likes } = this.props.article.article;
+    const newDislikes = [];
+    const newLikes = [];
+    likes.forEach((like) => {
+      if (like.typeState === 0) {
+        newDislikes.push(like);
+      }
+      if (like.typeState === 1) {
+        newLikes.push(like);
+      }
+    });
     return (
       <Fragment>
         { isAuthenticated ? <NavBar /> : <Navbar /> }
         <div className="theBodyArticle AI">
           <div className="colOne">
-            <div onClick={this.likeArticle} className="stayTop">
-              <img src={require('../../assets/icons/like.svg')} ref={this.likeRef} alt="" className="bodyIcons likeIcon" />
-              <small className="numberLikes">{this.state.likes}</small>
+            <div>
+              <div onClick={this.likeArticle} className="stayTop">
+                <img src={require('../../assets/icons/like.svg')} ref={this.likeRef} alt="" className="bodyIcons likeIcon" />
+              </div>
+              <small className="numberLikes stayTopNo" onClick={this.toggle2}>{this.state.likes}</small>
             </div>
-            <div onClick={this.dislikeArticle} className="stayTop2">
-              <img src="https://image.flaticon.com/icons/svg/2107/2107811.svg" ref={this.dislikeRef} alt="" className="bodyIcons dislike" />
-              <small className="numberLikes">{this.state.dislikes}</small>
+            <div>
+              <div onClick={this.dislikeArticle} className="stayTop2">
+                <img src="https://image.flaticon.com/icons/svg/2107/2107811.svg" ref={this.dislikeRef} alt="" className="bodyIcons dislike" />
+              </div>
+              <small className="numberLikes stayTopNo2" onClick={this.toggle3}>{this.state.dislikes}</small>
             </div>
             { !owner && (
               <div className="rateIcon stayTop3" onClick={this.toggle1}>
@@ -293,6 +330,42 @@ export class ArticleReadDelete extends Component {
             starClick={this.onStarClick}
             handleRatingsSubmit={this.handleRatingsSubmit}
           />
+        </Modal>
+        <Modal isOpen={this.state.modal2} toggle={this.toggle2}>
+          <ModalHeader>
+            <div>
+              <span>People that liked!</span>
+              <Button close onClick={this.toggle2} style={{ marginLeft: '260px', outline: 'none' }} />
+            </div>
+          </ModalHeader>
+          <ModalBody>
+            {newLikes.length < 1
+              ? (<span> Be the first to like</span>
+              ) : newLikes.map(like => (like.typeState === 1 ? (
+                <div key={like.liker.username} style={{ marginBottom: '15px' }}>
+                  <Link to={`/user-profile/${like.liker.username}`}><img className="modalLikerImg" src={!like.liker.image ? localStorage.getItem('image') : like.liker.image} alt="" /></Link>
+                  <Link to={`/user-profile/${like.liker.username}`}><span>{like.liker.username}</span></Link>
+                </div>
+              ) : <span>Be the first to like!</span>))}
+          </ModalBody>
+        </Modal>
+        <Modal isOpen={this.state.modal3} toggle={this.toggle3}>
+          <ModalHeader>
+            <div>
+              <span>People that disliked!</span>
+              <Button close onClick={this.toggle3} style={{ marginLeft: '250px', outline: 'none' }} />
+            </div>
+          </ModalHeader>
+          <ModalBody>
+            {newDislikes.length < 1
+              ? (<span> Be the first to dislike</span>
+              ) : newDislikes.map(like => (like.typeState === 0 ? (
+                <div key={like.liker.username} style={{ marginBottom: '15px' }}>
+                  <Link to={`/user-profile/${like.liker.username}`}><img className="modalLikerImg" src={!like.liker.image ? localStorage.getItem('image') : like.liker.image} alt="" /></Link>
+                  <Link to={`/user-profile/${like.liker.username}`}><span>{like.liker.username}</span></Link>
+                </div>
+              ) : <span>Be the first to dislike!</span>))}
+          </ModalBody>
         </Modal>
       </Fragment>
     );

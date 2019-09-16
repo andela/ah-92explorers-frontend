@@ -79,7 +79,9 @@ const Navbar = ({ token, username, avatar }) => {
         <div className="userStatus">
           <img src={avatar} alt="" className="avatarFeed" />
           <span id="userStatusName">{username}</span>
-          <Dropdown />
+          <div style={{ marginLeft: '20px' }}>
+            <Dropdown />
+          </div>
         </div>
       </div>
     </nav>
