@@ -2,7 +2,7 @@ import moxios from 'moxios';
 import dotenv from 'dotenv';
 import store from '../../__mocks__/store';
 import {
-  bookmarkArticle, getAllBookmarks
+  bookmarkArticle, getAllBookmarks, removeBookmark
 } from '../../redux/actions/actionCreators/bookMark';
 import {
   BOOKMARK_ARTICLE_SUCCESS
@@ -75,6 +75,38 @@ describe('bookmarking action', () => {
     });
     return store.dispatch(bookmarkArticle()).then(() => {
       expect(store.getActions().length).toBe(2);
+    });
+  });
+
+  it('should get delete bookmarked article', () => {
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent();
+      request.respondWith({
+        status: 204,
+        response: {
+          message: 'Article bookmarks deleted!'
+        },
+      });
+    });
+
+    return store.dispatch(removeBookmark()).then(() => {
+      expect(store.getActions().length).toBe(1);
+    });
+  });
+
+  it('should not get delete bookmarked article', () => {
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent();
+      request.respondWith({
+        status: 404,
+        response: {
+          message: 'Article bookmarks not deleted retrieved!'
+        },
+      });
+    });
+
+    return store.dispatch(removeBookmark()).then(() => {
+      expect(store.getActions().length).toBe(1);
     });
   });
 });

@@ -4,6 +4,9 @@ import thunk from 'redux-thunk';
 import moxios from 'moxios';
 import * as types from '../../redux/actions/actionTypes/rating';
 import * as actions from '../../redux/actions/actionCreators/rating';
+import {
+  getRating
+} from '../../redux/actions/actionCreators/rating';
 import { SET_LOADING } from '../../redux/actions/actionTypes';
 import axios from 'axios';
 
@@ -15,6 +18,13 @@ const store = mockStore(initialState);
 
 
 describe('rate Article Tests', () => {
+  beforeEach(() => {
+    moxios.install();
+    store.clearActions();
+  });
+  afterEach(() => {
+    moxios.uninstall();
+  });
   afterEach(() => {
     moxios.install(axios);
     store.clearActions();
@@ -42,5 +52,28 @@ describe('rate Article Tests', () => {
         done();
       });
 
+  });
+  it('should get bookmarked article', () => {
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent();
+      request.respondWith({
+        status: 200,
+      });
+    });
+
+    return store.dispatch(getRating()).then(() => {
+      expect(store.getActions().length).toBe(1);
+    });
+  });
+  it('should not get bookmarked article', () => {
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent();
+      request.respondWith({
+        status: 404,
+      });
+    });
+    return store.dispatch(getRating()).then(() => {
+      expect(store.getActions().length).toBe(1);
+    });
   });
 });

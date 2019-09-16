@@ -11,7 +11,6 @@ import man from '../../assets/icons/man.svg';
 import '../../assets/scss/ratings.scss';
 
 export class ViewArticleRatings extends Component {
-
     handleOnDelete = () => {
       const { match: { params } } = this.props;
       this.props.deleteArticle(params.articleSlug);

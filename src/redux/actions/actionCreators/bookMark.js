@@ -13,6 +13,9 @@ import {
   BOOKMARK_ARTICLE_FAILURE,
   BOOKMARK_GET_ALL,
   BOOKMARK_GET_ALL_FAIL,
+  BOOKMARK_DELETE,
+  BOOKMARK_DELETE_SUCCESS,
+  BOOKMARK_DELETE_FAIL,
 } from '../actionTypes/bookMark';
 
 toast.configure();
@@ -30,7 +33,9 @@ export const bookmarkArticle = (slug) => async (dispatch) => {
     dispatch(performAction(BOOKMARK_ARTICLE_SUCCESS, res.data));
   } catch (error) {
     dispatch(performAction(BOOKMARK_ARTICLE_FAILURE, error));
-    toast.error(error.message);
+    if (Error) {
+      toast.error('unauthorized to bookmark this article, please login/signup');
+    }
   }
 };
 
@@ -42,5 +47,15 @@ export const getAllBookmarks = () => async (dispatch) => {
     return dispatch(performAction(BOOKMARK_GET_ALL, res.data));
   } catch (error) {
     return dispatch(performAction(BOOKMARK_GET_ALL_FAIL, error));
+  }
+};
+
+export const removeBookmark = (slug) => async (dispatch) => {
+  checkToken();
+  try {
+    const res = await axios.delete(`${process.env.APP_URL_BACKEND}/api/articles/${slug}/bookmark`);
+    return dispatch(performAction(BOOKMARK_DELETE_SUCCESS, res.data));
+  } catch (error) {
+    return dispatch(performAction(BOOKMARK_DELETE_FAIL, error));
   }
 };
