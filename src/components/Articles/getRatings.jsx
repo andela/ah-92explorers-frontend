@@ -11,30 +11,21 @@ import man from '../../assets/icons/man.svg';
 import '../../assets/scss/ratings.scss';
 
 export class ViewArticleRatings extends Component {
-    state = {
-      modal: false,
-    }
 
     handleOnDelete = () => {
       const { match: { params } } = this.props;
       this.props.deleteArticle(params.articleSlug);
     }
 
-    toggle = () => {
-      this.setState(prevState => ({
-        modal: !prevState.modal,
-      }));
-    }
-
     render() {
       const { rating = [] } = this.props.article.rating || {};
       return (
         <Fragment>
-          <ModalHeader toggle={this.toggle}>
+          <ModalHeader toggle={this.props.mytoggle}>
             <h2 className="h2-ratings">User Ratings</h2>
           </ModalHeader>
           <ModalBody>
-            {rating.map(element => (
+            {rating.length < 1 ? <span>No Ratings</span> : rating.map(element => (
               <div className="ratingSection" key={element.id}>
                 <img src={element.reviewer.image ? element.reviewer.image : man} className="commPic" alt="" />
                 <div className="ratings">

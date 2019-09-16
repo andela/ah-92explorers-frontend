@@ -163,7 +163,6 @@ export const getRating = (slug) => async (dispatch) => {
     const res = await axios.get(`${process.env.APP_URL_BACKEND}/api/article/${slug}/rating`);
     dispatch(performAction(res.data, authenticated));
   } catch (error) {
-    if (error.response && error.response.status === 404) window.location.replace('/not-found');
     return dispatch(performAction('something went wrong'));
   }
 };

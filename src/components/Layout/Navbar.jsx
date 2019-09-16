@@ -6,7 +6,7 @@ import Dropdown from './Dropdown.jsx';
 const Navbar = ({ token, username, avatar }) => {
   if (!token || token === undefined) {
     return (
-      <nav className="feedNavbar" style={{ backgroundColor: '#fffff' }}>
+      <nav className="feedNavbar feedLoggedOut" style={{ backgroundColor: '#fffff' }}>
         <div className="firstNavbar">
           <a href="/">
             <img src={require('../../assets/icons/logo.png')} alt="" className="logoNavbar" />

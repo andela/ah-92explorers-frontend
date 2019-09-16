@@ -440,3 +440,7 @@ button.close:focus {
     cursor: pointer;
     color: #ffffff;
 }
+
+small {
+    cursor: pointer;
+}

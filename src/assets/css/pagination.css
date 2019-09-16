@@ -3,6 +3,8 @@
     flex-direction: row;
     margin-left: 61.5%;
     margin-bottom: 100px;
+    float: right;
+    margin-right: 13.2%;
 }
 
 .paginationInput

@@ -54,8 +54,9 @@ export class ArticleReadDelete extends Component {
 
   componentDidMount() {
     const slug = this.props.match.params.articleSlug;
-    this.props.getArticle(slug);
-    this.props.getRating(slug);
+    this.props.getArticle(slug).then(() => {
+      this.props.getRating(slug);
+    });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -142,6 +143,8 @@ export class ArticleReadDelete extends Component {
     this.setState(prevState => ({
       modal4: !prevState.modal4,
     }));
+    const { slug } = this.props.article.article;
+    this.props.getRating(slug);
   }
 
   likeArticle = () => {
@@ -260,7 +263,7 @@ export class ArticleReadDelete extends Component {
               <div className="rateIcon stayTop3">
                 <img src={Starbtn} className="rateIcon bodyIcons disappear rate" alt="" onClick={this.toggle1} />
                   {' '}
-                <small onMouseOver={this.toggle4}>{rateAvg}</small>
+                <small onClick={this.toggle4}>{rateAvg}</small>
               </div>
             )}
             <br />
@@ -340,7 +343,7 @@ export class ArticleReadDelete extends Component {
 
 
         <Modal isOpen={this.state.modal4} toggle={this.toggle4} className={this.props.className}>
-          <ViewArticleRatings />
+          <ViewArticleRatings mytoggle={this.toggle4} />
         </Modal>
 
 
