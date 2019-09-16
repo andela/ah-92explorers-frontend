@@ -9,7 +9,9 @@ import Alert from '../Layout/Alert';
 import '../../assets/css/profile.css';
 import avatar from '../../assets/images/avatar.png';
 import cam from '../../assets/images/cam.png';
-import { getCurrentProfile, updateProfile } from '../../redux/actions/actionCreators/profile';
+import {
+  getCurrentProfile, updateProfile, following, followers,
+} from '../../redux/actions/actionCreators/profile';
 
 export class EditProfile extends Component {
   state = {
@@ -28,8 +30,10 @@ export class EditProfile extends Component {
   };
 
   componentDidMount() {
-    const { getCurrentProfile } = this.props;
+    const { getCurrentProfile, following, followers } = this.props;
     getCurrentProfile();
+    following();
+    followers();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -103,6 +107,9 @@ export class EditProfile extends Component {
        firstName, lastName, bio, phone, location,
        facebook, twitter, instagram, linkedIn, file, fileImg,
      } = this.state;
+     const {
+       totalFollowing, totalFollowers,
+     } = this.props;
      const img = file === '' ? avatar : file;
      return (
        <Fragment>
@@ -123,16 +130,12 @@ export class EditProfile extends Component {
                    </ReactFileReader>
                  </div>
                  <div className="numbers">
-                   <div className="articles">
-                     <label>20</label>
-                     <label>Articles</label>
-                   </div>
                    <div className="followers">
-                     <label>500</label>
+                     <label>{totalFollowers || '0'}</label>
                      <label>Followers</label>
                    </div>
                    <div className="following">
-                     <label>400</label>
+                     <label>{totalFollowing || '0'}</label>
                      <label>Following</label>
                    </div>
                  </div>
@@ -211,9 +214,13 @@ EditProfile.propTypes = {
 
 const mapStateToProps = state => ({
   profile: state.profile.profile,
+  totalFollowers: state.profile.followers,
+  totalFollowing: state.profile.following,
 });
 
 export default connect(
   mapStateToProps,
-  { getCurrentProfile, updateProfile },
+  {
+    getCurrentProfile, updateProfile, following, followers,
+  },
 )(EditProfile);

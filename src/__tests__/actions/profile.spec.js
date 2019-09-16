@@ -32,7 +32,6 @@ describe('profile action', () => {
     });
 
     return store.dispatch(opt()).then(() => {
-      console.log(store.getActions());
       expect(store.getActions().length).toBe(1);
     });
   });
@@ -130,7 +129,6 @@ describe('profile action', () => {
     });
 
     return store.dispatch(updateProfile('')).then(() => {
-      console.log(store.getActions());
       expect(store.getActions().length).toBe(2);
     });
   });

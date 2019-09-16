@@ -19,6 +19,8 @@ const store = mockStore({});
 const props = {
   getCurrentProfile: jest.fn(),
   updateProfile: jest.fn(),
+  following: jest.fn(), 
+  followers: jest.fn(),
   profile: {},
   history: {},
 };

@@ -59,7 +59,7 @@ export class Follow extends Component {
                     <img src={(viewUser.image) || require('../../assets/icons/man.svg')} alt="avatar" />
                   </div>
                   <button type="button" id="followUnFollow" className="upBtn followUnF follow" onClick={this.handleFollowing}>
-                    {followSuccess ? ('unfollow') : unfollowSuccess ? ('follow') : checkFollower}
+                    {followSuccess ? ('unfollow') : unfollowSuccess ? ('follow') : checkFollower === 'following' ? ('unfollow') : checkFollower}
                   </button>
                   <div className="social">
                     <h3 className="socialMediaTitle">

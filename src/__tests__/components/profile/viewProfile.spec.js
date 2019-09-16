@@ -11,6 +11,7 @@ const props = {
   getCurrentProfile: jest.fn(),
   following: jest.fn(),
   followers: jest.fn(),
+  followOther: ()=>Promise.resolve({username:"celestin"}),
   componentWillReceiveProps: jest.fn(),
   opt: jest.fn(),
   profile: {
@@ -57,6 +58,12 @@ describe('viewProfile component', () => {
   it('renders viewProfile with followingToggle', () => {
     const component = shallow(<ViewProfileComponent {...props} />);
     component.instance().followingToggle()
+    expect(component).toHaveLength(1);
+  });
+
+  it('renders viewProfile with handleFollowing ', () => {
+    const component = shallow(<ViewProfileComponent {...props} />);
+    component.instance().handleFollowing()
     expect(component).toHaveLength(1);
   });
 });

@@ -30,7 +30,6 @@ describe('notification action', () => {
     });
 
     return store.dispatch(opt()).then(() => {
-      console.log(store.getActions());
       expect(store.getActions().length).toBe(1);
     });
   });
