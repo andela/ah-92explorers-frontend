@@ -31,6 +31,7 @@ describe('Renders CreateArticleComponent', () => {
       getRating: jest.fn,
       loading: false,
       getCurrentProfile: jest.fn(),
+      deleteArticle: jest.fn(),
       profile: { profile: {}},
       match: {
         params: {
@@ -132,5 +133,10 @@ describe('Renders CreateArticleComponent', () => {
     const instance = wrapper2.instance();
     instance.dislikeArticle();
     expect(wrapper2).toBeDefined();
+  });
+  it('test handleOnDelete', () => {
+    const component = shallow(<ArticleReadDelete {...props} />);
+    component.instance().handleOnDelete()
+    expect(component).toHaveLength(1);
   });
 });

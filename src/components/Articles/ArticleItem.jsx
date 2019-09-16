@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/mouse-events-have-key-events */
 /* eslint-disable no-restricted-globals */
 /*  istanbul ignore file */
 /* eslint-disable react/no-find-dom-node */
@@ -13,6 +14,7 @@ import ReactHtmlParser from 'react-html-parser';
 import '../../assets/scss/ratings.scss';
 import Starbtn from '../../assets/icons/star.svg';
 import RatingsModal from './Rating/RatingsModal';
+import ViewArticleRatings from './getRatings';
 import NavBar from '../Layout/navBar';
 import Navbar from '../Layout/Navbar.jsx';
 import {
@@ -20,6 +22,7 @@ import {
 } from '../../redux/actions/actionCreators';
 import { articleRating } from '../../redux/actions/actionCreators/rating';
 import Spinner from '../Spinner/Spinner.jsx';
+import BookmarkArticle from './BookmarkArticle';
 import '../../assets/css/articleread.css';
 import manIcon from '../../assets/images/man.jpg';
 import Comments from '../Comments/Comments.jsx';
@@ -34,6 +37,7 @@ export class ArticleReadDelete extends Component {
       modal1: false,
       modal2: false,
       modal3: false,
+      modal4: false,
       likes: '',
       dislikes: '7',
       likeMessage: '',
@@ -51,6 +55,7 @@ export class ArticleReadDelete extends Component {
   componentDidMount() {
     const slug = this.props.match.params.articleSlug;
     this.props.getArticle(slug);
+    this.props.getRating(slug);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -130,6 +135,12 @@ export class ArticleReadDelete extends Component {
   toggle3 = () => {
     this.setState(prevState => ({
       modal3: !prevState.modal3,
+    }));
+  }
+
+  toggle4 = () => {
+    this.setState(prevState => ({
+      modal4: !prevState.modal4,
     }));
   }
 
@@ -246,8 +257,10 @@ export class ArticleReadDelete extends Component {
               <small className="numberLikes stayTopNo2" onClick={this.toggle3}>{this.state.dislikes}</small>
             </div>
             { !owner && (
-              <div className="rateIcon stayTop3" onClick={this.toggle1}>
-                <img src={Starbtn} className="rateIcon bodyIcons disappear rate" alt="" />
+              <div className="rateIcon stayTop3">
+                <img src={Starbtn} className="rateIcon bodyIcons disappear rate" alt="" onClick={this.toggle1} />
+                  {' '}
+                <small onMouseOver={this.toggle4}>{rateAvg}</small>
               </div>
             )}
             <br />
@@ -260,6 +273,11 @@ export class ArticleReadDelete extends Component {
             { owner && (
             <div className="stayTop5">
               <a href={`/article/${slug}/update`}><img src={require('../../assets/icons/edit.svg')} className="bodyIcons disappear edit tw" alt="..." /></a>
+            </div>
+            )}
+            { !owner && (
+            <div className="bookmarkIcon stayTop6">
+              <BookmarkArticle />
             </div>
             )}
           </div>
@@ -285,11 +303,6 @@ export class ArticleReadDelete extends Component {
                 )) }
               </div>
               <div className="restOfIcons">
-                <Link to={`/rating/${slug}`}>
-                  {' '}
-                  <img src="https://image.flaticon.com/icons/svg/291/291205.svg" className="bodyIcons" alt="" />
-                  <small>{rateAvg}</small>
-                </Link>
                 <div className="sharingIcons">
                   <ShareArticle fetched={fetched} article={this.props.article.article} />
                 </div>
@@ -308,6 +321,7 @@ export class ArticleReadDelete extends Component {
             </div>
           </div>
         </div>
+
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>
             Delete Article
@@ -323,6 +337,13 @@ export class ArticleReadDelete extends Component {
             <Button color="secondary" onClick={this.toggle}>Cancel</Button>
           </ModalFooter>
         </Modal>
+
+
+        <Modal isOpen={this.state.modal4} toggle={this.toggle4} className={this.props.className}>
+          <ViewArticleRatings />
+        </Modal>
+
+
         <Modal isOpen={this.state.modal1} toggle={this.toggle1} className={this.props.className}>
           <RatingsModal
             title="Article Ratings"

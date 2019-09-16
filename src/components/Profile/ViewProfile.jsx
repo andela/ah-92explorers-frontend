@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable react/require-default-props */

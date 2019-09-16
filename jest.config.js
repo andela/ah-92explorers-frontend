@@ -12,5 +12,5 @@ module.exports = {
   coveragePathIgnorePatterns: [
   ],
   collectCoverageFrom: ['src/**/*.{js,jsx}'],
-  modulePathIgnorePatterns: ['<rootDir>/cypress'],
+  modulePathIgnorePatterns: ['<rootDir>/cypress', '<rootDir>/src/components/Continue/Continue.jsx'],
 };

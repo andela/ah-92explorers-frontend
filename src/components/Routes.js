@@ -5,7 +5,6 @@ import CreateArticle from './Articles/CreateArticle.jsx';
 import UpdateArticle from './Articles/UpdateArticle.jsx';
 import { ReadArticle } from './Articles/ArticleItem.jsx';
 import Signup from './Auth/Signup.jsx';
-import { Continuee } from './Continue/Continue.jsx';
 import Feed from './Articles/Feed.jsx';
 import Login from './Containers/Login.jsx';
 import ViewProfile from './Profile/ViewProfile';
@@ -26,7 +25,6 @@ const Routes = () => (
         <Route exact path="/rating/:articleSlug" component={ViewArticleRatings} />
         <Route exact path="/" component={Feed} />
         <Route path="/signup" component={Signup} />
-        <Route path="/continue" component={Continuee} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/profile" component={ViewProfile} />
         <Route exact path="/user-profile/:username" component={Follow} />
