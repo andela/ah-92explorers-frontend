@@ -2,7 +2,7 @@ import '@babel/polyfill';
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import configureStore from 'redux-mock-store';
-import { Comments } from '../../../components/Comments/Comments.jsx';
+import { Comments, mapStateToProps } from '../../../components/Comments/Comments.jsx';
 
 describe('<Comments />', () => {
   const props = {
@@ -15,13 +15,26 @@ describe('<Comments />', () => {
         commentor: {
           username: "EleElebi",
           image: null
-        }
+        },
+        likes: [
+          {
+            id: "13e71634-3bd3-40f2-a309-d274c9e18b4b",
+            commentId: "a66a712a-82ec-401f-afad-6949ddf3d905",
+            likes: 1,
+            createdAt: "2019-09-17T14:23:19.487Z",
+            updatedAt: "2019-09-17T14:23:19.487Z",
+            user: {
+                username: "Hervera",
+                image: null
+            }
+          }
+        ]
       }
     ],
     slug: '',
     username: '',
     userImage: '',
-    fetchComments: jest.fn(),
+    fetchComments: jest.fn(() => Promise.resolve({})),
     postComment: jest.fn(() => Promise.resolve({})),
     deleteComment: jest.fn(),
     editCommentHistory: jest.fn(),
@@ -36,7 +49,8 @@ describe('<Comments />', () => {
       }
     ],
     commentError: {},
-    login: {user:{username:''}}
+    login: {user:{username:''}},
+    likeAComment: jest.fn(() => Promise.resolve({})),
   };
 
   const initialState = {};
@@ -44,14 +58,15 @@ describe('<Comments />', () => {
   let store;
 
   store = mockStore(initialState);
-  const wrapper = mount(<Comments store={store} {...props}/>);
+  const wrapper = shallow(<Comments store={store} {...props}/>);
 
   it('should render Comments component', () => {
+    const wrapper = mount(<Comments {...props}/>);
     expect(wrapper).toMatchSnapshot();
   });
 
   it('should render one main div element', () => {
-    expect(wrapper.find('div')).toHaveLength(9);
+    expect(wrapper.find('div')).toHaveLength(16);
   });
 
   it('shoudl handle on comment', async () => {
@@ -87,10 +102,24 @@ describe('<Comments />', () => {
     expect(component).toBeDefined();
   });
 
+  it('should handle on click on delete comment', () => {
+    const commentId = 3;
+    const component = wrapper.instance();
+    component.likeComment(commentId);
+    expect(component).toBeDefined();
+  });
+
   it('hould simulate on click comment button', async () => {
     const wrapper = shallow(<Comments { ...props} />);
     const btn = wrapper.find('.publish');
     btn.simulate('click', { preventDefault: jest.fn() });
+    expect(btn.length).toBe(1);
+  });
+
+  it('to have wrapper class', async () => {
+    const wrapper = shallow(<Comments {...props}/>);
+    const btn = wrapper.find('.likeImg');
+    btn.simulate('click');
     expect(btn.length).toBe(1);
   });
 
@@ -106,11 +135,18 @@ describe('<Comments />', () => {
     expect(wrapper.instance().props.fetchComments).toBeCalled();
   });
 
-  it('to have wrapper class', async () => {
-    const wrapper = shallow(<Comments {...props}
-    />);
-    const btn = wrapper.find('.publish');
-    btn.simulate('click');
-    expect(btn.length).toBe(1);
+  it('should map state to props', () => {
+    const initialState = {
+      comments:[],
+      commentError: {},
+      commentHistory: [],
+      login: {
+        isAuthenticated: true,
+        loginError: {},
+        auth: {},
+      }
+    };
+    mapStateToProps({...initialState});
+    expect(mapStateToProps).toBe(mapStateToProps);
   });
 });

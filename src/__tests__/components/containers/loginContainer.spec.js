@@ -101,9 +101,7 @@ describe('<LoginContainer />', () => {
       }
     };
     mapStateToProps({...initialState});
-
     expect(mapStateToProps).toBe(mapStateToProps);
-
   });
 
   it('should map dispatch to props', () => {

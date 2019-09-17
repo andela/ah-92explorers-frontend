@@ -271,3 +271,28 @@ button:focus, span:focus{
     max-height: calc(100vh - 210px);
     overflow-y: auto;
 }
+
+.comment-acts {
+    margin-bottom: 20px; 
+}
+
+.like-comment {
+    float: right;
+    margin-right: 25px;
+    cursor: pointer;
+}
+
+.like-comment img {
+    width: 25px;
+    height: 25px;
+}
+
+.likeImg, .totalLikes {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.totalLikes {
+    padding-left: 5px;
+    padding-top: 5px;
+}

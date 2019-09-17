@@ -29,7 +29,7 @@ export class Continue extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+export const mapStateToProps = (state) => ({
   user: state.social,
 });
 
