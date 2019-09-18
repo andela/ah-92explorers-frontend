@@ -23,8 +23,12 @@ export class Search extends Component {
   }
 
   render() {
+    const { results, error } = this.props;
     const { text } = this.state;
-    if (this.props.error) {
+    if (results === undefined && !error) {
+      return <Spinner />;
+    }
+    if (error) {
       return (
         <div>
           <Navbar token={localStorage.getItem('jwtToken')} username={localStorage.getItem('username')} avatar={localStorage.getItem('image')} query={text} />
@@ -36,7 +40,7 @@ export class Search extends Component {
                 <Link to={`/search/tags?query=${text}`}><li className="filters">Tags</li></Link>
               </ul>
             </div>
-            <div className="noResults">No results</div>
+            <h4 className="noResults" style={{ color: 'rgba(0,0,0,.54)' }}>No results</h4>
           </div>
         </div>
       );
@@ -52,7 +56,24 @@ export class Search extends Component {
               <Link to={`/search/tags?query=${text}`}><li className="filters">Tags</li></Link>
             </ul>
           </div>
-          <div>Data Here</div>
+          <div className="showResults">
+            <span>Stories</span>
+            { results.map(result => (
+              <div key={result.id} className="singleSearch">
+                <div className="articleProf">
+                  <img src={result.profile} alt="" className="feedImgSearch" />
+                  <div className="searchAD">
+                    <Link to={`/user-profile/${result.author}`}><span className="textSearchUser">{result.author}</span></Link>
+                    <span className="textSearchDate">{result.date}</span>
+                  </div>
+                </div>
+                <Link to={`/articles/${result.slug}`}><img src={result.image} alt="" className="displaySearchImg" /></Link>
+                <Link to={`/articles/${result.slug}`}><h3 style={{ cursor: 'pointer' }}>{result.title}</h3></Link>
+                <Link to={`/articles/${result.slug}`}><p style={{ color: 'rgba(0,0,0,.54)', cursor: 'pointer' }}>{result.body}</p></Link>
+                <Link to={`/articles/${result.slug}`}><span style={{ color: 'rgba(0,0,0,.54)', cursor: 'pointer' }}>Read more...</span></Link>
+              </div>
+            )) }
+          </div>
         </div>
       </div>
     );

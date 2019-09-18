@@ -15,7 +15,6 @@ import {
   RATE_ARTICLE_SUCCESS,
   RATE_ARTICLE_FAILURE,
   GET_SEARCH_RESULTS,
-  FAILED_TO_GET_SEARCH_RESULTS,
 } from '../actions/actionTypes';
 
 const articles = (state = initialState, action) => {
@@ -96,11 +95,6 @@ const articles = (state = initialState, action) => {
         loading: false,
       };
     case GET_SEARCH_RESULTS:
-      return {
-        ...state,
-        feed: action.payload,
-      };
-    case FAILED_TO_GET_SEARCH_RESULTS:
       return {
         ...state,
         feed: action.payload,

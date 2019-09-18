@@ -4,6 +4,7 @@ import '@babel/polyfill';
 import dotenv from 'dotenv';
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
+import ReactHtmlParser from 'react-html-parser';
 import {
   CREATE_ARTICLE,
   GET_ARTICLE,
@@ -172,9 +173,26 @@ export const getRating = (slug) => async (dispatch) => {
 export const getSearchResults = (query) => async (dispatch) => {
   try {
     const results = await axios.get(`http://localhost:3000/api/articles?keyword=${query}`);
+    const searchResults = results.data.results;
+    const newResults = [];
+    searchResults.forEach((result) => {
+      if (result.title) {
+        const newObject = {
+          author: result.author.username || 'Isaiah',
+          profile: result.author.image || terrestial,
+          title: result.title,
+          image: fetchImage(result.body),
+          body: ReactHtmlParser(ReactHtmlParser(result.body.length > 25 ? `${result.body.slice(0, 30)}...` : result.body)),
+          slug: result.slug || 'No-weher',
+          id: result.id,
+          date: `${new Date(result.createdAt).toDateString()}` || 'Fri Aug 30 2019',
+        };
+        newResults.push(newObject);
+      }
+    });
     return dispatch({
       type: GET_SEARCH_RESULTS,
-      payload: results.response.data,
+      payload: newResults,
     });
   } catch (error) {
     return dispatch({
@@ -187,9 +205,26 @@ export const getSearchResults = (query) => async (dispatch) => {
 export const getTagResults = (query) => async (dispatch) => {
   try {
     const results = await axios.get(`http://localhost:3000/api/articles?tag=${query}`);
+    const searchResults = results.data.results;
+    const newResults = [];
+    searchResults.forEach((result) => {
+      if (result.title) {
+        const newObject = {
+          author: result.author.username || 'Isaiah',
+          profile: result.author.image || terrestial,
+          title: result.title,
+          image: fetchImage(result.body),
+          body: ReactHtmlParser(ReactHtmlParser(result.body.length > 25 ? `${result.body.slice(0, 30)}...` : result.body)),
+          slug: result.slug || 'No-weher',
+          id: result.id,
+          date: `${new Date(result.createdAt).toDateString()}` || 'Fri Aug 30 2019',
+        };
+        newResults.push(newObject);
+      }
+    });
     return dispatch({
       type: GET_SEARCH_RESULTS,
-      payload: results.response.data,
+      payload: newResults,
     });
   } catch (error) {
     return dispatch({
@@ -202,9 +237,26 @@ export const getTagResults = (query) => async (dispatch) => {
 export const getPeopleResults = (query) => async (dispatch) => {
   try {
     const results = await axios.get(`http://localhost:3000/api/articles?author=${query}`);
+    const searchResults = results.data.results;
+    const newResults = [];
+    searchResults.forEach((result) => {
+      if (result.title) {
+        const newObject = {
+          author: result.author.username || 'Isaiah',
+          profile: result.author.image || terrestial,
+          title: result.title,
+          image: fetchImage(result.body),
+          body: ReactHtmlParser(ReactHtmlParser(result.body.length > 25 ? `${result.body.slice(0, 30)}...` : result.body)),
+          slug: result.slug || 'No-weher',
+          id: result.id,
+          date: `${new Date(result.createdAt).toDateString()}` || 'Fri Aug 30 2019',
+        };
+        newResults.push(newObject);
+      }
+    });
     return dispatch({
       type: GET_SEARCH_RESULTS,
-      payload: results.response.data,
+      payload: newResults,
     });
   } catch (error) {
     return dispatch({

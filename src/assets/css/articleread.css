@@ -437,6 +437,63 @@ button.close:focus {
     margin-top: 10%
 }
 
+.showResults
+{
+    margin-left: 5%;
+}
+
+.singleSearch
+{
+    margin-top: 25px;
+    margin-bottom: 50px;
+    width: 50%;
+}
+
+.feedImgSearch
+{
+    height: 40px;
+    width: 40px;
+    border-radius: 40px;
+}
+
+.displaySearchImg
+{
+    margin-top: 20px;
+    width:  600px;
+    height: 250px;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.articleProf
+{
+    display: flex;
+    flex-direction: row;
+}
+
+.searchAD
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.textSearchUser
+{
+    font-size: 16px;
+    line-height: 1.4;
+    padding-left: 10px;
+    color: #0d9bc6;
+}
+
+.textSearchDate
+{
+    font-size: 13px;
+    line-height: 1.4;
+    padding-left: 10px;
+    color: rgba(0,0,0,.54);
+}
+
 @media(max-width: 900px) {
     .theBody {
         margin-left: 0px;

@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders CreateArticleComponent should render create component 1`] = `ShallowWrapper {}`;
+
+exports[`Renders CreateArticleComponent should render create component2 1`] = `ShallowWrapper {}`;
+
+exports[`Renders CreateArticleComponent should render create component3 1`] = `ShallowWrapper {}`;

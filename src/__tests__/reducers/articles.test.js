@@ -1,6 +1,15 @@
 import {
-  CREATE_ARTICLE, GET_ARTICLE, FAILED_ARTICLE_CREATION, UPDATE_ARTICLE, FAILED_ARTICLE_UPDATE,
-  GET_FEED, SET_LOADING, ARTICLE_GET_FAIL, RATE_ARTICLE_SUCCESS, RATE_ARTICLE_START, RATE_ARTICLE_FAILURE, GET_RATING
+  CREATE_ARTICLE, 
+  GET_ARTICLE,
+  FAILED_ARTICLE_CREATION,
+  UPDATE_ARTICLE,
+  FAILED_ARTICLE_UPDATE,
+  GET_FEED, SET_LOADING,
+  ARTICLE_GET_FAIL,
+  RATE_ARTICLE_SUCCESS,
+  RATE_ARTICLE_START,
+  RATE_ARTICLE_FAILURE,
+  GET_SEARCH_RESULTS
 } from '../../redux/actions/actionTypes';
 import articles from '../../redux/reducers/articles';
 
@@ -160,6 +169,52 @@ describe('Article Reducer', () => {
       nextPage: 1,
       previousPage: null,
       totalPages: 7
+    });
+    expect(state).toBeDefined();
+  });
+  it('should return payload when GET_SEARCH_RESULTS type performed', () => {
+    const payload = {
+      feed: {
+        time: '2 minutes',
+        slug: 'slug',
+        title: 'title',
+        description: 'description',
+        body: 'Best ever',
+        tagList: 'best',
+        image: 'image',
+      },
+      owner: true,
+      fetched: true,
+    }
+    const initialState = {
+      feed: [],
+    };
+    const state = articles(initialState, {
+      type: GET_SEARCH_RESULTS,
+      payload,
+    });
+    expect(state).toBeDefined();
+  });
+  it('should return payload when GET_SEARCH_RESULTS type performed', () => {
+    const payload = {
+      feed: {
+        time: '2 minutes',
+        slug: 'slug',
+        title: 'title',
+        description: 'description',
+        body: 'Best ever',
+        tagList: 'best',
+        image: 'image',
+      },
+      owner: true,
+      fetched: true,
+    }
+    const initialState = {
+      feed: [],
+    };
+    const state = articles(initialState, {
+      type: GET_SEARCH_RESULTS,
+      payload,
     });
     expect(state).toBeDefined();
   });
