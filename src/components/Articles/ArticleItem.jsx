@@ -28,6 +28,8 @@ import manIcon from '../../assets/images/man.jpg';
 import Comments from '../Comments/Comments.jsx';
 import Messages from '../Messages/Messages.jsx';
 import ShareArticle from './ShareArticle.jsx';
+import { reportArticle } from '../../redux/actions/actionCreators/reportArticle';
+import '../../assets/css/reportArticle.css';
 
 export class ArticleReadDelete extends Component {
   constructor(props) {
@@ -38,6 +40,10 @@ export class ArticleReadDelete extends Component {
       modal2: false,
       modal3: false,
       modal4: false,
+      modal5: false,
+      title: '',
+      message: '',
+      type: '',
       likes: '',
       dislikes: '7',
       likeMessage: '',
@@ -150,6 +156,32 @@ export class ArticleReadDelete extends Component {
     this.props.getRating(slug);
   }
 
+  toggle5 = () => {
+    this.setState(prevState => ({
+      modal5: !prevState.modal5,
+    }));
+  }
+
+  handleClickReport = e => {
+    e.preventDefault();
+    const {
+      reportArticle,
+    } = this.props;
+    const { title, message, type } = this.state;
+    const { slug } = this.props.article.article;
+    const bodyReport = {
+      title,
+      message,
+      type,
+    };
+    reportArticle(bodyReport, slug);
+    this.toggle5();
+  };
+
+  onChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
   likeArticle = () => {
     if (this.props.isAuthenticated === false) {
       localStorage.clear();
@@ -234,6 +266,7 @@ export class ArticleReadDelete extends Component {
     const { value, rateAvg } = this.state;
     const { fetched, owner } = this.props.article;
     const { slug } = this.props.article.article;
+    const { title, message, type } = this.state;
     const { likes } = this.props.article.article;
     const newDislikes = [];
     const newLikes = [];
@@ -284,6 +317,11 @@ export class ArticleReadDelete extends Component {
             { !owner && (
             <div className="bookmarkIcon stayTop6">
               <BookmarkArticle />
+            </div>
+            )}
+            { !owner && (
+            <div className="stayTop7">
+              <i className="fa fa-flag flag" aria-hidden="true" onClick={this.toggle5}></i>
             </div>
             )}
           </div>
@@ -349,7 +387,6 @@ export class ArticleReadDelete extends Component {
           <ViewArticleRatings mytoggle={this.toggle4} />
         </Modal>
 
-
         <Modal isOpen={this.state.modal1} toggle={this.toggle1} className={this.props.className}>
           <RatingsModal
             title="Article Ratings"
@@ -394,6 +431,37 @@ export class ArticleReadDelete extends Component {
               ) : <span>Be the first to dislike!</span>))}
           </ModalBody>
         </Modal>
+
+        <Modal isOpen={this.state.modal5} toggle={this.toggle5} className={this.props.className}>
+          <ModalHeader>
+            <h1>Report article</h1>
+          </ModalHeader>
+          <ModalBody>
+            <div>
+              <input type="radio" name="type" value="Spam" onChange={this.onChange} />
+              {' '}
+                    Spam
+              <br />
+              <input type="radio" name="type" value="Plagiarism" onChange={this.onChange} />
+              {' '}
+             Plagiarism
+              <br />
+              <input type="radio" name="type" value="Harassment" onChange={this.onChange} />
+              {' '}
+                    Harassment
+              <br />
+              <input type="radio" name="type" value="Rules violation" onChange={this.onChange} />
+              {' '}
+                    Rules violation
+              <br />
+              <br />
+              <div>
+                <textarea placeholder="Provide additional information" onChange={this.onChange} name="message" className="cmBox2" required />
+              </div>
+              <button className="report" type="submit" onClick={this.handleClickReport}>Report</button>
+            </div>
+          </ModalBody>
+        </Modal>
       </Fragment>
     );
   }
@@ -406,8 +474,10 @@ const mapStateToProps = (state) => ({
   rating: state.articles.rating,
   rateAvg: state.articles.article.rateAvg,
   likes: state.likes.like,
+  reports: state.reportingArticle,
   login: state.login.isAuthenticated,
 });
+
 
 export const connectReadDelete = connect(mapStateToProps,
   {
@@ -418,5 +488,6 @@ export const connectReadDelete = connect(mapStateToProps,
     getRating,
     likeArticle,
     dislikeArticle,
+    reportArticle,
   })(ArticleReadDelete);
 export { connectReadDelete as ReadArticle };
