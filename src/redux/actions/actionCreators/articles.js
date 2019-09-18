@@ -5,18 +5,15 @@ import dotenv from 'dotenv';
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 import {
-  CREATE_ARTICLE,
-  GET_ARTICLE,
-  FAILED_ARTICLE_CREATION,
-  FAILED_ARTICLE_UPDATE,
-  UPDATE_ARTICLE,
-  SET_LOADING,
-  GET_FEED,
-  ARTICLE_GET_FAIL,
-  GET_RATING,
+  CREATE_ARTICLE, GET_ARTICLE, FAILED_ARTICLE_CREATION,
+  READING_SUCCESS, READING_FAILURE, FAILED_ARTICLE_UPDATE,
+  UPDATE_ARTICLE, SET_LOADING, GET_FEED, ARTICLE_GET_FAIL, GET_RATING,
 } from '../actionTypes';
 import fetchImage from '../../../helpers/createDisplayImage';
 import terrestial from '../../../assets/icons/terrestial.jpg';
+import {
+  checkToken,
+} from '../../../utils/checkToken';
 
 dotenv.config();
 
@@ -198,4 +195,14 @@ export const getFeed = (page) => async (dispatch) => {
     previousPage: article.data.metadata.previousPage,
   });
   dispatch(setLoading(false));
+};
+
+export const reading = (slug) => async (dispatch) => {
+  checkToken();
+  try {
+    const { data } = await axios.post(`${process.env.APP_URL_BACKEND}/api/articles/${slug}/record-reading`);
+    dispatch(performAction(READING_SUCCESS, data.message));
+  } catch (error) {
+    dispatch(performAction(READING_FAILURE, error.response));
+  }
 };

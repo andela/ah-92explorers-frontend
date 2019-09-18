@@ -5,6 +5,9 @@ import {
   getCurrentProfile,
   updateProfile,
   opt,
+  readingStats,
+  following,
+  followers,
 } from '../../redux/actions/actionCreators/profile';
 
 const mockStore = configureStore([thunk]);
@@ -129,6 +132,122 @@ describe('profile action', () => {
     });
 
     return store.dispatch(updateProfile('')).then(() => {
+      expect(store.getActions().length).toBe(2);
+    });
+  });
+
+  it('should view the following', () => {
+    const expectedResponse = {
+      status: 200,
+      payload: {message: 'successful view the following'},
+    };
+
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent();
+      request.respondWith({
+        status: 200,
+        response: expectedResponse,
+      });
+    });
+
+    return store.dispatch(following()).then(() => {
+      expect(store.getActions().length).toBe(1);
+    });
+  });
+
+  it('should not view the following', () => {
+    const expectedResponse = {
+      status: 400,
+      error: 'error',
+    };
+
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent();
+      request.respondWith({
+        status: 400,
+        response: expectedResponse,
+      });
+    });
+
+    return store.dispatch(following()).then(() => {
+      expect(store.getActions().length).toBe(2);
+    });
+  });
+
+
+  it('should view the followers', () => {
+    const expectedResponse = {
+      status: 200,
+      payload: {message: 'successful view the followers'},
+    };
+
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent();
+      request.respondWith({
+        status: 200,
+        response: expectedResponse,
+      });
+    });
+
+    return store.dispatch(followers()).then(() => {
+      expect(store.getActions().length).toBe(1);
+    });
+  });
+
+  it('should not view the followers', () => {
+    const expectedResponse = {
+      status: 400,
+      error: 'error',
+    };
+
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent();
+      request.respondWith({
+        status: 400,
+        response: expectedResponse,
+      });
+    });
+
+    return store.dispatch(followers()).then(() => {
+      expect(store.getActions().length).toBe(2);
+    });
+  });
+
+
+  it('should view reading stats', () => {
+    const expectedResponse = {
+      status: 200,
+      payload: {message: 'successful view reading stats'},
+    };
+
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent();
+      request.respondWith({
+        status: 200,
+        response: expectedResponse,
+      });
+    });
+
+    return store.dispatch(readingStats()).then(() => {
+      expect(store.getActions().length).toBe(1);
+    });
+  });
+
+  it('should not view reading stats', () => {
+    const expectedResponse = {
+      status: 400,
+      error: 'error',
+    };
+
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent();
+      request.respondWith({
+        status: 400,
+        response: expectedResponse,
+      });
+    });
+
+    return store.dispatch(readingStats()).then(() => {
       expect(store.getActions().length).toBe(2);
     });
   });

@@ -2,7 +2,7 @@ import moxios from 'moxios';
 import dotenv from 'dotenv';
 import store from '../../__mocks__/store';
 import { followOther } from '../../redux/actions/actionCreators/follow';
-import {USER_FOLLOW, FOLLOW_SUCCESS, UNFOLLOW_SUCCESS, FOLLOW_FAILURE } from '../../redux/actions/actionTypes';
+import {USER_FOLLOW, FOLLOW_SUCCESS, } from '../../redux/actions/actionTypes';
 
 dotenv.config();
 
@@ -28,11 +28,11 @@ describe('follow action', () => {
       });
     });
 
-    return store.dispatch(followOther()).then(() => {
+    return store.dispatch(followOther('isaih250')).then(() => {
       expect(store.getActions().length).toBe(2);
       expect(store.getActions()).toEqual([
         {
-          payload: undefined,
+          payload: 'isaih250',
           type: USER_FOLLOW,
         },
         {
@@ -51,7 +51,7 @@ describe('follow action', () => {
         response: { message: 'successful unfollow isaiah' },
       });
     });
-    return store.dispatch(followOther()).then(() => {
+    return store.dispatch(followOther('isaih250')).then(() => {
       expect(store.getActions().length).toBe(2);
     });
   });

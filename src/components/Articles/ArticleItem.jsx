@@ -18,7 +18,7 @@ import ViewArticleRatings from './getRatings';
 import NavBar from '../Layout/navBar';
 import Navbar from '../Layout/Navbar.jsx';
 import {
-  getArticle, deleteArticle, getRating, likeArticle, dislikeArticle,
+  getArticle, reading, deleteArticle, getRating, likeArticle, dislikeArticle,
 } from '../../redux/actions/actionCreators';
 import { articleRating } from '../../redux/actions/actionCreators/rating';
 import Spinner from '../Spinner/Spinner.jsx';
@@ -57,6 +57,9 @@ export class ArticleReadDelete extends Component {
     this.props.getArticle(slug).then(() => {
       this.props.getRating(slug);
     });
+    if (this.props.login === true) {
+      this.props.reading(slug);
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -403,11 +406,13 @@ const mapStateToProps = (state) => ({
   rating: state.articles.rating,
   rateAvg: state.articles.article.rateAvg,
   likes: state.likes.like,
+  login: state.login.isAuthenticated,
 });
 
 export const connectReadDelete = connect(mapStateToProps,
   {
     getArticle,
+    reading,
     articleRating,
     deleteArticle,
     getRating,
