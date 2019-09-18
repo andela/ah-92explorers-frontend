@@ -14,6 +14,8 @@ import {
   GET_FEED,
   ARTICLE_GET_FAIL,
   GET_RATING,
+  GET_SEARCH_RESULTS,
+  FAILED_TO_GET_SEARCH_RESULTS,
 } from '../actionTypes';
 import fetchImage from '../../../helpers/createDisplayImage';
 import terrestial from '../../../assets/icons/terrestial.jpg';
@@ -164,6 +166,51 @@ export const getRating = (slug) => async (dispatch) => {
     dispatch(performAction(res.data, authenticated));
   } catch (error) {
     return dispatch(performAction('something went wrong'));
+  }
+};
+
+export const getSearchResults = (query) => async (dispatch) => {
+  try {
+    const results = await axios.get(`http://localhost:3000/api/articles?keyword=${query}`);
+    return dispatch({
+      type: GET_SEARCH_RESULTS,
+      payload: results.response.data,
+    });
+  } catch (error) {
+    return dispatch({
+      type: FAILED_TO_GET_SEARCH_RESULTS,
+      payload: error.response.data,
+    });
+  }
+};
+
+export const getTagResults = (query) => async (dispatch) => {
+  try {
+    const results = await axios.get(`http://localhost:3000/api/articles?tag=${query}`);
+    return dispatch({
+      type: GET_SEARCH_RESULTS,
+      payload: results.response.data,
+    });
+  } catch (error) {
+    return dispatch({
+      type: FAILED_TO_GET_SEARCH_RESULTS,
+      payload: error.response.data,
+    });
+  }
+};
+
+export const getPeopleResults = (query) => async (dispatch) => {
+  try {
+    const results = await axios.get(`http://localhost:3000/api/articles?author=${query}`);
+    return dispatch({
+      type: GET_SEARCH_RESULTS,
+      payload: results.response.data,
+    });
+  } catch (error) {
+    return dispatch({
+      type: FAILED_TO_GET_SEARCH_RESULTS,
+      payload: error.response.data,
+    });
   }
 };
 

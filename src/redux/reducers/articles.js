@@ -14,6 +14,8 @@ import {
   RATE_ARTICLE_START,
   RATE_ARTICLE_SUCCESS,
   RATE_ARTICLE_FAILURE,
+  GET_SEARCH_RESULTS,
+  FAILED_TO_GET_SEARCH_RESULTS,
 } from '../actions/actionTypes';
 
 const articles = (state = initialState, action) => {
@@ -92,6 +94,16 @@ const articles = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
+      };
+    case GET_SEARCH_RESULTS:
+      return {
+        ...state,
+        feed: action.payload,
+      };
+    case FAILED_TO_GET_SEARCH_RESULTS:
+      return {
+        ...state,
+        feed: action.payload,
       };
     case GET_RATING:
       return {
