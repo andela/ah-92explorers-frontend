@@ -24,30 +24,6 @@ const Navbar = ({ token, username, avatar }) => {
             placeholder="Search ..."
             onKeyPress={changeToSearchPage}
           />
-          <div className="notifications-drop">
-            <ul>
-              <li className="title">
-            hillary liked your article
-                <span>unread</span>
-              </li>
-              <li className="title">
-            hillary liked your article
-                <span>unread</span>
-              </li>
-              <li className="title">
-            hillary liked your article
-                <span>unread</span>
-              </li>
-              <li className="title">
-            hillary liked your article
-                <span>unread</span>
-              </li>
-              <li className="title">
-            hillary liked your article
-                <span>unread</span>
-              </li>
-            </ul>
-          </div>
           <button className="signupBtnNav disappear dBtnOne" type="button"><Link to="/signup">Sign Up</Link></button>
           <button className="signinBtnNav disappear" type="button"><Link to="/login">Sign In</Link></button>
 
