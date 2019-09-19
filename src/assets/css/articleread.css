@@ -100,10 +100,17 @@
     margin-top: 55px;
 }
 
-.stayTop6 {
+.stayTop7 {
     position: fixed;
     top: 20;
-    margin-top: 55px;
+    margin-top: 90px;
+    width: 120px;
+}
+
+.flag{
+    font-size:20px;
+    color:red;
+    cursor: pointer;
 }
 
 .numberLikes {
