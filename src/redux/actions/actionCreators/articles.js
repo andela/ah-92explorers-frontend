@@ -26,17 +26,17 @@ const success = (article, owner, authenticated) => ({
   },
 });
 
-const performAction = (payload) => ({
-  type: GET_RATING,
-  payload,
-});
-
 export const setLoading = (data) => (dispatch) => {
   dispatch({
     type: SET_LOADING,
     payload: data,
   });
 };
+
+const performAction = (type, payload) => ({
+  type,
+  payload,
+});
 
 export const publishArticle = (articleData) => async (dispatch) => {
   try {
@@ -149,18 +149,6 @@ export const getArticle = (slug) => async (dispatch) => {
       type: ARTICLE_GET_FAIL,
       error: 'something went wrong',
     });
-  }
-};
-
-export const getRating = (slug) => async (dispatch) => {
-  const token = localStorage.getItem('jwtToken') && jwtDecode(localStorage.getItem('jwtToken'));
-  let authenticated = false;
-  try {
-    if (token && token.email) authenticated = true;
-    const res = await axios.get(`${process.env.APP_URL_BACKEND}/api/article/${slug}/rating`);
-    dispatch(performAction(res.data, authenticated));
-  } catch (error) {
-    return dispatch(performAction('something went wrong'));
   }
 };
 

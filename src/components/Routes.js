@@ -14,6 +14,7 @@ import ResetingPassword from './Auth/ResettingPassword';
 import ReadingStats from './Articles/ReadingStats.jsx';
 import ViewArticleRatings from './Articles/getRatings';
 import Follow from './Follow/Follow.jsx';
+import ArticleBookmarks from './Articles/ListBookmarks';
 import { NotFound } from './NotFound/NotFound';
 
 const Routes = () => (
@@ -33,6 +34,7 @@ const Routes = () => (
         <Route exact path="/reset-password" component={ResetPassword} />
         <Route exact path="/resetting-password" component={ResetingPassword} />
         <Route exact path="/reading" component={ReadingStats} />
+        <Route exact path="/bookmarks" component={ArticleBookmarks} />
         <Route exact path="/not-found" component={NotFound} />
       </Fragment>
     </Switch>

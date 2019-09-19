@@ -54,6 +54,13 @@ export class Dropdown extends Component {
               </Link>
             </li>
             <li>
+              <Link to="/bookmarks">
+                <i className="fa fa-bookmark" aria-hidden="true"></i>
+                {' '}
+                Bookmarks
+              </Link>
+            </li>
+            <li>
               <Link to="/article">
                 <i className="fa fa-plus"></i>
                 {' '}

@@ -5,6 +5,9 @@ import {
   BOOKMARK_ARTICLE_FAILURE,
   BOOKMARK_GET_ALL,
   BOOKMARK_GET_ALL_FAIL,
+  BOOKMARK_DELETE,
+  BOOKMARK_DELETE_SUCCESS,
+  BOOKMARK_DELETE_FAIL,
 } from '../actions/actionTypes/bookMark';
 
 const initialState = {
@@ -43,7 +46,25 @@ export default function (state = initialState, action) {
     case BOOKMARK_GET_ALL: {
       return {
         ...state,
+        Bookmarks: payload,
         bookmarks: payload.Bookmarks.map(article => article.article.id),
+      };
+    }
+    case BOOKMARK_DELETE: {
+      return {
+        ...state,
+      };
+    }
+    case BOOKMARK_DELETE_FAIL: {
+      return {
+        ...state,
+        bookmark: payload,
+      };
+    }
+    case BOOKMARK_DELETE_SUCCESS: {
+      return {
+        ...state,
+        bookmarks: state.bookmarks.filter(article => article.slug !== payload),
       };
     }
     default:

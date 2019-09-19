@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
-  Button, Modal, ModalHeader, ModalBody, ModalFooter,
+  Button, ModalHeader, ModalBody, ModalFooter,
 } from 'reactstrap';
 import StarRatingComponent from 'react-star-rating-component';
-import PropTypes from 'prop-types';
 
 const RatingsModal = (props) => {
   const {
@@ -34,16 +33,5 @@ const RatingsModal = (props) => {
     </>
   );
 };
-RatingsModal.defaultProps = {
-  title: '',
-  starClick: () => '',
-  handleRatingsSubmit: () => '',
-  rating: 0,
-};
-RatingsModal.propTypes = {
-  title: PropTypes.string,
-  starClick: PropTypes.func,
-  handleRatingsSubmit: PropTypes.func,
-  rating: PropTypes.number,
-};
+
 export default RatingsModal;

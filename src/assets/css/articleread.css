@@ -13,6 +13,14 @@
     width: 700px;
 }
 
+.bodyIconsBookmark
+{
+    height: 25px;
+    width: 25px;
+    cursor: pointer;
+    float: right;
+}
+
 .image img {
     width: 109%;
     height: 500px;
@@ -81,6 +89,12 @@
 }
 
 .stayTop5 {
+    position: fixed;
+    top: 20;
+    margin-top: 55px;
+}
+
+.stayTop6 {
     position: fixed;
     top: 20;
     margin-top: 55px;
@@ -331,6 +345,18 @@ p {
     margin-top: 150px;
 }
 
+.danger {
+    background: #d64c4c;
+}
+
+.small-h-padding {
+    margin-left: 5px;
+}
+
+.trash-bookmark{
+    color: #d64c4c;
+}
+
 .bookmark-header {
     width: 60rem;
     margin: auto;
@@ -367,20 +393,59 @@ p {
 
 .article-info-bookmark h1 {
     color: #41494D;
-    overflow: hidden;
     width: 40rem;
     height: 2rem;
     cursor: pointer;
+    font-size: 1.4rem;
 }
 
 .article-info-bookmark h1:hover {
-    color: #0d9bc6;
+    color: #10aada;
+}
+
+.authorBookmark {
+    color: black;
+    font-size: 15px;
+}
+
+.authorIcon{
+    color: black;
+    font-size: 20px
+}
+
+.not-found-bookmark{
+    color: #000;
+    font-size: 30px;
+    margin-left: 40%;
+    font-family: "Lucida Console"
+}
+
+.read-more{
+    cursor: pointer;
+}
+
+.read-more:hover{
+    color: #10aada;
+}
+
+.description-bookmark {
+    font-weight: lighter;
+    font-family: "Open Sans", sans-serif;
+    font-size: 0.5em;
+    color: #5c5c5c;
+}
+
+.bookmark-title {
+    font-weight: lighter;
+    font-family: "Open Sans", sans-serif;
+    color: #5c5c5c;
+    text-transform: capitalize;
 }
 
 .article-info-bookmark p {
     width: 40rem;
     height: 3rem;
-    font-size: 14pt;
+    font-size: 12pt;
     overflow: hidden;
 }
 
@@ -390,16 +455,10 @@ p {
     font-family: Helvetica;
     font-weight: 300;
     font-size: 25px;
-    margin-left: -10px;
-    padding-bottom: 20px;
 }
 
 .btn-remove:hover {
     color: #0d9bc6;
-}
-
-button.close:focus {
-    outline: 0px;
 }
 
 @media(max-width: 900px) {
