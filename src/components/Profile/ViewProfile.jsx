@@ -90,7 +90,6 @@ export class ViewProfile extends Component {
       splitStringUnfollow = unfollowSuccess.split(' ');
       usernameUnfollow = splitStringUnfollow[splitStringUnfollow.length - 1];
     }
-
     const {
       allFollowing, allFollowers,
     } = this.state;

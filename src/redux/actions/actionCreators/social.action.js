@@ -2,6 +2,8 @@ import '@babel/polyfill';
 import qs from 'query-string';
 import dotenv from 'dotenv';
 import crypto from 'crypto';
+import axios from 'axios';
+import jwtDecode from 'jwt-decode';
 import { socialTypes } from '../actionTypes';
 
 dotenv.config();
@@ -26,7 +28,7 @@ export const dec = (token) => {
   return decr;
 };
 
-export const getInfo = (search) => (dispatch) => {
+export const getInfo = (search) => async (dispatch) => {
   const stringObj = qs.parse(search);
   const tokenStr = stringObj && stringObj.token;
   if (!tokenStr) {
@@ -36,7 +38,17 @@ export const getInfo = (search) => (dispatch) => {
   try {
     const data = dec(tokenStr);
     const { user, token } = JSON.parse(data);
+    const { username } = jwtDecode(token);
+    localStorage.setItem('username', username);
     localStorage.setItem('jwtToken', token);
+    const getProfile = await axios.get(`${process.env.APP_URL_BACKEND}/api/profiles/${username}`, { headers: { Authorization: token } });
+    let userImage;
+    if (getProfile && getProfile.data.profile.image !== null) {
+      userImage = getProfile.data.profile.image;
+    } else {
+      userImage = process.env.DEFAULT_IMAGE;
+    }
+    localStorage.setItem('image', userImage);
     return dispatch(success(user));
   } catch (error) {
     return dispatch(failure('something went wrong'));
