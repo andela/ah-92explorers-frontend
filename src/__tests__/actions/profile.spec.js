@@ -151,7 +151,7 @@ describe('profile action', () => {
     });
 
     return store.dispatch(following()).then(() => {
-      expect(store.getActions().length).toBe(2);
+      expect(store.getActions().length).toBe(1);
     });
   });
 
@@ -170,7 +170,7 @@ describe('profile action', () => {
     });
 
     return store.dispatch(following()).then(() => {
-      expect(store.getActions().length).toBe(1);
+      expect(store.getActions().length).toBe(2);
     });
   });
 
@@ -190,7 +190,7 @@ describe('profile action', () => {
     });
 
     return store.dispatch(followers()).then(() => {
-      expect(store.getActions().length).toBe(2);
+      expect(store.getActions().length).toBe(1);
     });
   });
 
@@ -209,7 +209,7 @@ describe('profile action', () => {
     });
 
     return store.dispatch(followers()).then(() => {
-      expect(store.getActions().length).toBe(1);
+      expect(store.getActions().length).toBe(2);
     });
   });
 
@@ -229,7 +229,7 @@ describe('profile action', () => {
     });
 
     return store.dispatch(readingStats()).then(() => {
-      expect(store.getActions().length).toBe(2);
+      expect(store.getActions().length).toBe(1);
     });
   });
 
@@ -248,7 +248,7 @@ describe('profile action', () => {
     });
 
     return store.dispatch(readingStats()).then(() => {
-      expect(store.getActions().length).toBe(1);
+      expect(store.getActions().length).toBe(2);
     });
   });
 });
