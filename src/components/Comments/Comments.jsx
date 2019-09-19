@@ -1,5 +1,4 @@
-/* eslint-disable react/no-access-state-in-setstate */
-/* eslint-disable react/no-unused-state */
+
 import React from 'react';
 import moment from 'moment';
 import { confirmAlert } from 'react-confirm-alert';
@@ -13,7 +12,8 @@ import {
 } from 'reactstrap';
 import manIcon from '../../assets/images/man.jpg';
 import {
-  fetchComments, postComment, deleteComment, updateComment, fetchEditCommentHistory,
+  fetchComments, postComment, deleteComment, updateComment,
+  fetchEditCommentHistory, likeAComment,
 } from '../../redux/actions/actionCreators/comments';
 import '../../assets/css/comment.css';
 import 'react-confirm-alert/src/react-confirm-alert.css';
@@ -22,8 +22,6 @@ import Messages from '../Messages/Messages.jsx';
 export class Comments extends React.Component {
   constructor(props) {
     super(props);
-    this.toggle = this.toggle.bind(this);
-    this.toggleEditHistory = this.toggleEditHistory.bind(this);
     this.state = {
       body: '',
       isInEditMode: false,
@@ -51,6 +49,18 @@ export class Comments extends React.Component {
       } else {
         this.setState({ addNotif: true });
       }
+    });
+  }
+
+  isliked = (array) => {
+    const res = array.find(element => element.user.username === this.props.login.user.username);
+    return !!res;
+  }
+
+  likeComment = (commentId) => {
+    this.props.likeAComment(commentId).then(() => {
+      const { slug } = this.props;
+      this.props.fetchComments(slug);
     });
   }
 
@@ -85,10 +95,10 @@ export class Comments extends React.Component {
   }
 
   changeEditMode = (index) => {
-    this.setState({
-      isInEditMode: !this.state.isInEditMode,
+    this.setState(prevState => ({
+      isInEditMode: !prevState.isInEditMode,
       commentToEdit: index,
-    });
+    }));
   }
 
   onEditChange = (e) => {
@@ -116,7 +126,7 @@ export class Comments extends React.Component {
     this.props.fetchEditCommentHistory(id);
   }
 
-  toggle(id) {
+  toggle = (id) => {
     this.setState(prevState => ({
       dropdownOpen: !prevState.dropdownOpen,
       commentToEdit: id,
@@ -148,7 +158,7 @@ export class Comments extends React.Component {
     const {
       body, newComment, addNotif, updateNotif,
     } = this.state;
-    const { comments, commentError, commentHistory } = this.props;
+    const { comments, commentError } = this.props;
     return (
       <div>
         <div className="commentForm">
@@ -194,23 +204,51 @@ export class Comments extends React.Component {
                   </div>
                 )
                   : (
-                    <p className="comment-body">
-                      {element.body}
-                      {'    '}
-                      { (element.createdAt === element.updatedAt)
-                        ? null
-                        : (
-                          <label
-                            className="com-edited"
-                            onClick={() => this.toggleEditHistory(
-                              element.id, element.commentor.username, element.commentor.image
-                                ? element.commentor.image : manIcon,
-                            )}
-                          >
+                    <div className="comment-acts">
+                      <p className="comment-body">
+                        {element.body}
+                        {'    '}
+                        { (element.createdAt === element.updatedAt)
+                          ? null
+                          : (
+                            <label
+                              className="com-edited"
+                              onClick={() => this.toggleEditHistory(
+                                element.id, element.commentor.username, element.commentor.image
+                                  ? element.commentor.image : manIcon,
+                              )}
+                            >
                          (edited)
-                          </label>
-                        )}
-                    </p>
+                            </label>
+                          )}
+                      </p>
+                      <div className="like-comment">
+                        {
+                          this.isliked(element.likes) ? (
+                            <div>
+                              <img
+                                src={require('../../assets/icons/liked.svg')}
+                                alt="like button"
+                                onClick={() => this.likeComment(element.id)}
+                                className="likeImg"
+                              />
+                              <span className="totalLikes">{element.likes.length}</span>
+                            </div>
+                          ) : (
+                            <div>
+                              <img
+                                src={require('../../assets/icons/default-like.svg')}
+                                alt="like button"
+                                onClick={() => this.likeComment(element.id)}
+                                className="likeImg"
+                              />
+                              <span className="totalLikes">{element.likes.length}</span>
+                            </div>
+                          )
+                        }
+                      </div>
+                    </div>
+
                   )}
               </div>
               { element.commentor.username === this.props.login.user.username
@@ -264,7 +302,7 @@ export class Comments extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+export const mapStateToProps = (state) => ({
   comments: state.comments.comments,
   commentError: state.comments.commentError,
   commentHistory: state.comments.commentHistory,
@@ -273,6 +311,11 @@ const mapStateToProps = (state) => ({
 
 export default connect(
   mapStateToProps, {
-    fetchComments, postComment, deleteComment, updateComment, fetchEditCommentHistory,
+    fetchComments,
+    postComment,
+    deleteComment,
+    updateComment,
+    fetchEditCommentHistory,
+    likeAComment,
   },
 )(Comments);

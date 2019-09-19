@@ -68,8 +68,6 @@ export const postComment = (commentData, slug) => async (dispatch) => {
     let errorMessage = null;
     if (error.response) {
       errorMessage = error.response.data.error;
-    } else {
-      errorMessage = networkError;
     }
     return dispatch(setCommentError(errorMessage));
   }
@@ -135,6 +133,23 @@ export const fetchEditCommentHistory = (id) => async (dispatch) => {
     const editHistory = await axios.get(`${process.env.APP_URL_BACKEND}/api/comments/${id}`);
     return dispatch(editCommentHistory(editHistory.data.edits));
   } catch (error) {
-    return dispatch(setCommentError(error));
+    return dispatch(setCommentError(error.response.data.error));
+  }
+};
+
+export const likeAComment = (id) => async (dispatch) => {
+  try {
+    const res = await axios.post(`${process.env.APP_URL_BACKEND}/api/article/comment/${id}/like`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('jwtToken')}`,
+      },
+    });
+    dispatch(setCommentSuccess(res.data.message));
+  } catch (error) {
+    let errorMessage = null;
+    if (error.response) {
+      errorMessage = error.response.data.error;
+    }
+    return dispatch(setCommentError(errorMessage));
   }
 };

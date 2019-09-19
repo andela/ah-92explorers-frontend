@@ -7,7 +7,7 @@ import {
   } from '../../redux/actions/actionTypes';
 
 import { postComment, getComments, fetchComments, deleteComment, 
-    updateComment, editCommentHistory, fetchEditCommentHistory, 
+    updateComment, editCommentHistory, fetchEditCommentHistory, likeAComment
 } from '../../redux/actions/actionCreators';
 
 dotenv.config();
@@ -188,10 +188,31 @@ describe('Testing Comment Actions', () => {
                 type: SET_COMMENT_ERROR,
             },
           ]);
-    });        
+    });    
+    
+    it('should dispatch data incase of update succeeded', async () => {
+        let id = '3ca905f2-20ef-40c2-a56d-9565793b5aae';
+        moxios.stubRequest(`${process.env.APP_URL_BACKEND}/api/comments/${id}`, {
+            status: 200,
+            response: { 
+              message: 'successfully updated and tracked comment' 
+            },
+          });
+
+        let commentData = 'I really like this article'
+
+        let lastComment = '4a82e67b-8b7b-491b-9b67-a23caf9b30d6';
+        await store.dispatch(updateComment(commentData, id, lastComment));
+        expect(store.getActions()).toEqual([
+        {
+            type: SET_COMMENT_SUCCESS,
+            payload: 'You\'ve updated the comment' 
+        },
+        ]);
+    });   
 
     it('should dispatch SET_COMMENT_ERROR incase of update failed', async () => {
-        let id = 'fdxfsfsdggggg';
+        let id = 'f';
         moxios.stubRequest(`${process.env.APP_URL_BACKEND}/api/comments/${id}`, {
             status: 500,
             response: { 
@@ -199,11 +220,32 @@ describe('Testing Comment Actions', () => {
             },
           });
 
-        let data = {
+        let commentData = 'I really like this article'
+        let lastComment = '4a82e67b-8b7b-491b-9b67-a23caf9b30d6';
+        await store.dispatch(updateComment(commentData, id, lastComment));
+        expect(store.getActions()).toEqual([
+        {
+            type: SET_COMMENT_ERROR,
+            payload: 'failed to update and track comment' 
+        },
+        ]);
+    });   
+
+    it('should dispatch SET_COMMENT_ERROR incase of update failed', async () => {
+        let id = 'f';
+        moxios.stubRequest(`${process.env.APP_URL_BACKEND}/api/comments/${id}`, {
+            status: 500,
+            response: { 
+              error: 'Something went wrong. Check your internet connection.' 
+            },
+          });
+
+        let commentData = {
             body: 'I really like this article'
         }
 
-        await store.dispatch(updateComment(data, id));
+        let lastComment = '4a82e67b-8b7b-491b-9b67-a23caf9b30d6';
+        await store.dispatch(updateComment(commentData, id, lastComment));
         expect(store.getActions()).toEqual([
         {
             type: SET_COMMENT_ERROR,
@@ -217,7 +259,8 @@ describe('Testing Comment Actions', () => {
         moxios.stubRequest(`${process.env.APP_URL_BACKEND}/api/comments/${id}`, {
             status: 200,
             response: { 
-              error: 'successfully updated and tracked comment' 
+              commment: {},
+              edit: [], 
             },
           });
 
@@ -229,6 +272,61 @@ describe('Testing Comment Actions', () => {
         },
         ]);
     });   
+
+    it('should dispatch error incase EDIT_COMMENT_HISTORY fails', async () => {
+        let id = '[bc608ed6-1fb7-48aa-9613-ea9e5bd56402]';
+        moxios.stubRequest(`${process.env.APP_URL_BACKEND}/api/comments/${id}`, {
+            status: 500,
+            response: { 
+              error: 'failed to get comment' 
+            },
+          });
+
+        await store.dispatch(fetchEditCommentHistory(id));
+        expect(store.getActions()).toEqual([
+        {
+            type: SET_COMMENT_ERROR,
+            payload: 'failed to get comment'
+        },
+        ]);
+    }); 
+    
+
+    it('should dispatch data incase of like success', async () => {
+        let id = '3ca905f2-20ef-40c2-a56d-9565793b5aae';
+        moxios.stubRequest(`${process.env.APP_URL_BACKEND}/api/article/comment/${id}/like`, {
+            status: 201,
+            response: {
+                message: 'you liked this comment'
+            }
+          });
+
+        await store.dispatch(likeAComment(id));
+        expect(store.getActions()).toEqual([
+        {
+            type: SET_COMMENT_SUCCESS,
+            payload: 'you liked this comment' 
+        },
+        ]);
+    }); 
+
+    it('should dispatch an error incase of like comment fails', async () => {
+        let id = 'd';
+        moxios.stubRequest(`${process.env.APP_URL_BACKEND}/api/article/comment/${id}/like`, {
+            status: 500,
+            response: {
+                message: 'Failed to like this comment, please try again'
+            }
+          });
+
+        await store.dispatch(likeAComment(id));
+        expect(store.getActions()).toEqual([
+            {
+                type: SET_COMMENT_ERROR,
+                payload: undefined, 
+            },
+        ]);
+    }); 
     
     it('Should return all comments of an article', () => {
         const response = getComments();
