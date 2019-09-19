@@ -7,15 +7,12 @@ import ReactHtmlParser from 'react-html-parser';
 import { getAllBookmarks, removeBookmark } from '../../redux/actions/actionCreators/bookMark';
 import NavBar from '../Layout/navBar';
 import terre from '../../assets/icons/terrestial.jpg';
+import manIcon from '../../assets/icons/man.svg';
 
 export class ListBookmark extends Component {
   componentDidMount() {
-    this.props.getAllBookmarks();
     const token = localStorage.getItem('jwtToken');
-    if (!token) {
-      window.location = '/login';
-    }
-    getAllBookmarks();
+    token ? this.props.getAllBookmarks() : window.location.href = '/login';
   }
 
     handleOnClick = slug => {
@@ -55,18 +52,16 @@ export class ListBookmark extends Component {
                           >
                             {element.article.title}
                           </h1>
-                          <code>
-                            <p
-                              className="description-bookmark"
-                              onClick={() => {
-                                this.handleOnClick(element.article.slug);
-                              }}
-                            >
-                              {ReactHtmlParser(ReactHtmlParser(`${element.article.body.substring(0, 30)}....`))}
-                            </p>
-                          </code>
+                          <p
+                            className="description-bookmark"
+                            onClick={() => {
+                              this.handleOnClick(element.article.slug);
+                            }}
+                          >
+                            {ReactHtmlParser(ReactHtmlParser(`${element.article.body.substring(0, 30)}....`))}
+                          </p>
                           <div>
-                            <i className="fa fa-user authorIcon" aria-hidden="true"></i>
+                            <span className="authorIcon"><img src={element.article.author.image || manIcon} alt="" /></span>
                             {' '}
                             <Link to={`/user-profile/${element.article.author.username}`}><span className="authorBookmark">{element.article.author.username}</span></Link>
                             {' '}

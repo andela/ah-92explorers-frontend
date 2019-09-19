@@ -75,7 +75,7 @@ export class Dropdown extends Component {
               </Link>
             </li>
             <li className="optInOut">
-              <i className="fa fa-bell" style={{ color: '#000' }}></i>
+              <i className="fa fa-bell"></i>
               {' '}
               <span className="notificationOnOff">Notifications</span>
               {' '}
@@ -83,7 +83,7 @@ export class Dropdown extends Component {
               <label className="label" htmlFor="switch"></label>
             </li>
             <hr />
-            <li style={{ height: '20px', position: 'relative', bottom: '18px' }}>
+            <li style={{ position: 'relative' }}>
               <button type="button" onClick={this.logout} className="signout">
                 <i className="fa fa-sign-out"></i>
                 {' '}
