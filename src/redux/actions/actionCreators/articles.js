@@ -83,7 +83,7 @@ export const updateArticle = (articleData, slug) => async (dispatch) => {
       body,
       tagList,
     } = articleData;
-    const tags = tagList[0];
+    const tags = !tagList ? null : tagList[0];
     if (!title || title.length < 5 || !body) {
       return dispatch({
         type: FAILED_ARTICLE_UPDATE,

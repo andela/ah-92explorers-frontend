@@ -43,7 +43,7 @@ describe('Testing Notification Actions', () => {
         return store.dispatch(getNotifications()).then(() => {
             let dispatchedActions = store.getActions();
             let dispatchedTypes = dispatchedActions.map(action => action.type);
-            console.log(dispatchedTypes)
+
             expect(dispatchedTypes).toEqual(expectedActions);
         })
     });

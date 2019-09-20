@@ -247,6 +247,7 @@ body
    display: flex;
    flex-direction: row;
    color: #ffffff;
+   z-index: 1800;
 }
 
 .navbar ul li a{
