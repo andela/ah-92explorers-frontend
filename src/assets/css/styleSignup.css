@@ -75,7 +75,7 @@ header {
 }
 
 .multi-widget {
-    margin: 0 auto;
+    margin: 1.5em auto;
 }
 
 .user-profile-s1,
@@ -244,7 +244,6 @@ td {
 
 .facebook {
     background-color: #3b5998;
-    border-color: #3b5998;
 }
 
 .fa{
