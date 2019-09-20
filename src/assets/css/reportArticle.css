@@ -49,6 +49,10 @@
     width: 100%;
 }
 
+.cmBox.com{
+    border: 1px solid #919191;
+}
+
 .cmBox2
 {
     background: none;

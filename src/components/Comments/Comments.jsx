@@ -171,7 +171,7 @@ export class Comments extends React.Component {
               type="text"
               value={body}
               name="body"
-              className="cmBox"
+              className="cmBox com"
               placeholder="Enter a comment here"
               onChange={this.onChange}
             />
@@ -195,7 +195,7 @@ export class Comments extends React.Component {
                 { this.state.isInEditMode && this.state.commentToEdit === element.id ? (
                   <div className="comment-body">
                     {' '}
-                    <input type="text" defaultValue={element.body} onChange={this.onEditChange} className="cmBox" />
+                    <input type="text" defaultValue={element.body} onChange={this.onEditChange} className="cmBox com" />
                     <button onClick={this.changeEditMode} type="button" className="x-btn">X</button>
                     <br />
                     { updateNotif && this.state.commentToEdit === element.id && commentError

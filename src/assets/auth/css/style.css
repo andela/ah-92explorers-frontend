@@ -205,7 +205,9 @@ border: 1px solid #dc3545;
     border: 1px solid #dc3545;
   }
 }
-
+.resetPasswordForm__main{
+  margin-top: 100px;
+}
 
 @media (max-width:900px) {
   .resetPasswordForm {
