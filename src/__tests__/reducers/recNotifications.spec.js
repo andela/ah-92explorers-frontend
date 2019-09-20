@@ -15,7 +15,6 @@ import {
         type: GET_NOTIFICATIONS,
         notifications,
       });
-      console.log(state)
       expect(state).toEqual(state);
     });
     it('should return error', () => {

@@ -9,15 +9,14 @@ dotenv.config();
 export const getImageUrl = async (file) => {
   try {
     const formData = new FormData();
-    formData.append('upload_preset', 'pnfsck6h');
+    formData.append('upload_preset', 'qmnnrrnhhaven');
     formData.append('file', file);
-    const result = await axios.post(process.env.CLOUDINARY_URL, formData, {
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    const result = await axios.post('https://api.cloudinary.com/v1_1/avpaul/upload', formData, {
+      headers: { 'Content-Type': 'multipart/form-data' },
       onUploadProgress: (progressEvent) => {
         Math.round((progressEvent.loaded * 100) / progressEvent.total);
       },
     });
-
     return {
       default: result.data.url,
     };
