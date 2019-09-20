@@ -94,7 +94,7 @@ export class Navbar extends Component {
             <li><Link to="/profile">Profile</Link></li>
           </ul>
           <div className="restOfNav">
-            <img src={search} alt="" className="navIcons navIconColor" />
+            <img src={search} alt="" className="navIcons navIconColor searchIcon" />
             <div onClick={this.onHandleClick}>
               <img src={notification} alt="" className="navIcons navIconColor" />
               {opted && toggleBadge

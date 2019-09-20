@@ -49,3 +49,11 @@ body {
     }
 }
 
+.searchIcon {
+    display: none;
+}
+
+.col-12 {
+    position: initial !important;
+}
+
